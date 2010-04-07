@@ -3,7 +3,6 @@ require_once 'ZendX/Service/Brightcove/Connection.php';
 
 /**
  * Test read token: 0Z2dtxTdJAxtbZ-d0U7Bhio2V1Rhr5Iafl5FFtDPY8E.
- *  factory!!!: JHmtFzwbUevUituBImybmBNA490FN0M6gfvVU9Ccv30.
  * 
  * @category   ZendX
  * @package    ZendX_Service
