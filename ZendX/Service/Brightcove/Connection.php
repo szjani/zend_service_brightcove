@@ -21,8 +21,6 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
 
     protected $_writeToken = null;
 
-    protected $_httpMethod = null;
-
     protected $_query = null;
 
     /**
@@ -115,25 +113,6 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     }
 
     /**
-     * @param string $method Zend_Http_Client::GET or Zend_Http_Client::POST
-     * @return ZendX_Service_Brightcove $this
-     */
-    public function setHttpMethod($method)
-    {
-        $validMethods = array(Zend_Http_Client::GET, Zend_Http_Client::POST);
-        if (!in_array($method, $validMethods)) {
-            throw new ZendX_Service_Brightcove_Exception('Invalid http method: '.$method);
-        }
-        $this->_httpMethod = $method;
-        return $this;
-    }
-
-    public function getHttpMethod()
-    {
-        return $this->_httpMethod;
-    }
-
-    /**
      * @param ZendX_Service_Brightcove_Query_Abstract $query
      * @return ZendX_Service_Brightcove $this
      */
@@ -167,10 +146,6 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      */
     protected function _checkErrors()
     {
-//        if (!is_array($this->_lastResponseBody)) {
-//            $this->notify();
-//            throw new ZendX_Service_Brightcove_Exception('Connection error: response is null');
-//        }
         if (is_array($this->_lastResponseBody) && array_key_exists('error', $this->_lastResponseBody) && array_key_exists('code', $this->_lastResponseBody)) {
             $this->notify();
             throw new ZendX_Service_Brightcove_Exception('Connection error: '.$this->_lastResponseBody['error'], $this->_lastResponseBody['code']);

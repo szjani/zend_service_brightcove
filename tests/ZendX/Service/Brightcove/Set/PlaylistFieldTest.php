@@ -1,12 +1,11 @@
 <?php
-//require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'TestHelper.php';
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'AbstractTest.php';
 
 class ZendX_Service_Brightcove_Set_PlaylistFieldTest extends ZendX_Service_Brightcove_Set_AbstractTest
 {
     protected function _getItem()
     {
-        return ZendX_Service_Brightcove_MediaObject_Playlist::PLAYLIST_TYPE;
+        return ZendX_Service_Brightcove_Enums_PlaylistFieldsEnum::PLAYLISTTYPE;
     }
 
     public function setUp()
@@ -31,7 +30,7 @@ class ZendX_Service_Brightcove_Set_PlaylistFieldTest extends ZendX_Service_Brigh
 
     public function constructProvider()
     {
-        $fields = ZendX_Service_Brightcove_MediaObject_Playlist::getValidMembers();
+        $fields = ZendX_Service_Brightcove_Enums_PlaylistFieldsEnum::getConstants();
         $res = array();
         foreach ($fields as $field) {
             $res[] = array($field, true);

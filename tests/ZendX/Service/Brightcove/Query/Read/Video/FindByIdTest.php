@@ -13,13 +13,15 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByIdTest extends PHPUnit_Fra
     public function setUp()
     {
         $brightcove = new ZendX_Service_Brightcove_Connection('-----');
+        ZendX_Service_Brightcove_Manager::connection($brightcove);
+        
         $adapter = new Zend_Http_Client_Adapter_Test();
         Zend_Service_Abstract::getHttpClient()->setAdapter($adapter);
         $adapter->setResponse(file_get_contents(
                 dirname(__FILE__).DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'testFindById.response'
         ));
 
-        $this->_query = new ZendX_Service_Brightcove_Query_Read_Video_FindById($brightcove, self::VIDEO_ID);
+        $this->_query = new ZendX_Service_Brightcove_Query_Read_Video_FindById(self::VIDEO_ID);
     }
 
     public function testGetBrightcoveMethod()

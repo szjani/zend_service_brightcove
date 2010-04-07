@@ -38,23 +38,6 @@ class ZendX_Service_Brightcove_ConnectionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider httpMethodProvider
-     */
-    public function testSetHttpMethod($httpMethod)
-    {
-        $this->_conn->setHttpMethod($httpMethod);
-        self::assertEquals($httpMethod, $this->_conn->getHttpMethod());
-        try
-        {
-            $this->_conn->setHttpMethod('invalid_method');
-            $this->assertFalse(true, 'Invalid http method');
-        } catch (Exception $e)
-        {
-            $this->assertTrue(true, 'Invalid http method');
-        }
-    }
-
-    /**
      * @expectedException ZendX_Service_Brightcove_Exception
      */
     public function testSetQuery()

@@ -6,7 +6,8 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByIdsTest extends ZendX_Serv
     public function setUp()
     {
         parent::setUp();
-        $this->_query = new ZendX_Service_Brightcove_Query_Read_Video_FindByIds($this->_brightcove);
+        $videoIds = new ZendX_Service_Brightcove_Set_VideoId(array('4564646'));
+        $this->_query = new ZendX_Service_Brightcove_Query_Read_Video_FindByIds($videoIds);
     }
 
     public function testGetBrightcoveMethod()

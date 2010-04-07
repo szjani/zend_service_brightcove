@@ -38,7 +38,7 @@ class ZendX_Service_Brightcove_Query_ReadTest extends PHPUnit_Framework_TestCase
     public function testVideoFields()
     {
         $videoFields = new ZendX_Service_Brightcove_Set_VideoField();
-        $videoFields->fromArray(ZendX_Service_Brightcove_MediaObject_Video::getValidMembers());
+        $videoFields->fromArray(ZendX_Service_Brightcove_Enums_VideoFieldEnum::getConstants());
         $this->_query->setVideoFields($videoFields);
         self::assertTrue($this->_query->hasParam('video_fields'));
         self::assertSame($videoFields, $this->_query->getVideoFields());
