@@ -1,0 +1,3 @@
+<?php
+class ZendX_Service_Brightcove_Query_ParamException extends ZendX_Service_Brightcove_Query_Exception
+{}

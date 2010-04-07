@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+Last-modified: Sun, 28 Mar 2010 09:13:41 EDT
+Cache-control: must-revalidate,max-age=0
+Content-type: text/html;charset=UTF-8
+Date: Sun, 28 Mar 2010 13:14:54 GMT
+Server:
+Content-length: 1175
+
+{"id":22441804001,"name":"Ad Creatives: Review of SWF Guidelines","shortDescription":"Crystal West, Brightcove Software Engineer, reviews the Brightcove ad creative guidelines and documentation.","longDescription":"test-video-long-description","creationDate":"1241711536622","publishedDate":"1241711536623","lastModifiedDate":"1241735704079","startDate":"1241735704080","endDate":"1241735704081","linkURL":"http:\/\/help.brightcove.com\/developer\/docs\/advertising\/ad-formats.cfm","linkText":"Brightcove Supported Ad Formats","tags":["training","creative","Ad","engineer","adops","crystal"],"videoStillURL":"http:\/\/brightcove.vo.llnwd.net\/d7\/unsecured\/media\/270881183\/270881183_22460675001_adimage.jpg?pubId=270881183","thumbnailURL":"http:\/\/brightcove.vo.llnwd.net\/d7\/unsecured\/media\/270881183\/270881183_12181107001_Untitled-ad.jpg?pubId=270881183","referenceId":"test-video-reference-id","length":633300,"economics":"FREE","itemState":"ACTIVE","playsTotal":33,"playsTrailingWeek":0,"cuePoints":[],"customFields":{"genre":"Martial Arts","rating":"TV-Y7"},"geoRestricted":true,"geoFilterExclude":false,"geoFilteredCountries":["hu","de"],"accountId":270881183}

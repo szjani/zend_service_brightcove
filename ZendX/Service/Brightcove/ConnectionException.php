@@ -1,0 +1,2 @@
+<?php
+class ZendX_Service_Brightcove_ConnectionException extends ZendX_Service_Brightcove_Exception {}
