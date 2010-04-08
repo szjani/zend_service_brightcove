@@ -15,6 +15,8 @@ class ZendX_Service_Brightcove_AllTests extends PHPUnit_Framework_TestSuite {
    */
   public function __construct() {
     $this->setName('ZendX_Service_Brightcove_AllTests');
+    $this->addTestSuite('ZendX_Service_Brightcove_ManagerTest');
+    $this->addTestSuite('ZendX_Service_Brightcove_ConnectionTest');
     $this->addTestSuite('ZendX_Service_Brightcove_Set_AllTests');
     $this->addTestSuite('ZendX_Service_Brightcove_Query_AllTests');
   }

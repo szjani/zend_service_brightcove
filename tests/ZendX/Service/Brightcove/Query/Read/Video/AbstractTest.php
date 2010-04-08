@@ -6,7 +6,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_AbstractTest extends PHPUnit_Fra
     public function testGetVideo()
     {
         $query = $this->getMock(
-            'ZendX_Service_Brightcove_Query_Read_Video_Abstract',
+            'ZendX_Service_Brightcove_Query_Read_Video_AbstractOne',
             array('execute', 'getBrightcoveMethod'),
             array(),
             '',

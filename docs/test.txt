@@ -1,0 +1,3 @@
+run
+phpunit --colors --verbose ZendX/Service/Brightcove/AllTests.php
+command from tests directory
