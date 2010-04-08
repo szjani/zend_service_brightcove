@@ -8,7 +8,7 @@ require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractList.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brigtcove_Query_Read_Video_FindByText
+class ZendX_Service_Brightcove_Query_Read_Video_FindByText
     extends ZendX_Service_Brightcove_Query_Read_Video_AbstractList
 {
     public function __construct($text)

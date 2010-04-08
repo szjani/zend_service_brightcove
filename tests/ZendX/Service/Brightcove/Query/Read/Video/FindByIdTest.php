@@ -3,7 +3,7 @@ require_once dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR 
 
 class ZendX_Service_Brightcove_Query_Read_Video_FindByIdTest extends PHPUnit_Framework_TestCase
 {
-    const VIDEO_ID = 22441804001;
+    const USER_ID = 22441804001;
 
     /**
      * @var ZendX_Service_Brightcove_Query_Read_Video_FindById
@@ -21,7 +21,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByIdTest extends PHPUnit_Fra
                 dirname(__FILE__).DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'testFindById.response'
         ));
 
-        $this->_query = new ZendX_Service_Brightcove_Query_Read_Video_FindById(self::VIDEO_ID);
+        $this->_query = new ZendX_Service_Brightcove_Query_Read_Video_FindById(self::USER_ID);
     }
 
     public function testGetBrightcoveMethod()
@@ -31,7 +31,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByIdTest extends PHPUnit_Fra
 
     public function testVideoId()
     {
-        self::assertEquals(self::VIDEO_ID, $this->_query->getVideoId());
+        self::assertEquals(self::USER_ID, $this->_query->getVideoId());
         $this->_query->setVideoId(123413241);
         self::assertEquals(123413241, $this->_query->getVideoId());
     }
@@ -39,7 +39,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByIdTest extends PHPUnit_Fra
     public function testGetVideo()
     {
         self::assertType('ZendX_Service_Brightcove_MediaObject_Video', $this->_query->getVideo());
-        self::assertEquals(self::VIDEO_ID, $this->_query->getVideo()->getId());
+        self::assertEquals(self::USER_ID, $this->_query->getVideo()->getId());
     }
 
 }

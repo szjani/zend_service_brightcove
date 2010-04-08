@@ -16,7 +16,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByCampaignId
      */
     public function getBrightcoveMethod()
     {
-        return 'find_videos_by_user_id';
+        return 'find_videos_by_campaign_id';
     }
     
     public function __construct($campaignId)
