@@ -23,6 +23,8 @@ class ZendX_Service_Brightcove_Paginator_ListAdapterTest extends PHPUnit_Framewo
     
     public function setUp()
     {
+        ZendX_Service_Brightcove_Manager::getInstance()->clearConnections();
+      
         $this->_clientAdapter = new Zend_Http_Client_Adapter_Test();
         Zend_Service_Abstract::getHttpClient()->setAdapter($this->_clientAdapter);
         $conn = new ZendX_Service_Brightcove_Connection('-------------');
