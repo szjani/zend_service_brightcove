@@ -24,6 +24,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_AllTests extends PHPUnit_Framewo
     $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_Video_FindByUserIdTest');
     $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_Video_FindByTagsTest');
     $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_Video_FindByTextTest');
+    $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_Video_FindModifiedTest');
   }
   
   /**

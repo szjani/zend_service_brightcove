@@ -16,6 +16,7 @@ class ZendX_Service_Brightcove_Query_Read_AllTests extends PHPUnit_Framework_Tes
   public function __construct() {
     $this->setName('ZendX_Service_Brightcove_Query_Read_AllTests');
     $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_Video_AllTests');
+    $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_AbstractOrderedListTest');
   }
   
   /**

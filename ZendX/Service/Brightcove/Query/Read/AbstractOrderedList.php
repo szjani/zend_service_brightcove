@@ -28,7 +28,7 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractOrderedList
             ZendX_Service_Brightcove_Enums_SortByTypeEnum::PUBLISH_DATE,
         );
         if (!in_array($sortByType, $validType, true)) {
-            throw new ZendX_Service_Brightcove_Query_Exception('Invalid sort type: ' . $sortByType);
+            throw new ZendX_Service_Brightcove_Query_ParamException('Invalid sort type: ' . $sortByType);
         }
         $this->setParam('sort_by', $sortByType);
         return $this;
@@ -53,7 +53,7 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractOrderedList
             ZendX_Service_Brightcove_Enums_SortOrderTypeEnum::DESC,
         );
         if (!in_array($sortOrderType, $validType, true)) {
-            throw new ZendX_Service_Brightcove_Query_Exception('Invalid sort order type: ' . $sortOrderType);
+            throw new ZendX_Service_Brightcove_Query_ParamException('Invalid sort order type: ' . $sortOrderType);
         }
         $this->setParam('sort_order', $sortOrderType);
         return $this;

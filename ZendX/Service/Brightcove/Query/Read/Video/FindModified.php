@@ -40,21 +40,13 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindModified
     }
 
     /**
-     * @param string $filter
+     * @param ZendX_Service_Brightcove_Set_Filter $filter
+     * @throws ZendX_Service_Brightcove_Query_Exception
      * @return ZendX_Service_Brightcove_Query_Read_Video_FindModified $this
      */
-    public function setFilter($filter)
+    public function setFilter(ZendX_Service_Brightcove_Set_Filter $filterList)
     {
-        $validType = array(
-            ZendX_Service_Brightcove_Enums_VideoStateFilterEnum::DELETED,
-            ZendX_Service_Brightcove_Enums_VideoStateFilterEnum::INACTIVE,
-            ZendX_Service_Brightcove_Enums_VideoStateFilterEnum::PLAYABLE,
-            ZendX_Service_Brightcove_Enums_VideoStateFilterEnum::UNSCHEDULED,
-        );
-        if (!in_array($filter, $validType, true)) {
-            throw new ZendX_Service_Brightcove_Query_Exception('Invalid filter: ' . $filter);
-        }
-        $this->setParam('filter', $filter);
+        $this->setParam('filter', $filterList);
         return $this;
     }
 
