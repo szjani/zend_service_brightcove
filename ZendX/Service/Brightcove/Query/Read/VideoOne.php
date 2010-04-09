@@ -11,7 +11,7 @@ require_once 'ZendX/Service/Brightcove/MediaObject/Video.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class ZendX_Service_Brightcove_Query_Read_Video_AbstractOne
+abstract class ZendX_Service_Brightcove_Query_Read_VideoOne
     extends ZendX_Service_Brightcove_Query_Read
 {
     /**

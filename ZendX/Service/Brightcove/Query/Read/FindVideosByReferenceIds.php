@@ -8,8 +8,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/AbstractOrderedList.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Video_FindByReferenceIds
-    extends ZendX_Service_Brightcove_Query_Read_Video_AbstractSet
+class ZendX_Service_Brightcove_Query_Read_FindVideosByReferenceIds
+    extends ZendX_Service_Brightcove_Query_Read_VideoSet
 {
     public function __construct(ZendX_Service_Brightcove_Set_ReferenceId $referenceId)
     {
@@ -27,7 +27,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByReferenceIds
 
     /**
      * @param string $referenceId
-     * $return ZendX_Service_Brightcove_Query_FindByReferenceIds $this
+     * $return ZendX_Service_Brightcove_Query_FindVideosByReferenceIds $this
      */
     public function setReferenceIds(ZendX_Service_Brightcove_Set_ReferenceId $referenceIds)
     {

@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOrderedList.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/VideoOrderedList.php';
 
 /**
  * @category   ZendX
@@ -8,8 +8,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOrderedList.php'
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Video_FindByCampaignId
-    extends ZendX_Service_Brightcove_Query_Read_Video_AbstractOrderedList
+class ZendX_Service_Brightcove_Query_Read_FindVideosByCampaignId
+    extends ZendX_Service_Brightcove_Query_Read_VideoOrderedList
 {
     /**
      * @return string
@@ -27,7 +27,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByCampaignId
 
     /**
      * @param float $campaignId
-     * @return ZendX_Service_Brightcove_Query_Read_Video_FindByCampaignId $this
+     * @return ZendX_Service_Brightcove_Query_Read_FindVideosByCampaignId $this
      */
     public function setCampaignId($campaignId)
     {

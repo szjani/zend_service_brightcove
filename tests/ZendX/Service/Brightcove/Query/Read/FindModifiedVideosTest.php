@@ -1,7 +1,7 @@
 <?php
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
+require_once dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
 
-class ZendX_Service_Brightcove_Query_Read_Video_FindModifiedTest extends PHPUnit_Framework_TestCase
+class ZendX_Service_Brightcove_Query_Read_FindModifiedVideosTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var ZendX_Service_Brightcove_Query_Read_Video_FindModified
@@ -15,7 +15,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindModifiedTest extends PHPUnit
         $brightcove = new ZendX_Service_Brightcove_Connection('-----');
         ZendX_Service_Brightcove_Manager::connection($brightcove);
         
-        $this->_query = new ZendX_Service_Brightcove_Query_Read_Video_FindModified($this->_date);
+        $this->_query = new ZendX_Service_Brightcove_Query_Read_FindModifiedVideos($this->_date);
     }
 
     public function testGetBrightcoveMethod()

@@ -1,5 +1,5 @@
 <?php
-abstract class ZendX_Service_Brightcove_Query_Read_Video_AbstractList
+abstract class ZendX_Service_Brightcove_Query_Read_VideoList
   extends ZendX_Service_Brightcove_Query_Read_AbstractList
 {
     /**

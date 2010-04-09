@@ -20,7 +20,7 @@ class ZendX_Service_Brightcove_Manager implements IteratorAggregate, Countable
     /**
      * @var mixed
      */
-    protected $_currentConnectionIndex = null;
+    protected $_currentConnectionIndex = 'default';
     
     /**
      * @var ZendX_Service_Brightcove_Manager
@@ -67,14 +67,9 @@ class ZendX_Service_Brightcove_Manager implements IteratorAggregate, Countable
      * @param mixed $name
      * @return ZendX_Service_Brightcove_Connection $conn
      */
-    public function setConnection(ZendX_Service_Brightcove_Connection $conn = null, $name = null)
+    public function setConnection(ZendX_Service_Brightcove_Connection $conn = null, $name = 'default')
     {
-        if ($name !== null) {
-            $this->_connections[$name] = $conn;
-        } else {
-            $this->_connections[] = $conn;
-            $name = key($this->_connections);
-        }
+        $this->_connections[$name] = $conn;
         $this->_currentConnectionIndex = $name;
         return $conn;
     }

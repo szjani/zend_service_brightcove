@@ -1,7 +1,7 @@
 <?php
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
+require_once dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
 
-class ZendX_Service_Brightcove_Query_Read_Video_FindByReferenceIdTest extends PHPUnit_Framework_TestCase
+class ZendX_Service_Brightcove_Query_Read_FindVideoByReferenceIdTest extends PHPUnit_Framework_TestCase
 {
     const REFERENCE_ID = 'test-video-reference-id';
 
@@ -21,7 +21,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByReferenceIdTest extends PH
                 dirname(__FILE__).DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'testFindByReferenceId.response'
         ));
 
-        $this->_query = new ZendX_Service_Brightcove_Query_Read_Video_FindByReferenceId(self::REFERENCE_ID);
+        $this->_query = new ZendX_Service_Brightcove_Query_Read_FindVideoByReferenceId(self::REFERENCE_ID);
     }
 
     public function testGetBrightcoveMethod()

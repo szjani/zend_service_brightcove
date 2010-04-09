@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOrderedList.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/VideoOrderedList.php';
 
 /**
  * @category   ZendX
@@ -8,8 +8,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOrderedList.php'
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Video_FindByTags
-    extends ZendX_Service_Brightcove_Query_Read_Video_AbstractOrderedList
+class ZendX_Service_Brightcove_Query_Read_FindVideosByTags
+    extends ZendX_Service_Brightcove_Query_Read_VideoOrderedList
 {
     public function __construct(ZendX_Service_Brightcove_Set_Tag $andTags, ZendX_Service_Brightcove_Set_Tag $orTags)
     {
@@ -42,7 +42,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByTags
     
     /**
      * @param ZendX_Service_Brightcove_Set_Tag $tags
-     * @return ZendX_Service_Brightcove_Query_Read_Video_FindByTags $this
+     * @return ZendX_Service_Brightcove_Query_Read_FindVideosByTags $this
      */
     public function setOrTags(ZendX_Service_Brightcove_Set_Tag $tags)
     {
@@ -52,7 +52,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByTags
 
     /**
      * @param ZendX_Service_Brightcove_Set_Tag $tags
-     * @return ZendX_Service_Brightcove_Query_Read_Video_FindByTags $this
+     * @return ZendX_Service_Brightcove_Query_Read_FindVideosByTags $this
      */
     public function setAndTags(ZendX_Service_Brightcove_Set_Tag $tags)
     {

@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOrderedList.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/VideoOrderedList.php';
 
 /**
  * @category   ZendX
@@ -8,8 +8,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOrderedList.php'
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Video_FindModified
-    extends ZendX_Service_Brightcove_Query_Read_Video_AbstractOrderedList
+class ZendX_Service_Brightcove_Query_Read_FindModifiedVideos
+    extends ZendX_Service_Brightcove_Query_Read_VideoOrderedList
 {
     public function __construct($fromDate)
     {
@@ -27,7 +27,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindModified
 
     /**
      * @var mixed $timeStamp Specified in MINUTES since January 1st, 1970 00:00:00 GMT
-     * @return ZendX_Service_Brightcove_Query_Read_Video_FindModified $this
+     * @return ZendX_Service_Brightcove_Query_Read_FindModifiedVideos $this
      */
     public function setFromDate($timeStamp)
     {
@@ -42,7 +42,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindModified
     /**
      * @param ZendX_Service_Brightcove_Set_Filter $filter
      * @throws ZendX_Service_Brightcove_Query_Exception
-     * @return ZendX_Service_Brightcove_Query_Read_Video_FindModified $this
+     * @return ZendX_Service_Brightcove_Query_Read_FindModifiedVideos $this
      */
     public function setFilter(ZendX_Service_Brightcove_Set_Filter $filterList)
     {

@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOrderedList.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/VideoOrderedList.php';
 
 /**
  * @category   ZendX
@@ -8,8 +8,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOrderedList.php'
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Video_FindAll
-    extends ZendX_Service_Brightcove_Query_Read_Video_AbstractOrderedList
+class ZendX_Service_Brightcove_Query_Read_FindAllVideos
+    extends ZendX_Service_Brightcove_Query_Read_VideoOrderedList
 {
     /**
      * @return string

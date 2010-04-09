@@ -1,7 +1,7 @@
 <?php
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
+require_once dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
 
-class ZendX_Service_Brightcove_Query_Read_Video_FindRelatedTest extends PHPUnit_Framework_TestCase
+class ZendX_Service_Brightcove_Query_Read_FindRelatedVideosTest extends PHPUnit_Framework_TestCase
 {
     const USER_ID = 22441804001;
     
@@ -17,7 +17,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindRelatedTest extends PHPUnit_
         $brightcove = new ZendX_Service_Brightcove_Connection('-----');
         ZendX_Service_Brightcove_Manager::connection($brightcove);
         
-        $this->_query = new ZendX_Service_Brightcove_Query_Read_Video_FindRelated();
+        $this->_query = new ZendX_Service_Brightcove_Query_Read_FindRelatedVideos();
     }
 
     public function testGetBrightcoveMethod()

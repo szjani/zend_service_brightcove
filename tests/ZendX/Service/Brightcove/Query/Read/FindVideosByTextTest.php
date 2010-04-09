@@ -1,7 +1,7 @@
 <?php
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
+require_once dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
 
-class ZendX_Service_Brightcove_Query_Read_Video_FindByTextTest extends PHPUnit_Framework_TestCase
+class ZendX_Service_Brightcove_Query_Read_FindVideosByTextTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var ZendX_Service_Brightcove_Query_Read_Video_FindByText
@@ -15,7 +15,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByTextTest extends PHPUnit_F
         $brightcove = new ZendX_Service_Brightcove_Connection('-----');
         ZendX_Service_Brightcove_Manager::connection($brightcove);
         
-        $this->_query = new ZendX_Service_Brightcove_Query_Read_Video_FindByText($this->_searchText);
+        $this->_query = new ZendX_Service_Brightcove_Query_Read_FindVideosByText($this->_searchText);
     }
 
     public function testGetBrightcoveMethod()

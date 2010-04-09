@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOne.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/VideoList.php';
 
 /**
  * @category   ZendX
@@ -8,26 +8,38 @@ require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOne.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Video_FindById
-    extends ZendX_Service_Brightcove_Query_Read_Video_AbstractOne
+class ZendX_Service_Brightcove_Query_Read_FindRelatedVideos
+    extends ZendX_Service_Brightcove_Query_Read_VideoList
 {
-    public function __construct($videoId)
-    {
-        parent::__construct();
-        $this->setVideoId($videoId);
-    }
-
     /**
-     * @see http://docs.brightcove.com/en/media/
+     * @return string
      */
     public function getBrightcoveMethod()
     {
-        return 'find_video_by_id';
+        return 'find_related_videos';
+    }
+
+    /**
+     * @param string $referenceId
+     * @return ZendX_Service_Brightcove_Query_Read_Video_FindRelated $this
+     */
+    public function setReferenceId($referenceId)
+    {
+        $this->setParam('reference_id', (string)$referenceId);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReferenceId()
+    {
+        return $this->getParam('reference_id');
     }
 
     /**
      * @param float $videoId
-     * $return ZendX_Service_Brightcove_Query_Read_Video_FindById $this
+     * $return ZendX_Service_Brightcove_Query_Read_Video_FindRelated $this
      */
     public function setVideoId($videoId)
     {

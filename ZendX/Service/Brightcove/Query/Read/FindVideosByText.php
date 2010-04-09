@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractList.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/VideoList.php';
 
 /**
  * @category   ZendX
@@ -8,8 +8,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractList.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Video_FindByText
-    extends ZendX_Service_Brightcove_Query_Read_Video_AbstractList
+class ZendX_Service_Brightcove_Query_Read_FindVideosByText
+    extends ZendX_Service_Brightcove_Query_Read_VideoList
 {
     public function __construct($text)
     {
@@ -35,7 +35,7 @@ class ZendX_Service_Brightcove_Query_Read_Video_FindByText
 
     /**
      * @param string $text
-     * @return ZendX_Service_Brigtcove_Query_Read_Video_FindByText $this
+     * @return ZendX_Service_Brigtcove_Query_Read_FindVideosByText $this
      */
     public function setText($text)
     {

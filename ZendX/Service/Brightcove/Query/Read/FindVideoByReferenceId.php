@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOne.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/VideoOne.php';
 
 /**
  * @category   ZendX
@@ -8,8 +8,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/Video/AbstractOne.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Video_FindByReferenceId
-    extends ZendX_Service_Brightcove_Query_Read_Video_AbstractOne
+class ZendX_Service_Brightcove_Query_Read_FindVideoByReferenceId
+    extends ZendX_Service_Brightcove_Query_Read_VideoOne
 {
     /**
      * @param string $referenceId

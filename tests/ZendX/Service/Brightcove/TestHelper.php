@@ -10,12 +10,12 @@ set_include_path(implode(PATH_SEPARATOR, array(
   dirname(dirname(dirname(dirname(__FILE__))))
 )));
 
-//var_dump(get_include_path());
-//exit;
-
 define('FILES', dirname(__FILE__).DIRECTORY_SEPARATOR.'_files');
 
 require_once 'Zend/Loader/Autoloader.php';
 Zend_Loader_Autoloader::getInstance();
 
 require_once 'PHPUnit/Framework.php';
+
+$conn = new ZendX_Service_Brightcove_Connection('wrong');
+ZendX_Service_Brightcove_Manager::connection($conn);

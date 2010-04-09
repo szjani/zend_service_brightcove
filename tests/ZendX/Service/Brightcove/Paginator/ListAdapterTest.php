@@ -33,7 +33,7 @@ class ZendX_Service_Brightcove_Paginator_ListAdapterTest extends PHPUnit_Framewo
         $this->_clientAdapter->setResponse(file_get_contents(
                 dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'videoListFull'.'.response'
         ));
-        $query = new ZendX_Service_Brightcove_Query_Read_Video_FindAll();
+        $query = new ZendX_Service_Brightcove_Query_Read_FindAllVideos();
         $this->_fullList = $query->getItems();
         $this->_adapter = new ZendX_Service_Brightcove_Paginator_ListAdapter($query);
     }
@@ -43,7 +43,7 @@ class ZendX_Service_Brightcove_Paginator_ListAdapterTest extends PHPUnit_Framewo
         $this->_clientAdapter->setResponse(file_get_contents(
                 dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.__FUNCTION__.'.response'
         ));
-        $query = new ZendX_Service_Brightcove_Query_Read_Video_FindAll();
+        $query = new ZendX_Service_Brightcove_Query_Read_FindAllVideos();
         $this->_adapter->setQuery($query);
         $items = $this->_adapter->getItems(0, 20);
         self::assertEquals(0, $query->getPageNumber());
@@ -57,7 +57,7 @@ class ZendX_Service_Brightcove_Paginator_ListAdapterTest extends PHPUnit_Framewo
         $this->_clientAdapter->setResponse(file_get_contents(
                 dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.__FUNCTION__.'.response'
         ));
-        $query = new ZendX_Service_Brightcove_Query_Read_Video_FindAll();
+        $query = new ZendX_Service_Brightcove_Query_Read_FindAllVideos();
         $this->_adapter->setQuery($query);
         $items = $this->_adapter->getItems(20, 20);
         self::assertEquals(1, $query->getPageNumber());
