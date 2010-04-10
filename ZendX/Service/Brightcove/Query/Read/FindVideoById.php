@@ -11,6 +11,9 @@ require_once 'ZendX/Service/Brightcove/Query/Read/VideoOne.php';
 class ZendX_Service_Brightcove_Query_Read_FindVideoById
     extends ZendX_Service_Brightcove_Query_Read_VideoOne
 {
+    /**
+     * @param numeric $videoId
+     */
     public function __construct($videoId)
     {
         parent::__construct();
@@ -26,8 +29,8 @@ class ZendX_Service_Brightcove_Query_Read_FindVideoById
     }
 
     /**
-     * @param float $videoId
-     * $return ZendX_Service_Brightcove_Query_Read_Video_FindById $this
+     * @param numeric $videoId
+     * $return ZendX_Service_Brightcove_Query_Read_FindVideoById $this
      */
     public function setVideoId($videoId)
     {
@@ -40,7 +43,7 @@ class ZendX_Service_Brightcove_Query_Read_FindVideoById
     }
 
     /**
-     * @return int
+     * @return numeric
      */
     public function getVideoId()
     {

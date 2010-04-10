@@ -20,13 +20,13 @@ abstract class ZendX_Service_Brightcove_Query_Read_VideoOne
     protected $_video = null;
 
     /**
-     * @return ZendX_Service_Brightcove_Query_Read_Video_Abstract $this
+     * @return ZendX_Service_Brightcove_Query_Read_VideoOne $this
      */
     public function execute()
     {
         parent::execute();
         if ($this->_responseBody === null) {
-            require_once 'ZendX/Service/Brightcove/Query/Read/Video/Exception.php';
+            require_once 'ZendX/Service/Brightcove/Query/Read/Exception.php';
             throw new ZendX_Service_Brightcove_Query_Read_Exception('No video found!');
         }
         $this->_video = new ZendX_Service_Brightcove_MediaObject_Video();
