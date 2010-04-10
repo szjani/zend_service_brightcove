@@ -1,14 +1,14 @@
 <?php
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
+require_once dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
 
-class ZendX_Service_Brightcove_Query_Read_Playlist_AbstractOneTest extends PHPUnit_Framework_TestCase
+class ZendX_Service_Brightcove_Query_Read_PlaylistOneTest extends PHPUnit_Framework_TestCase
 {
     protected $_query;
     
     public function setUp()
     {
         $this->_query = $this->getMock(
-            'ZendX_Service_Brightcove_Query_Read_Playlist_AbstractOne',
+            'ZendX_Service_Brightcove_Query_Read_PlaylistOne',
             array('execute', 'getBrightcoveMethod'),
             array(),
             '',

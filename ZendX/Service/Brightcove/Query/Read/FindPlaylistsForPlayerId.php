@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/Playlist/AbstractOne.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/PlaylistOne.php';
 require_once 'ZendX/Service/Brightcove/Set/PlaylistId.php';
 
 /**
@@ -9,8 +9,8 @@ require_once 'ZendX/Service/Brightcove/Set/PlaylistId.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Playlist_FindForPlayerId
-    extends ZendX_Service_Brightcove_Query_Read_Playlist_AbstractSet
+class ZendX_Service_Brightcove_Query_Read_FindPlaylistsForPlayerId
+    extends ZendX_Service_Brightcove_Query_Read_PlaylistSet
 {
     /**
      * @return string
@@ -22,7 +22,7 @@ class ZendX_Service_Brightcove_Query_Read_Playlist_FindForPlayerId
 
     /**
      * @param float $playerId
-     * @return ZendX_Service_Brightcove_Query_Read_Playlist_FindForPlayerId $this
+     * @return ZendX_Service_Brightcove_Query_Read_FindPlaylistsForPlayerId $this
      */
     public function setPlayerId($playerIds)
     {

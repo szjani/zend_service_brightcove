@@ -27,7 +27,7 @@ abstract class ZendX_Service_Brightcove_Query_Read_VideoOne
         parent::execute();
         if ($this->_responseBody === null) {
             require_once 'ZendX/Service/Brightcove/Query/Read/Video/Exception.php';
-            throw new ZendX_Service_Brightcove_Query_Read_Video_Exception('No video found!');
+            throw new ZendX_Service_Brightcove_Query_Read_Exception('No video found!');
         }
         $this->_video = new ZendX_Service_Brightcove_MediaObject_Video();
         $this->_video->fromArray($this->_responseBody);

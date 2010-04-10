@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/Playlist/AbstractList.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/PlaylistOrderedList.php';
 
 /**
  * @category   ZendX
@@ -8,8 +8,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/Playlist/AbstractList.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Playlist_FindAll
-    extends ZendX_Service_Brightcove_Query_Read_Playlist_AbstractOrderedList
+class ZendX_Service_Brightcove_Query_Read_FindAllPlaylists
+    extends ZendX_Service_Brightcove_Query_Read_PlaylistOrderedList
 {
     /**
      * @return string

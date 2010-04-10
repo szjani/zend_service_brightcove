@@ -16,8 +16,11 @@ class ZendX_Service_Brightcove_Query_Read_AllTests extends PHPUnit_Framework_Tes
     public function __construct()
     {
         $this->setName('ZendX_Service_Brightcove_Query_Read_AllTests');
-        $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_Playlist_AllTests');
+
         $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_AbstractOrderedListTest');
+        $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_AbstractSetTest');
+        
+        $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_VideoOneTest');
         $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_FindVideosByIdsTest');
         $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_FindVideoByIdTest');
         $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_FindVideoByReferenceIdTest');
@@ -28,6 +31,11 @@ class ZendX_Service_Brightcove_Query_Read_AllTests extends PHPUnit_Framework_Tes
         $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_FindVideosByTagsTest');
         $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_FindVideosByTextTest');
         $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_FindModifiedVideosTest');
+        
+        $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_FindAllPlaylistsTest');
+        $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_FindPlaylistByIdTest');
+        $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_PlaylistOneTest');
+        $this->addTestSuite('ZendX_Service_Brightcove_Query_Read_PlaylistListTest');
     }
 
     /**

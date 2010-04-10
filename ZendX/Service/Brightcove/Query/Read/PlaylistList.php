@@ -1,9 +1,9 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/AbstractSet.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/AbstractList.php';
 require_once 'ZendX/Service/Brightcove/Set/Object/Playlist.php';
 
 /**
- * Playlist read queries with not-paginable set result
+ * Playlist read queries with paginable set result
  *
  * @category   ZendX
  * @package    ZendX_Service
@@ -11,8 +11,8 @@ require_once 'ZendX/Service/Brightcove/Set/Object/Playlist.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class ZendX_Service_Brightcove_Query_Read_Playlist_AbstractSet
-    extends ZendX_Service_Brightcove_Query_Read_AbstractSet
+abstract class ZendX_Service_Brightcove_Query_Read_PlaylistList
+    extends ZendX_Service_Brightcove_Query_Read_AbstractList
 {
     /**
      * @param ZendX_Service_Brightcove_Set_VideoField $playlistFields

@@ -1,17 +1,17 @@
 <?php
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
+require_once dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'TestHelper.php';
 
-class ZendX_Service_Brightcove_Query_Read_Playlist_AbstractListTest extends PHPUnit_Framework_TestCase
+class ZendX_Service_Brightcove_Query_Read_PlaylistListTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var ZendX_Service_Brightcove_Query_Read_Playlist_AbstractList
+     * @var ZendX_Service_Brightcove_Query_Read_PlaylistList
      */
     protected $_query;
     
     public function setUp()
     {
         $this->_query = $this->getMock(
-          'ZendX_Service_Brightcove_Query_Read_Playlist_AbstractList',
+          'ZendX_Service_Brightcove_Query_Read_PlaylistList',
           array('getBrightcoveMethod')
         );
     }

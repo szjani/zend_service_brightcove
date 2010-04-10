@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/Playlist/AbstractList.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/PlaylistList.php';
 
 /**
  * @category   ZendX
@@ -8,8 +8,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/Playlist/AbstractList.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Query_Read_Playlist_FindByReferenceIds
-    extends ZendX_Service_Brightcove_Query_Read_Playlist_AbstractList
+class ZendX_Service_Brightcove_Query_Read_FindPlaylistsByReferenceIds
+    extends ZendX_Service_Brightcove_Query_Read_PlaylistList
 {
     /**
      * @see http://docs.brightcove.com/en/media/
@@ -21,7 +21,7 @@ class ZendX_Service_Brightcove_Query_Read_Playlist_FindByReferenceIds
 
     /**
      * @param ZendX_Service_Brightcove_Set_ReferenceId $referenceId
-     * @return ZendX_Service_Brightcove_Query_FindByReferenceIds $this
+     * @return ZendX_Service_Brightcove_Query_Read_FindPlaylistsByReferenceIds $this
      */
     public function setReferenceIds(ZendX_Service_Brightcove_Set_ReferenceId $referenceIds)
     {
