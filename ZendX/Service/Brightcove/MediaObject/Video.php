@@ -6,6 +6,7 @@ require_once 'ZendX/Service/Brightcove/Set/Object/Rendition.php';
 require_once 'ZendX/Service/Brightcove/Set/Object/CuePoint.php';
 require_once 'ZendX/Service/Brightcove/Set/Tag.php';
 require_once 'ZendX/Service/Brightcove/Set/Country.php';
+require_once 'ZendX/Service/Brightcove/Set/CustomField.php';
 
 /**
  * @category   ZendX

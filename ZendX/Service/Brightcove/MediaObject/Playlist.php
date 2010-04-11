@@ -1,5 +1,8 @@
 <?php
 require_once 'ZendX/Service/Brightcove/MediaObject/Abstract.php';
+require_once 'ZendX/Service/Brightcove/Set/Object/Video.php';
+require_once 'ZendX/Service/Brightcove/Set/VideoId.php';
+require_once 'ZendX/Service/Brightcove/Set/Tag.php';
 
 /**
  * @category   ZendX
@@ -10,12 +13,12 @@ require_once 'ZendX/Service/Brightcove/MediaObject/Abstract.php';
  */
 class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Brightcove_MediaObject_Abstract
 {
-    const TYPE_OLDEST_TO_NEWEST    = 'OLDEST_TO_NEWEST';
-    const TYPE_NEWEST_TO_OLDEST    = 'NEWEST_TO_OLDEST';
-    const TYPE_ALPHABETICAL        = 'ALPHABETICAL';
-    const TYPE_PLAYSTOTAL          = 'PLAYSTOTAL';
-    const TYPE_PLAYS_TRAILING_WEEK = 'PLAYS_TRAILING_WEEK';
-    const TYPE_EXPLICIT            = 'EXPLICIT';
+//    const TYPE_OLDEST_TO_NEWEST    = 'OLDEST_TO_NEWEST';
+//    const TYPE_NEWEST_TO_OLDEST    = 'NEWEST_TO_OLDEST';
+//    const TYPE_ALPHABETICAL        = 'ALPHABETICAL';
+//    const TYPE_PLAYSTOTAL          = 'PLAYSTOTAL';
+//    const TYPE_PLAYS_TRAILING_WEEK = 'PLAYS_TRAILING_WEEK';
+//    const TYPE_EXPLICIT            = 'EXPLICIT';
 
     const ID                = 'id';
     const REFERENCE_ID      = 'referenceId';
@@ -28,18 +31,18 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
     const FILTER_TAGS       = 'filterTags';
     const THUMBNAIL_URL     = 'thumbnailUrl';
 
-    protected static $_validMembers = array(
-        self::ID,
-        self::REFERENCE_ID,
-        self::ACCOUNT_ID,
-        self::NAME,
-        self::SHORT_DESCRIPTION,
-        self::VIDEO_IDS,
-        self::VIDEOS,
-        self::PLAYLIST_TYPE,
-        self::FILTER_TAGS,
-        self::THUMBNAIL_URL
-    );
+//    protected static $_validMembers = array(
+//        self::ID,
+//        self::REFERENCE_ID,
+//        self::ACCOUNT_ID,
+//        self::NAME,
+//        self::SHORT_DESCRIPTION,
+//        self::VIDEO_IDS,
+//        self::VIDEOS,
+//        self::PLAYLIST_TYPE,
+//        self::FILTER_TAGS,
+//        self::THUMBNAIL_URL
+//    );
 
     protected $_id;
 
@@ -60,14 +63,6 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
     protected $_filterTags;
 
     protected $_thumbnailUrl;
-
-    /**
-     * @return array
-     */
-    public static function getValidMembers()
-    {
-        return self::$_validMembers;
-    }
 
     public function fromArray(array $playlist)
     {
@@ -217,15 +212,10 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
 
     public function setPlaylistType($playlistType)
     {
-        $validTypes = array(
-            self::TYPE_ALPHABETICAL,
-            self::TYPE_EXPLICIT,
-            self::TYPE_NEWEST_TO_OLDEST,
-            self::TYPE_OLDEST_TO_NEWEST,
-            self::TYPE_PLAYSTOTAL,
-            self::TYPE_PLAYS_TRAILING_WEEK
-        );
+        require_once 'ZendX/Service/Brightcove/Enums/PlaylistTypeEnum.php';
+        $validTypes = ZendX_Service_Brightcove_Enums_PlaylistTypeEnum::getConstants();
         if (!in_array(strtoupper($playlistType), $validTypes)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception('Invalid playlist type: ' . $playlistType);
         }
         $this->_playlistType = $playlistType;

@@ -8,15 +8,6 @@
  */
 abstract class ZendX_Service_Brightcove_MediaObject_Abstract
 {
-    public static function create($type)
-    {
-        $className = 'ZendX_Service_Brightcove_MediaObject_'.$type;
-        if (!class_exists($className)) {
-            throw new ZendX_Service_Brightcove_MediaObject_Exception('Invalid class: ' . $className);
-        }
-        return new $className;
-    }
-
     /**
      * Initialize member variables from array
      *

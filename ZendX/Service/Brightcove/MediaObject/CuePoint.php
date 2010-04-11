@@ -10,12 +10,6 @@ require_once 'ZendX/Service/Brightcove/MediaObject/Abstract.php';
  */
 class ZendX_Service_Brightcove_MediaObject_CuePoint extends ZendX_Service_Brightcove_MediaObject_Abstract
 {
-    const TYPE_AD = 0;
-    
-    const TYPE_CODE = 1;
-    
-    const TYPE_CHAPTER = 2;
-    
     /**
      * @var string
      */
@@ -153,11 +147,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint extends ZendX_Service_Bright
      */
     protected function _setType($type)
     {
-        $validTypes = array(
-            self::TYPE_AD,
-            self::TYPE_CHAPTER,
-            self::TYPE_CODE
-        );
+        $validTypes = ZendX_Service_Brightcove_Enums_CuePointTypeEnum::getConstants();
         if (!in_array($type, $validTypes)) {
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception('Invalid cuepoint type: '.$type);

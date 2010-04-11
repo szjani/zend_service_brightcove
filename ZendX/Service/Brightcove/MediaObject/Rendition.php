@@ -16,12 +16,6 @@ class ZendX_Service_Brightcove_MediaObject_Rendition extends ZendX_Service_Brigh
     
     const CONTROLLER_TYPE_DEFAULT = 'DEFAULT';
     
-    const VIDEO_CODEC_SORENSON = 'SORENSON';
-    
-    const VIDEO_CODEC_ON2 = 'ON2';
-    
-    const VIDEO_CODEC_H264 = 'H264';
-    
     /**
      * @var string
      */
@@ -113,11 +107,8 @@ class ZendX_Service_Brightcove_MediaObject_Rendition extends ZendX_Service_Brigh
 
     public function setVideoCodec($videoCodec)
     {
-        $validCodecs = array(
-            self::VIDEO_CODEC_H264,
-            self::VIDEO_CODEC_ON2,
-            self::VIDEO_CODEC_SORENSON
-        );
+        require_once 'ZendX/Service/Brightcove/Enums/VideoCodecEnum.php';
+        $validCodecs = ZendX_Service_Brightcove_Enums_VideoCodecEnum::getConstants();
         if (!in_array($videoCodec, $validCodecs)) {
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception('Invalid rendition videocodec: '.$videoCodec);
