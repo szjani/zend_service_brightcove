@@ -9,7 +9,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/AbstractList.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Paginator_ListAdapter implements Zend_Paginator_Adapter_Interface
+class ZendX_Service_Brightcove_Paginator_ListAdapter
+    implements Zend_Paginator_Adapter_Interface
 {
     /**
      * @var ZendX_Service_Brightcove_Query_Read_AbstractList
@@ -45,7 +46,7 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter implements Zend_Paginator_A
     /**
      * @param int $offset
      * @param int $itemCountPerPage
-     * @return array of ZendX_Service_Brightcove_MediaObject
+     * @return ZendX_Service_Brightcove_Set_Object_Abstract
      */
     public function getItems($offset, $itemCountPerPage)
     {

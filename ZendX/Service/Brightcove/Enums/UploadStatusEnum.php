@@ -8,15 +8,16 @@ require_once 'ZendX/Service/Brightcove/Enums/Interface.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Enums_UploadStatusEnum implements ZendX_Service_Brightcove_Enums_Interface
+class ZendX_Service_Brightcove_Enums_UploadStatusEnum
+    implements ZendX_Service_Brightcove_Enums_Interface
 {
-    const UPLOADING = 'UPLOADING';
+    const UPLOADING  = 'UPLOADING';
     const PROCESSING = 'PROCESSING';
-    const COMPLETE = 'COMPLETE';
-    const ERROR = 'ERROR';
+    const COMPLETE   = 'COMPLETE';
+    const ERROR      = 'ERROR';
     
     /**
-     * 
+     * @return array
      */
     public static function getConstants()
     {

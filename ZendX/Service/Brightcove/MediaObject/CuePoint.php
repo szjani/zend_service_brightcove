@@ -1,24 +1,34 @@
 <?php
 require_once 'ZendX/Service/Brightcove/MediaObject/Abstract.php';
+require_once 'ZendX/Service/Brightcove/Set/VideoId.php';
 
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_MediaObject
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link       http://support.brightcove.com/en/docs/media-api-objects-reference#CuePoint
  */
-class ZendX_Service_Brightcove_MediaObject_CuePoint extends ZendX_Service_Brightcove_MediaObject_Abstract
+class ZendX_Service_Brightcove_MediaObject_CuePoint
+    extends ZendX_Service_Brightcove_MediaObject_Abstract
 {
+    const NAME       = 'name';
+    const VIDEO_ID   = 'videoId';
+    const TIME       = 'time';
+    const FORCE_STOP = 'forceStop';
+    const TYPE       = 'type';
+    const METADATA   = 'metadata';
+    
     /**
      * @var string
      */
     protected $_name;
     
     /**
-     * @var string
+     * @var ZendX_Service_Brightcove_Set_VideoId
      */
-    protected $_videoId;
+    protected $_videoIds;
     
     /**
      * @var int
@@ -45,23 +55,24 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint extends ZendX_Service_Bright
      */
     public function fromArray(array $cuePoint)
     {
-        if (isset($cuePoint['name'])) {
-            $this->_setName($cuePoint['name']);
+        if (isset($cuePoint[self::NAME])) {
+            $this->_setName($cuePoint[self::NAME]);
         }
-        if (isset($cuePoint['time'])) {
-            $this->_setTime($cuePoint['time']);
+        if (isset($cuePoint[self::TIME])) {
+            $this->_setTime($cuePoint[self::TIME]);
         }
-        if (isset($cuePoint['forceStop'])) {
-            $this->_setIsForceStop($cuePoint['forceStop']);
+        if (isset($cuePoint[self::FORCE_STOP])) {
+            $this->_setForceStop($cuePoint[self::FORCE_STOP]);
         }
-        if (isset($cuePoint['metadata'])) {
-            $this->_setMetaData($cuePoint['metadata']);
+        if (isset($cuePoint[self::METADATA])) {
+            $this->_setMetaData($cuePoint[self::METADATA]);
         }
-        if (isset($cuePoint['type'])) {
-            $this->_setType($cuePoint['type']);
+        if (isset($cuePoint[self::TYPE])) {
+            $this->_setType($cuePoint[self::TYPE]);
         }
-        if (isset($cuePoint['videoId'])) {
-            $this->_setVideoId($cuePoint['videoId']);
+        if (isset($cuePoint[self::VIDEO_ID])) {
+            $videoIds = new ZendX_Service_Brightcove_Set_VideoId($cuePoint[self::VIDEO_ID]);
+            $this->_setVideoIds($videoIds);
         }
     }
     
@@ -71,7 +82,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint extends ZendX_Service_Bright
      */
     protected function _setName($name)
     {
-        $this->_name = $name;
+        $this->_name = (string)$name;
         return $this;
     }
     
@@ -84,25 +95,25 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint extends ZendX_Service_Bright
     }
     
     /**
-     * @param string $videoId
+     * @param ZendX_Service_Brightcove_Set_VideoId $videoId
      * @return ZendX_Service_Brightcove_MediaObject_CuePoint $this
      */
-    protected function _setVideoId($videoId)
+    protected function _setVideoIds(ZendX_Service_Brightcove_Set_VideoId $videoIds)
     {
-        $this->_videoId = $videoId;
+        $this->_videoIds = $videoIds;
         return $this;
     }
     
     /**
-     * @return string
+     * @return ZendX_Service_Brightcove_Set_VideoId
      */
-    public function getVideoId()
+    public function getVideoIds()
     {
-        return $this->_videoId;
+        return $this->_videoIds;
     }
     
     /**
-     * @return int
+     * @return numeric
      */
     public function getTime()
     {
@@ -110,12 +121,17 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint extends ZendX_Service_Bright
     }
     
     /**
-     * @param int $time
+     * @param numeric $time
      * @return ZendX_Service_Brightcove_MediaObject_CuePoint $this
      */
     protected function _setTime($time)
     {
-        $this->_time = (int)$time;
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($time)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
+        $this->_time = $time;
         return $this;
     }
     
@@ -127,7 +143,11 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint extends ZendX_Service_Bright
         return $this->_forceStop;
     }
     
-    protected function _setIsForceStop($isForceStop)
+    /**
+     * @param boolean $isForceStop
+     * @return ZendX_Service_Brightcove_MediaObject_CuePoint $this
+     */
+    protected function _setForceStop($isForceStop)
     {
         $this->_forceStop = (boolean)$isForceStop;
         return $this;
@@ -170,7 +190,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint extends ZendX_Service_Bright
      */
     protected function _setMetaData($metaData)
     {
-        $this->_metadata = $metaData;
+        $this->_metadata = (string)$metaData;
         return $this;
     }
 }

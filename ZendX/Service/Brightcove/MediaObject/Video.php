@@ -14,113 +14,151 @@ require_once 'ZendX/Service/Brightcove/Set/CustomField.php';
  * @subpackage Brightcove_MediaObject
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link       http://support.brightcove.com/en/docs/media-api-objects-reference#Video
  */
-class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcove_MediaObject_Abstract
+class ZendX_Service_Brightcove_MediaObject_Video
+    extends ZendX_Service_Brightcove_MediaObject_Abstract
 {
-    const ID = 'id';
-    const NAME = 'name';
-    const REFERENCE_ID = 'referenceId';
-    const ACCOUNT_ID = 'accountId';
-    const CREATION_DATE = 'creationDate';
-    const CUE_POINTS = 'cuePoints';
-    const CUSTOM_FIELDS = 'customFields';
-    const ECONOMICS = 'economics';
-    const END_DATE = 'endDate';
-    const FLV_URL = 'FLVURL';
+    const ID                     = 'id';
+    const NAME                   = 'name';
+    const REFERENCE_ID           = 'referenceId';
+    const ACCOUNT_ID             = 'accountId';
+    const CREATION_DATE          = 'creationDate';
+    const CUE_POINTS             = 'cuePoints';
+    const CUSTOM_FIELDS          = 'customFields';
+    const ECONOMICS              = 'economics';
+    const END_DATE               = 'endDate';
+    const FLV_URL                = 'FLVURL';
     const GEO_FILTERED_COUNTRIES = 'geoFilteredCountries';
-    const GEO_FILTER_EXCLUDE = 'geoFilterExclude';
-    const GEO_RESTRICTED = 'geoRestricted';
-    const ITEM_STATE = 'itemState';
-    const LAST_MODIFIED_DATE = 'lastModifiedDate';
-    const LENGTH = 'length';
-    const LINK_TEXT = 'linkText';
-    const LINK_URL = 'linkURL';
-    const LONG_DESCRIPTION = 'longDescription';
-    const PLAYS_TOTAL = 'playsTotal';
-    const PLAYS_TRAILING_WEEK = 'playsTrailingWeek';
-    const PUBLISHED_DATE = 'publishedDate';
-    const RENDITIONS = 'renditions';
-    const SHORT_DESCRIPTION = 'shortDescription';
-    const START_DATE = 'startDate';
-    const TAGS = 'tags';
-    const THUMBNAIL_URL = 'thumbnailURL';
-    const VIDEO_FULL_LENGTH = 'videoFullLength';
-    const VIDEO_STILL_URL = 'videoStillURL';
-    
-//    protected static $_validMembers = array(
-//        self::ID,
-//        self::NAME,
-//        self::REFERENCE_ID,
-//        self::ACCOUNT_ID,
-//        self::CREATION_DATE,
-//        self::CUE_POINTS,
-//        self::CUSTOM_FIELDS,
-//        self::ECONOMICS,
-//        self::END_DATE,
-//        self::FLV_URL,
-//        self::GEO_FILTER_EXCLUDE,
-//        self::GEO_FILTERED_COUNTRIES,
-//        self::GEO_RESTRICTED,
-//        self::ITEM_STATE,
-//        self::LAST_MODIFIED_DATE,
-//        self::LENGTH,
-//        self::LINK_TEXT,
-//        self::LINK_URL,
-//        self::LONG_DESCRIPTION,
-//        self::PLAYS_TOTAL,
-//        self::PLAYS_TRAILING_WEEK,
-//        self::PUBLISHED_DATE,
-//        self::RENDITIONS,
-//        self::SHORT_DESCRIPTION,
-//        self::START_DATE,
-//        self::TAGS,
-//        self::THUMBNAIL_URL,
-//        self::VIDEO_FULL_LENGTH,
-//        self::VIDEO_STILL_URL
-//    );
+    const GEO_FILTER_EXCLUDE     = 'geoFilterExclude';
+    const GEO_RESTRICTED         = 'geoRestricted';
+    const ITEM_STATE             = 'itemState';
+    const LAST_MODIFIED_DATE     = 'lastModifiedDate';
+    const LENGTH                 = 'length';
+    const LINK_TEXT              = 'linkText';
+    const LINK_URL               = 'linkURL';
+    const LONG_DESCRIPTION       = 'longDescription';
+    const PLAYS_TOTAL            = 'playsTotal';
+    const PLAYS_TRAILING_WEEK    = 'playsTrailingWeek';
+    const PUBLISHED_DATE         = 'publishedDate';
+    const RENDITIONS             = 'renditions';
+    const SHORT_DESCRIPTION      = 'shortDescription';
+    const START_DATE             = 'startDate';
+    const TAGS                   = 'tags';
+    const THUMBNAIL_URL          = 'thumbnailURL';
+    const VIDEO_FULL_LENGTH      = 'videoFullLength';
+    const VIDEO_STILL_URL        = 'videoStillURL';
 
+    /**
+     * @var numeric
+     */
     protected $_id;
 
+    /**
+     * @var string
+     */
     protected $_name;
 
+    /**
+     * @var string
+     */
     protected $_referenceId;
 
+    /**
+     * @var numeric
+     */
     protected $_accountId;
 
+    /**
+     * @var numeric
+     */
     protected $_creationDate;
 
+    /**
+     * @var ZendX_Service_Brightcove_Set_Object_CuePoint
+     */
     protected $_cuePoints;
 
+    /**
+     * @var ZendX_Service_Brightcove_Set_CustomField
+     */
     protected $_customFields;
 
+    /**
+     * @see ZendX_Service_Brightcove_Enums_EconomicsEnum
+     * @var string Element of ZendX_Service_Brightcove_Enums_EconomicsEnum
+     */
     protected $_economics;
 
+    /**
+     * @var numeric
+     */
     protected $_endDate;
 
+    /**
+     * @var 
+     */
     protected $_flvUrl;
 
+    /**
+     * @var ZendX_Service_Brightcove_Set_Country
+     */
     protected $_geoFilteredCountries;
 
+    /**
+     * @var boolean
+     */
     protected $_geoFilterExclude;
 
+    /**
+     * @var boolean
+     */
     protected $_geoRestricted;
 
+    /**
+     * @see ZendX_Service_Brightcove_Enums_ItemStateEnum
+     * @var string Element of ZendX_Service_Brightcove_Enums_ItemStateEnum
+     */
     protected $_itemState;
 
+    /**
+     * @var numeric
+     */
     protected $_lastModifiedDate;
 
+    /**
+     * @var numeric
+     */
     protected $_length;
 
+    /**
+     * @var string
+     */
     protected $_linkText;
 
+    /**
+     * @var string
+     */
     protected $_linkUrl;
 
+    /**
+     * @var string
+     */
     protected $_longDescription;
 
+    /**
+     * @var int
+     */
     protected $_playsTotal;
 
+    /**
+     * @var int
+     */
     protected $_playsTrailingWeek;
 
+    /**
+     * @var numeric
+     */
     protected $_publishedDate;
 
     /**
@@ -128,8 +166,14 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     protected $_renditions;
 
+    /**
+     * @var string
+     */
     protected $_shortDescription;
 
+    /**
+     * @var numeric
+     */
     protected $_startDate;
 
     /**
@@ -137,6 +181,9 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     protected $_tags;
 
+    /**
+     * @var string
+     */
     protected $_thumbnailUrl;
 
     /**
@@ -144,16 +191,14 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     protected $_videoFullLength;
 
+    /**
+     * @var string
+     */
     protected $_videoStillUrl;
     
     /**
-     * @return array
+     * @param array $video
      */
-//    public static function getValidMembers()
-//    {
-//        return self::$_validMembers;
-//    }
-
     public function fromArray(array $video)
     {
         if (isset($video[self::NAME])) {
@@ -258,7 +303,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
-     * @return int
+     * @return numeric
      */
     public function getId()
     {
@@ -266,11 +311,16 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
-     * @param float $id
+     * @param numeric $id
      * @return ZendX_Service_Brightcove_MediaObject_Video $this
      */
     protected function _setId($id)
     {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($id)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->_id = $id;
         return $this;
     }
@@ -289,7 +339,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     public function setName($name)
     {
-        $this->_name = $name;
+        $this->_name = (string)$name;
         return $this;
     }
 
@@ -307,12 +357,17 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     public function setReferenceId($referenceId)
     {
+        $referenceId = (string)$referenceId;
+        if (strlen($referenceId) > 150) {
+            require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
+            throw new ZendX_Service_Brightcove_Query_ParamException('Too long reference id! Maximum length is 150!');
+        }
         $this->_referenceId = $referenceId;
         return $this;
     }
 
     /**
-     * @return int
+     * @return numeric
      */
     public function getAccountId()
     {
@@ -320,11 +375,16 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
-     * @param string $accountId
+     * @param numeric $accountId
      * @return ZendX_Service_Brightcove_MediaObject_Video $this
      */
     protected function _setAccountId($accountId)
     {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($accountId)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->_accountId = $accountId;
         return $this;
     }
@@ -335,7 +395,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     public function setShortDescription($desc)
     {
-        $this->_shortDescription = $desc;
+        $this->_shortDescription = (string)$desc;
         return $this;
     }
 
@@ -353,7 +413,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     public function setLongDescription($desc)
     {
-        $this->_longDescription = $desc;
+        $this->_longDescription = (string)$desc;
         return $this;
     }
 
@@ -379,7 +439,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     protected function _setFlvUrl($flvUrl)
     {
-        $this->_flvUrl = $flvUrl;
+        $this->_flvUrl = (string)$flvUrl;
         return $this;
     }
 
@@ -420,7 +480,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
-     * @return string
+     * @return numeric
      */
     public function getCreationDate()
     {
@@ -433,12 +493,17 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     protected function _setCreationDate($date)
     {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($date)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->_creationDate = $date;
         return $this;
     }
 
     /**
-     * @return string
+     * @return numeric
      */
     public function getPublishedDate()
     {
@@ -446,17 +511,22 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
-     * @param string $date
+     * @param numeric $date
      * @return ZendX_Service_Brightcove_MediaObject_Video $this
      */
     protected function _setPublishedDate($date)
     {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($date)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->_publishedDate = $date;
         return $this;
     }
 
     /**
-     * @return string
+     * @return numeric
      */
     public function getLastModifiedDate()
     {
@@ -464,17 +534,23 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
-     * @param string $date
+     * @param numeric $date
      * @return ZendX_Service_Brightcove_MediaObject_Video $this
      */
     protected function _setLastModifiedDate($date)
     {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($date)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->_lastModifiedDate = $date;
         return $this;
     }
 
     /**
-     * @return string
+     * @see ZendX_Service_Brightcove_Enums_ItemStateEnum
+     * @return string Element of ZendX_Service_Brightcove_Enums_ItemStateEnum
      */
     public function getItemState()
     {
@@ -482,27 +558,39 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
-     * @param string $itemState
+     * @see ZendX_Service_Brightcove_Enums_ItemStateEnum
+     * @param string $itemState Element of ZendX_Service_Brightcove_Enums_ItemStateEnum
      * @return ZendX_Service_Brightcove_MediaObject_Video $this
      */
     public function setItemState($itemState)
     {
+        require_once 'ZendX/Service/Brightcove/Enums/ItemStateEnum.php';
+        $validTypes = ZendX_Service_Brightcove_Enums_ItemStateEnum::getConstants();
+        if (!in_array(strtoupper($itemState), $validTypes)) {
+            require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
+            throw new ZendX_Service_Brightcove_Query_ParamException('Invalid item state type: ' . $itemState);
+        }
         $this->_itemState = $itemState;
         return $this;
     }
 
     /**
-     * @param string $date
+     * @param numeric $date
      * @return ZendX_Service_Brightcove_MediaObject_Video $this
      */
     public function setStartDate($date)
     {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($date)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->_startDate = $date;
         return $this;
     }
 
     /**
-     * @return string
+     * @return numeric
      */
     public function getStartDate()
     {
@@ -510,7 +598,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
-     * @return string
+     * @return numeric
      */
     public function getEndDate()
     {
@@ -518,10 +606,16 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
+     * @param numeric $date
      * @return ZendX_Service_Brightcove_MediaObject_Video $this
      */
     public function setEndDate($date)
     {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($date)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->_endDate = $date;
         return $this;
     }
@@ -532,6 +626,11 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     public function setLinkUrl($url)
     {
+        $url = (string)$url;
+        if (strlen($url) > 255) {
+            require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
+            throw new ZendX_Service_Brightcove_Query_ParamException('Too long url! Maximum length is 255!');
+        }
         $this->_linkUrl = $url;
         return $this;
     }
@@ -550,6 +649,11 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     public function setLinkText($linkText)
     {
+        $linkText = (string)$linkText;
+        if (strlen($linkText) > 255) {
+            require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
+            throw new ZendX_Service_Brightcove_Query_ParamException('Too long link text! Maximum length is 255!');
+        }
         $this->_linkText = $linkText;
         return $this;
     }
@@ -594,7 +698,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     protected function _setVideoStillUrl($url)
     {
-        $this->_videoStillUrl = $url;
+        $this->_videoStillUrl = (string)$url;
         return $this;
     }
 
@@ -612,22 +716,27 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     protected function _setThumbnailUrl($thumbnailUrl)
     {
-        $this->_thumbnailUrl = $thumbnailUrl;
+        $this->_thumbnailUrl = (string)$thumbnailUrl;
         return $this;
     }
 
     /**
-     * @param int $length
+     * @param numeric $length
      * @return ZendX_Service_Brightcove_MediaObject_Video $this
      */
     protected function _setLength($length)
     {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($length)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->_length = $length;
         return $this;
     }
 
     /**
-     * @return int
+     * @return numeric
      */
     public function getLength()
     {
@@ -653,7 +762,8 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
-     * @return ZendX_Service_Brightcove_MediaObject_Economics
+     * @see ZendX_Service_Brightcove_Enums_EconomicsEnum
+     * @return string Element of ZendX_Service_Brightcove_Enums_EconomicsEnum
      */
     public function getEconomics()
     {
@@ -661,11 +771,18 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     }
 
     /**
-     * @param string $economics
+     * @see ZendX_Service_Brightcove_Enums_EconomicsEnum
+     * @param string $economics Element of ZendX_Service_Brightcove_Enums_EconomicsEnum
      * @return ZendX_Service_Brightcove_MediaObject_Video $this
      */
     public function setEconomics($economics)
     {
+        require_once 'ZendX/Service/Brightcove/Enums/EconomicsEnum.php';
+        $validTypes = ZendX_Service_Brightcove_Enums_EconomicsEnum::getConstants();
+        if (!in_array(strtoupper($economics), $validTypes)) {
+            require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
+            throw new ZendX_Service_Brightcove_Query_ParamException('Invalid economics: ' . $economics);
+        }
         $this->_economics = $economics;
         return $this;
     }
@@ -673,7 +790,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     /**
      * @return boolean
      */
-    public function getGeoRestricted()
+    public function isGeoRestricted()
     {
         return $this->_geoRestricted;
     }
@@ -684,7 +801,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     public function setGeoRestricted($isGeoRestricted)
     {
-        $this->_geoRestricted = $isGeoRestricted;
+        $this->_geoRestricted = (boolean)$isGeoRestricted;
         return $this;
     }
 
@@ -709,7 +826,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
     /**
      * @return boolean
      */
-    public function getGeoFilterExclude()
+    public function isGeoFilterExclude()
     {
         return $this->_geoFilterExclude;
     }
@@ -720,7 +837,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     public function setGeoFilterExclude($isGeoFilterExclued)
     {
-        $this->_geoFilterExclude = $isGeoFilterExclued;
+        $this->_geoFilterExclude = (boolean)$isGeoFilterExclued;
         return $this;
     }
 
@@ -756,7 +873,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     protected function _setPlaysTotal($num)
     {
-        $this->_playsTotal = $num;
+        $this->_playsTotal = (int)$num;
         return $this;
     }
 
@@ -774,7 +891,7 @@ class ZendX_Service_Brightcove_MediaObject_Video extends ZendX_Service_Brightcov
      */
     protected function _setPlaysTrailingWeek($num)
     {
-        $this->_playsTrailingWeek = $num;
+        $this->_playsTrailingWeek = (int)$num;
         return $this;
     }
 }

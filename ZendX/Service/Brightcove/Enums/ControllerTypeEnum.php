@@ -8,14 +8,11 @@ require_once 'ZendX/Service/Brightcove/Enums/Interface.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Enums_VideoCodecEnum
+class ZendX_Service_Brightcove_Enums_ControllerTypeEnum
     implements ZendX_Service_Brightcove_Enums_Interface
 {
-    const UNDEFINED = 'UNDEFINED';
-    const NONE      = 'NONE';
-    const SORENSON  = 'SORENSON';
-    const ON2       = 'ON2';
-    const H264      = 'H264';
+    const LIMELIGHT_LIVE = 'LIMELIGHT_LIVE';
+    const AKAMAI_LIVE    = 'AKAMAI_LIVE';
     
     /**
      * @return array
@@ -23,11 +20,9 @@ class ZendX_Service_Brightcove_Enums_VideoCodecEnum
     public static function getConstants()
     {
         return array(
-            self::H264,
-            self::NONE,
-            self::ON2,
-            self::SORENSON,
-            self::UNDEFINED
+            self::LIMELIGHT_LIVE,
+            self::AKAMAI_LIVE
         );
     }
+
 }

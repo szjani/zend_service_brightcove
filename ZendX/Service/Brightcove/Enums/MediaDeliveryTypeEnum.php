@@ -9,13 +9,13 @@ require_once 'ZendX/Service/Brightcove/Enums/Interface.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_Service_Brightcove_Enums_MediaDeliveryTypeEnum
-  implements ZendX_Service_Brightcove_Enums_Interface
+    implements ZendX_Service_Brightcove_Enums_Interface
 {
     const HTTP = 'HTTP';
     const DEFA = 'DEFAULT';
     
     /**
-     * 
+     * @return array
      */
     public static function getConstants()
     {

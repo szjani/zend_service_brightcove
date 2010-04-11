@@ -8,7 +8,8 @@ require_once 'ZendX/Service/Brightcove/Enums/Interface.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Enums_SortByTypeEnum implements ZendX_Service_Brightcove_Enums_Interface
+class ZendX_Service_Brightcove_Enums_SortByTypeEnum
+    implements ZendX_Service_Brightcove_Enums_Interface
 {
     const PUBLISH_DATE        = 'PUBLISH_DATE';
     const CREATION_DATE       = 'CREATION_DATE';
@@ -17,7 +18,7 @@ class ZendX_Service_Brightcove_Enums_SortByTypeEnum implements ZendX_Service_Bri
     const PLAYS_TRAILING_WEEK = 'PLAYS_TRAILING_WEEK';
     
     /**
-     * 
+     * @return array
      */
     public static function getConstants()
     {

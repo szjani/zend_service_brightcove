@@ -8,13 +8,14 @@ require_once 'ZendX/Service/Brightcove/Enums/Interface.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Enums_EconomicsEnum implements ZendX_Service_Brightcove_Enums_Interface
+class ZendX_Service_Brightcove_Enums_EconomicsEnum
+    implements ZendX_Service_Brightcove_Enums_Interface
 {
-    const FREE = 'FREE';
+    const FREE         = 'FREE';
     const AD_SUPPORTED = 'AD_SUPPORTED';
     
     /**
-     * 
+     * @return array
      */
     public static function getConstants()
     {

@@ -8,5 +8,8 @@
  */
 interface ZendX_Service_Brightcove_Enums_Interface
 {
+    /**
+     * @return array of available elements
+     */
     public static function getConstants();
 }

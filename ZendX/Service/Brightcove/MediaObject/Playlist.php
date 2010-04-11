@@ -7,19 +7,14 @@ require_once 'ZendX/Service/Brightcove/Set/Tag.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_MediaObject
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link       http://support.brightcove.com/en/docs/media-api-objects-reference#Playlist
  */
-class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Brightcove_MediaObject_Abstract
+class ZendX_Service_Brightcove_MediaObject_Playlist
+    extends ZendX_Service_Brightcove_MediaObject_Abstract
 {
-//    const TYPE_OLDEST_TO_NEWEST    = 'OLDEST_TO_NEWEST';
-//    const TYPE_NEWEST_TO_OLDEST    = 'NEWEST_TO_OLDEST';
-//    const TYPE_ALPHABETICAL        = 'ALPHABETICAL';
-//    const TYPE_PLAYSTOTAL          = 'PLAYSTOTAL';
-//    const TYPE_PLAYS_TRAILING_WEEK = 'PLAYS_TRAILING_WEEK';
-//    const TYPE_EXPLICIT            = 'EXPLICIT';
-
     const ID                = 'id';
     const REFERENCE_ID      = 'referenceId';
     const ACCOUNT_ID        = 'accountId';
@@ -31,39 +26,61 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
     const FILTER_TAGS       = 'filterTags';
     const THUMBNAIL_URL     = 'thumbnailUrl';
 
-//    protected static $_validMembers = array(
-//        self::ID,
-//        self::REFERENCE_ID,
-//        self::ACCOUNT_ID,
-//        self::NAME,
-//        self::SHORT_DESCRIPTION,
-//        self::VIDEO_IDS,
-//        self::VIDEOS,
-//        self::PLAYLIST_TYPE,
-//        self::FILTER_TAGS,
-//        self::THUMBNAIL_URL
-//    );
-
+    /**
+     * @var numeric
+     */
     protected $_id;
 
+    /**
+     * @var string
+     */
     protected $_referenceId;
 
+    /**
+     * @var numeric
+     */
     protected $_accountId;
 
+    /**
+     * @var string
+     */
     protected $_name;
 
+    /**
+     * @var string
+     */
     protected $_shortDescription;
 
+    /**
+     * @var ZendX_Service_Brightcove_Set_VideoId
+     */
     protected $_videoIds;
 
+    /**
+     * @var ZendX_Service_Brightcove_Set_Object_Video
+     */
     protected $_videos;
 
+    /**
+     * @var string Element of ZendX_Service_Brightcove_Enums_PlaylistTypeEnum
+     * @see ZendX_Service_Brightcove_Enums_PlaylistTypeEnum
+     */
     protected $_playlistType;
 
+    /**
+     * 
+     * @var ZendX_Service_Brightcove_Set_Tag
+     */
     protected $_filterTags;
 
+    /**
+     * @var string
+     */
     protected $_thumbnailUrl;
 
+    /**
+     * @param array $playlist
+     */
     public function fromArray(array $playlist)
     {
         if (isset($playlist[self::ID])) {
@@ -105,17 +122,22 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
     }
 
     /**
-     * @param float $id
+     * @param numeric $id
      * @return ZendX_Service_Brightcove_MediaObject_Playlist $this
      */
     protected function _setId($id)
     {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($id)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->_id = $id;
         return $this;
     }
 
     /**
-     * @return float
+     * @return numeric
      */
     public function getId()
     {
@@ -128,7 +150,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
      */
     public function setReferenceId($referenceId)
     {
-        $this->_referenceId = $referenceId;
+        $this->_referenceId = (string)$referenceId;
         return $this;
     }
 
@@ -141,7 +163,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
     }
 
     /**
-     * @return int
+     * @return numeric
      */
     public function getAccountId()
     {
@@ -149,11 +171,16 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
     }
 
     /**
-     * @param string $accountId
+     * @param numeric $accountId
      * @return ZendX_Service_Brightcove_MediaObject_Playlist $this
      */
     protected function _setAccountId($accountId)
     {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($accountId)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->_accountId = $accountId;
         return $this;
     }
@@ -172,7 +199,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
      */
     public function setName($name)
     {
-        $this->_name = $name;
+        $this->_name = (string)$name;
         return $this;
     }
 
@@ -182,7 +209,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
      */
     public function setShortDescription($desc)
     {
-        $this->_shortDescription = $desc;
+        $this->_shortDescription = (string)$desc;
         return $this;
     }
 
@@ -194,22 +221,38 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
         return $this->_shortDescription;
     }
 
+    /**
+     * @param ZendX_Service_Brightcove_Set_Object_Video $videos
+     * @return ZendX_Service_Brightcove_MediaObject_Playlist $this
+     */
     public function setVideos(ZendX_Service_Brightcove_Set_Object_Video $videos)
     {
         $this->_videos = $videos;
         return $this;
     }
 
+    /**
+     * @return ZendX_Service_Brightcove_Set_Object_Video
+     */
     public function getVideos()
     {
         return $this->_videos;
     }
 
+    /**
+     * @see ZendX_Service_Brightcove_Enums_PlaylistTypeEnum
+     * @return string
+     */
     public function getPlaylistType()
     {
         return $this->_playlistType;
     }
 
+    /**
+     * @see ZendX_Service_Brightcove_Enums_PlaylistTypeEnum
+     * @param string $playlistType Element of ZendX_Service_Brightcove_Enums_PlaylistTypeEnum
+     * @return ZendX_Service_Brightcove_MediaObject_Playlist $this
+     */
     public function setPlaylistType($playlistType)
     {
         require_once 'ZendX/Service/Brightcove/Enums/PlaylistTypeEnum.php';
@@ -222,33 +265,54 @@ class ZendX_Service_Brightcove_MediaObject_Playlist extends ZendX_Service_Bright
         return $this;
     }
 
+    /**
+     * @param ZendX_Service_Brightcove_Set_Tag $tags
+     * @return ZendX_Service_Brightcove_MediaObject_Playlist $this
+     */
     public function setFilterTags(ZendX_Service_Brightcove_Set_Tag $tags)
     {
         $this->_filterTags = $tags;
         return $this;
     }
 
+    /**
+     * @return ZendX_Service_Brightcove_Set_Tag
+     */
     public function getFilterTags()
     {
         return $this->_filterTags;
     }
 
+    /**
+     * @return string
+     */
     public function getThumbnailUrl()
     {
         return $this->_thumbnailUrl;
     }
 
+    /**
+     * @param string $thumbnailUrl
+     * @return ZendX_Service_Brightcove_MediaObject_Playlist $this
+     */
     protected function _setThumbnailUrl($thumbnailUrl)
     {
-        $this->_thumbnailUrl = $thumbnailUrl;
+        $this->_thumbnailUrl = (string)$thumbnailUrl;
         return $this;
     }
 
+    /**
+     * @return ZendX_Service_Brightcove_Set_VideoId
+     */
     public function getVideoIds()
     {
         return $this->_videoIds;
     }
 
+    /**
+     * @param ZendX_Service_Brightcove_Set_VideoId $videoIds
+     * @return ZendX_Service_Brightcove_MediaObject_Playlist $this
+     */
     public function setVideoIds(ZendX_Service_Brightcove_Set_VideoId $videoIds)
     {
         $this->_videoIds = $videoIds;

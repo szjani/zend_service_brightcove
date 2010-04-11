@@ -8,17 +8,18 @@ require_once 'ZendX/Service/Brightcove/Enums/Interface.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_Enums_ImageTypeEnum implements ZendX_Service_Brightcove_Enums_Interface
+class ZendX_Service_Brightcove_Enums_ImageTypeEnum
+    implements ZendX_Service_Brightcove_Enums_Interface
 {
-    const VIDEO_STILL = 'VIDEO_STILL';
+    const VIDEO_STILL       = 'VIDEO_STILL';
     const SYNDICATION_STILL = 'SYNDICATION_STILL';
-    const THUMBNAIL = 'THUMBNAIL';
-    const BACKGROUND = 'BACKGROUND';
-    const LOGO = 'LOGO';
-    const LOGO_OVERLAY = 'LOGO_OVERLAY';
+    const THUMBNAIL         = 'THUMBNAIL';
+    const BACKGROUND        = 'BACKGROUND';
+    const LOGO              = 'LOGO';
+    const LOGO_OVERLAY      = 'LOGO_OVERLAY';
     
     /**
-     * 
+     * @return array
      */
     public static function getConstants()
     {

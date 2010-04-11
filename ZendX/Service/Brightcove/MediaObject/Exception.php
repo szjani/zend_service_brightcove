@@ -8,4 +8,5 @@ require_once 'ZendX/Service/Brightcove/Exception.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZendX_Service_Brightcove_MediaObject_Exception extends ZendX_Service_Brightcove_Exception {}
+class ZendX_Service_Brightcove_MediaObject_Exception
+    extends ZendX_Service_Brightcove_Exception {}

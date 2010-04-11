@@ -1,26 +1,51 @@
 <?php
 require_once 'ZendX/Service/Brightcove/MediaObject/Abstract.php';
 
-class ZendX_Service_Brightcove_MediaObject_Image extends ZendX_Service_Brightcove_MediaObject_Abstract
+/**
+ * @category   ZendX
+ * @package    ZendX_Service
+ * @subpackage Brightcove_MediaObject
+ * @author     szjani@szjani.hu
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link       http://support.brightcove.com/en/docs/media-api-objects-reference#Image
+ */
+class ZendX_Service_Brightcove_MediaObject_Image
+    extends ZendX_Service_Brightcove_MediaObject_Abstract
 {
-    const ID = 'id';
+    const ID           = 'id';
     const REFERENCE_ID = 'referenceId';
-    const TYPE = 'type';
-    const REMOTE_URL = 'remoteUrl';
+    const TYPE         = 'type';
+    const REMOTE_URL   = 'remoteUrl';
     const DISPLAY_NAME = 'displayName';
     
+    /**
+     * @var numeric
+     */
     protected $_id;
     
+    /**
+     * @var string
+     */
     protected $_referenceId;
     
+    /**
+     * @var string Element of ZendX_Service_Brightcove_Enums_ImageTypeEnum
+     * @see ZendX_Service_Brightcove_Enums_ImageTypeEnum
+     */
     protected $_type;
     
+    /**
+     * @var string
+     */
     protected $_remoteUrl;
     
+    /**
+     * @var string
+     */
     protected $_displayName;
     
     /**
-     * @param array $fromArray
+     * @param array $image
      */
     public function fromArray(array $image)
     {
@@ -41,11 +66,18 @@ class ZendX_Service_Brightcove_MediaObject_Image extends ZendX_Service_Brightcov
         }
     }
     
+    /**
+     * @return numeric
+     */
     public function getId()
     {
         return $this->_id;
     }
     
+    /**
+     * @param numeric $id
+     * @return ZendX_Service_Brightcove_MediaObject_Image $this
+     */
     protected function _setId($id)
     {
         $validator = new Zend_Validate_Digits();
@@ -57,22 +89,37 @@ class ZendX_Service_Brightcove_MediaObject_Image extends ZendX_Service_Brightcov
         return $this;
     }
     
+    /**
+     * @return string
+     */
     public function getReferenceId()
     {
         return $this->_referenceId;
     }
     
+    /**
+     * @param string $referenceId
+     * @return ZendX_Service_Brightcove_MediaObject_Image $this
+     */
     public function setReferenceId($referenceId)
     {
         $this->_referenceId = (string)$referenceId;
         return $this;
     }
     
+    /**
+     * @see ZendX_Service_Brightcove_Enums_ImageTypeEnum
+     * @return string
+     */
     public function getType()
     {
         return $this->_type;
     }
     
+    /**
+     * @see ZendX_Service_Brightcove_Enums_ImageTypeEnum
+     * @param string $type Element of ZendX_Service_Brightcove_Enums_ImageTypeEnum
+     */
     public function setType($type)
     {
         require_once 'ZendX/Service/Brightcove/Enums/ImageTypeEnum.php';
@@ -85,22 +132,36 @@ class ZendX_Service_Brightcove_MediaObject_Image extends ZendX_Service_Brightcov
         return $this;
     }
     
+    /**
+     * @return string
+     */
     public function getRemoteUrl()
     {
         return $this->_remoteUrl;
     }
     
+    /**
+     * @param string $url
+     * @return ZendX_Service_Brightcove_MediaObject_Image $this
+     */
     public function setRemoteUrl($url)
     {
         $this->_remoteUrl = (string)$url;
         return $this;
     }
     
+    /**
+     * @return string
+     */
     public function getDisplayName()
     {
         return $this->_displayName;
     }
     
+    /**
+     * @param string $name
+     * @return ZendX_Service_Brightcove_MediaObject_Image $this
+     */
     public function setDisplayName($name)
     {
         $this->_displayName = (string)$name;
