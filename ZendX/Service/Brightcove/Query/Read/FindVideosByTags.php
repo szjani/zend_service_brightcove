@@ -1,16 +1,22 @@
 <?php
 require_once 'ZendX/Service/Brightcove/Query/Read/VideoOrderedList.php';
+require_once 'ZendX/Service/Brightcove/Set/Tag.php';
 
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_Service_Brightcove_Query_Read_FindVideosByTags
     extends ZendX_Service_Brightcove_Query_Read_VideoOrderedList
 {
+    /**
+     * 
+     * @param ZendX_Service_Brightcove_Set_Tag $andTags
+     * @param ZendX_Service_Brightcove_Set_Tag $orTags
+     */
     public function __construct(ZendX_Service_Brightcove_Set_Tag $andTags, ZendX_Service_Brightcove_Set_Tag $orTags)
     {
         parent::__construct();
@@ -19,6 +25,9 @@ class ZendX_Service_Brightcove_Query_Read_FindVideosByTags
           ->setOrTags($orTags);
     }
     
+    /**
+     * @see http://docs.brightcove.com/en/media/
+     */
     public function getBrightcoveMethod()
     {
         return 'find_videos_by_tags';

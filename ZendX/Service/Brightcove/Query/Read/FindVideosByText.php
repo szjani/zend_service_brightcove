@@ -4,13 +4,16 @@ require_once 'ZendX/Service/Brightcove/Query/Read/VideoList.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_Service_Brightcove_Query_Read_FindVideosByText
     extends ZendX_Service_Brightcove_Query_Read_VideoList
 {
+    /**
+     * @param string $text
+     */
     public function __construct($text)
     {
         parent::__construct();
@@ -18,7 +21,7 @@ class ZendX_Service_Brightcove_Query_Read_FindVideosByText
     }
     
     /**
-     * @return string
+     * @see http://docs.brightcove.com/en/media/
      */
     public function getBrightcoveMethod()
     {

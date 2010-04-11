@@ -5,13 +5,16 @@ require_once 'ZendX/Service/Brightcove/Set/VideoId.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_Service_Brightcove_Query_Read_FindVideosByIds
     extends ZendX_Service_Brightcove_Query_Read_VideoSet
 {
+    /**
+     * @param ZendX_Service_Brightcove_Set_VideoId $videoIds
+     */
     public function __construct(ZendX_Service_Brightcove_Set_VideoId $videoIds)
     {
         parent::__construct();

@@ -1,5 +1,5 @@
 <?php
-require_once 'ZendX/Service/Brightcove/Query/Read/PlaylistOne.php';
+require_once 'ZendX/Service/Brightcove/Query/Read/PlaylistSet.php';
 require_once 'ZendX/Service/Brightcove/Set/PlaylistId.php';
 
 /**

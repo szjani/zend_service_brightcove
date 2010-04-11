@@ -3,11 +3,11 @@ require_once 'ZendX/Service/Brightcove/Query/Read/AbstractList.php';
 require_once 'ZendX/Service/Brightcove/Set/Object/Video.php';
 
 /**
- * Video read queries with paginable set result
+ * Read queries with paginable set result
  *
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -15,19 +15,15 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractOrderedList
     extends ZendX_Service_Brightcove_Query_Read_AbstractList
 {
     /**
-     * @param $sortByType
+     * @see ZendX_Service_Brightcove_Enums_SortByTypeEnum
+     * @param string $sortByType Element of ZendX_Service_Brightcove_Enums_SortByTypeEnum
      * @return ZendX_Service_Brightcove_Query_Read_Video_FindAll $this
      */
     public function setSortByType($sortByType)
     {
-        $validType = array(
-            ZendX_Service_Brightcove_Enums_SortByTypeEnum::CREATION_DATE,
-            ZendX_Service_Brightcove_Enums_SortByTypeEnum::MODIFIED_DATE,
-            ZendX_Service_Brightcove_Enums_SortByTypeEnum::PLAYS_TOTAL,
-            ZendX_Service_Brightcove_Enums_SortByTypeEnum::PLAYS_TRAILING_WEEK,
-            ZendX_Service_Brightcove_Enums_SortByTypeEnum::PUBLISH_DATE,
-        );
+        $validType = ZendX_Service_Brightcove_Enums_SortByTypeEnum::getConstants();
         if (!in_array($sortByType, $validType, true)) {
+            require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
             throw new ZendX_Service_Brightcove_Query_ParamException('Invalid sort type: ' . $sortByType);
         }
         $this->setParam('sort_by', $sortByType);
@@ -35,7 +31,8 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractOrderedList
     }
     
     /**
-     * @return string
+     * @see ZendX_Service_Brightcove_Enums_SortByTypeEnum
+     * @return string Element of ZendX_Service_Brightcove_Enums_SortByTypeEnum
      */
     public function getSortByType()
     {
@@ -43,16 +40,15 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractOrderedList
     }
 
     /**
-     * @param $sortOrderType
+     * @see ZendX_Service_Brightcove_Enums_SortOrderTypeEnum
+     * @param string $sortOrderType Element of ZendX_Service_Brightcove_Enums_SortOrderTypeEnum
      * @return ZendX_Service_Brightcove_Query_Read_Video_FindAll $this
      */
     public function setSortOrderType($sortOrderType)
     {
-        $validType = array(
-            ZendX_Service_Brightcove_Enums_SortOrderTypeEnum::ASC,
-            ZendX_Service_Brightcove_Enums_SortOrderTypeEnum::DESC,
-        );
+        $validType = ZendX_Service_Brightcove_Enums_SortOrderTypeEnum::getConstants();
         if (!in_array($sortOrderType, $validType, true)) {
+            require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
             throw new ZendX_Service_Brightcove_Query_ParamException('Invalid sort order type: ' . $sortOrderType);
         }
         $this->setParam('sort_order', $sortOrderType);
@@ -60,7 +56,8 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractOrderedList
     }
     
     /**
-     * @return string
+     * @see ZendX_Service_Brightcove_Enums_SortOrderTypeEnum
+     * @return string Element of ZendX_Service_Brightcove_Enums_SortOrderTypeEnum
      */
     public function getSortOrderType()
     {

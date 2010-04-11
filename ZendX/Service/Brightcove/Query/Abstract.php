@@ -6,7 +6,7 @@ require_once 'ZendX/Service/Brightcove/Manager.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Connection
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -52,15 +52,11 @@ abstract class ZendX_Service_Brightcove_Query_Abstract
      * Availability of $param at current query will not checked!
      * Use methods of concrete param instance.
      *
-     * @param ZendX_Service_Brightcove_Param_Abstract $param
+     * @param string $key
+     * @param mixed $value
      * @return ZendX_Service_Brightcove_Query_Abstract $this
      */
-//    public final function setParam(ZendX_Service_Brightcove_Param_Abstract $param)
-//    {
-//        $this->_params[$param->getKey()] = $param;
-//        return $this;
-//    }
-    public function setParam($key, $value)
+    public final function setParam($key, $value)
     {
         $this->_params[$key] = $value;
         return $this;
@@ -92,7 +88,7 @@ abstract class ZendX_Service_Brightcove_Query_Abstract
 
     /**
      * @param string $key
-     * @return ZendX_Service_Brightcove_Param_Abstract
+     * @return mixed
      */
     public final function getParam($key)
     {
@@ -104,7 +100,7 @@ abstract class ZendX_Service_Brightcove_Query_Abstract
     }
 
     /**
-     * @return array of ZendX_Service_Brightcove_Param_Abstract
+     * @return array
      */
     public final function getParams()
     {
@@ -119,6 +115,9 @@ abstract class ZendX_Service_Brightcove_Query_Abstract
         return $this->_responseBody;
     }
 
+    /**
+     * Execute current query
+     */
     public function execute()
     {
         $this->_responseBody = $this->_connection->execute($this)->getLastResponseBody();
@@ -149,7 +148,6 @@ abstract class ZendX_Service_Brightcove_Query_Abstract
     {
         $params = array();
         foreach ($this->_params as $key => $param) {
-//            $params += $param->toArray();
             $params[$key] = (string)$param;
         }
         return $params;

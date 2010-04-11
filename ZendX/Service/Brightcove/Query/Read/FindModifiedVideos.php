@@ -1,16 +1,20 @@
 <?php
 require_once 'ZendX/Service/Brightcove/Query/Read/VideoOrderedList.php';
+require_once 'ZendX/Service/Brightcove/Set/Filter.php';
 
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_Service_Brightcove_Query_Read_FindModifiedVideos
     extends ZendX_Service_Brightcove_Query_Read_VideoOrderedList
 {
+    /**
+     * @param string $fromDate
+     */
     public function __construct($fromDate)
     {
         parent::__construct();
@@ -26,13 +30,15 @@ class ZendX_Service_Brightcove_Query_Read_FindModifiedVideos
     }
 
     /**
-     * @var mixed $timeStamp Specified in MINUTES since January 1st, 1970 00:00:00 GMT
+     * @var numeric $timeStamp Specified in MINUTES since January 1st, 1970 00:00:00 GMT
      * @return ZendX_Service_Brightcove_Query_Read_FindModifiedVideos $this
      */
     public function setFromDate($timeStamp)
     {
+        require_once 'Zend/Validate/Digits.php';
         $validator = new Zend_Validate_Digits();
         if (!$validator->isValid($timeStamp)) {
+            require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
             throw new ZendX_Service_Brightcove_Query_ParamException(implode(PHP_EOL, $validator->getMessages()));
         }
         $this->setParam('from_date', $timeStamp);
@@ -51,7 +57,7 @@ class ZendX_Service_Brightcove_Query_Read_FindModifiedVideos
     }
 
     /**
-     * @return int Unix timestamp
+     * @return numeric Unix timestamp
      */
     public function getFromDate()
     {
@@ -59,7 +65,7 @@ class ZendX_Service_Brightcove_Query_Read_FindModifiedVideos
     }
 
     /**
-     * @return string
+     * @return ZendX_Service_Brightcove_Set_Filter
      */
     public function getFilter()
     {

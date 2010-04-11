@@ -1,12 +1,13 @@
 <?php
 require_once 'ZendX/Service/Brightcove/Query/Read.php';
+require_once 'ZendX/Service/Brightcove/Set/Object/Abstract.php';
 
 /**
  * Query with set result
  *
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -35,7 +36,7 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractSet extends ZendX_Ser
 
     /**
      * @param ZendX_Service_Brightcove_Set_Object_Abstract $items
-     * @return ZendX_Service_Brightcove_Query_Read_SetAbstract $this
+     * @return ZendX_Service_Brightcove_Query_Read_AbstractSet $this
      */
     protected function _setItems(ZendX_Service_Brightcove_Set_Object_Abstract $items)
     {
@@ -44,7 +45,7 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractSet extends ZendX_Ser
     }
 
     /**
-     * @return ZendX_Service_Brightcove_Query_Read_SetAbstract $this
+     * @return ZendX_Service_Brightcove_Query_Read_AbstractSet $this
      */
     public function execute()
     {

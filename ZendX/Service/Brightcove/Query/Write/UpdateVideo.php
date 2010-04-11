@@ -5,7 +5,7 @@ require_once 'ZendX/Service/Brightcove/MediaObject/Video.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -18,7 +18,7 @@ class ZendX_Service_Brightcove_Query_Write_UpdateVideo
     protected $_video = null;
 
     /**
-     * @return ZendX_Service_Brightcove_Query_Read_Video_Abstract $this
+     * @return ZendX_Service_Brightcove_Query_Write_UpdateVideo $this
      */
     public function execute()
     {
@@ -51,6 +51,9 @@ class ZendX_Service_Brightcove_Query_Write_UpdateVideo
         return $this->getParam('video');
     }
     
+    /**
+     * @return string
+     */
     public function getBrightcoveMethod()
     {
         return 'update_video';

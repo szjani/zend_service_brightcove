@@ -1,8 +1,12 @@
 <?php
+require_once 'ZendX/Service/Brightcove/Query/Read.php';
+require_once 'ZendX/Service/Brightcove/Set/PlaylistField.php';
+require_once 'ZendX/Service/Brightcove/MediaObject/Playlist.php';
+
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -16,7 +20,7 @@ abstract class ZendX_Service_Brightcove_Query_Read_PlaylistOne
 
     /**
      * @param ZendX_Service_Brightcove_Set_VideoField $playlistFields
-     * @return ZendX_Service_Brightcove_Query_Read_Playlist_Abstract $this
+     * @return ZendX_Service_Brightcove_Query_Read_PlaylistOne $this
      */
     public function setPlaylistFields(ZendX_Service_Brightcove_Set_PlaylistField $playlistFields)
     {

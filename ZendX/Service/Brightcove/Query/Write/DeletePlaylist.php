@@ -4,7 +4,7 @@ require_once 'ZendX/Service/Brightcove/Query/Write.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -25,6 +25,7 @@ class ZendX_Service_Brightcove_Query_Write_DeletePlaylist
      */
     public function setPlaylistId($playlistId)
     {
+        require_once 'Zend/Validate/Digits.php';
         $validator = new Zend_Validate_Digits();
         if (!$validator->isValid($playlistId)) {
             require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
@@ -35,7 +36,7 @@ class ZendX_Service_Brightcove_Query_Write_DeletePlaylist
     }
     
     /**
-     * @return long
+     * @return numeric
      */
     public function getPlaylistId()
     {
@@ -48,7 +49,7 @@ class ZendX_Service_Brightcove_Query_Write_DeletePlaylist
      */
     public function setReferenceId($referenceId)
     {
-        $this->setParam('reference_id', $referenceId);
+        $this->setParam('reference_id', (string)$referenceId);
         return $this;
     }
     

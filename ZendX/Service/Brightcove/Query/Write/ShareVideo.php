@@ -6,7 +6,7 @@ require_once 'ZendX/Service/Brightcove/Set/VideoId.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -70,6 +70,7 @@ class ZendX_Service_Brightcove_Query_Write_ShareVideo
      */
     public function setVideoId($videoId)
     {
+        require_once 'Zend/Validate/Digits.php';
         $validator = new Zend_Validate_Digits();
         if (!$validator->isValid($videoId)) {
             require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
@@ -93,7 +94,7 @@ class ZendX_Service_Brightcove_Query_Write_ShareVideo
      */
     public function setAccountIds(ZendX_Service_Brightcove_Set_AccountId $set)
     {
-        $this->setParam('sharee_account_ids', $set);
+        $this->setParam('share_account_ids', $set);
         return $this;
     }
     
@@ -102,7 +103,7 @@ class ZendX_Service_Brightcove_Query_Write_ShareVideo
      */
     public function getAccountIds()
     {
-        return $this->getParam('sharee_account_ids');
+        return $this->getParam('share_account_ids');
     }
     
     /**

@@ -4,13 +4,16 @@ require_once 'ZendX/Service/Brightcove/Query/Read/VideoOrderedList.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_Service_Brightcove_Query_Read_FindVideosByUserId
     extends ZendX_Service_Brightcove_Query_Read_VideoOrderedList
 {
+    /**
+     * @param string $userId
+     */
     public function __construct($userId)
     {
         parent::__construct();
@@ -18,7 +21,7 @@ class ZendX_Service_Brightcove_Query_Read_FindVideosByUserId
     }
     
     /**
-     * @return string
+     * @see http://docs.brightcove.com/en/media/
      */
     public function getBrightcoveMethod()
     {

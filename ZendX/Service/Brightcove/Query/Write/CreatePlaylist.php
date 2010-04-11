@@ -5,13 +5,16 @@ require_once 'ZendX/Service/Brightcove/MediaObject/Playlist.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_Service_Brightcove_Query_Write_CreatePlaylist
     extends ZendX_Service_Brightcove_Query_Write
 {
+    /**
+     * @var numeric
+     */
     protected $_playlistId = null;
 
     /**
@@ -37,7 +40,7 @@ class ZendX_Service_Brightcove_Query_Write_CreatePlaylist
     }
     
     /**
-     * @return long
+     * @return numeric
      */
     public function getPlaylistId()
     {

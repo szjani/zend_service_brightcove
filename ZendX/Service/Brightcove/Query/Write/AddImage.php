@@ -5,7 +5,7 @@ require_once 'ZendX/Service/Brightcove/MediaObject/Image.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -43,6 +43,9 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
         return $this->_image;
     }
     
+    /**
+     * @see http://docs.brightcove.com/en/media/
+     */
     public function getBrightcoveMethod()
     {
         return 'add_image';
@@ -76,17 +79,23 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
     }
 
     /**
-     * @param float $maxSize
+     * @param numeric $maxSize
      * @return ZendX_Service_Brightcove_Query_Write_AddImage $this
      */
     public function setMaxSize($maxSize)
     {
+        require_once 'Zend/Validate/Digits.php';
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($maxSize)) {
+            require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
+            throw new ZendX_Service_Brightcove_Query_ParamException(implode(PHP_EOL, $validator->getMessages()));
+        }
         $this->setParam('maxsize', $this->_maxSize);
         return $this;
     }
     
     /**
-     * @return float
+     * @return numeric
      */
     public function getMaxSize()
     {
@@ -99,7 +108,7 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
      */
     public function setFileName($fileName)
     {
-        $this->setParam('filename', $this->_fileName);
+        $this->setParam('filename', (string)$this->_fileName);
         return $this;
     }
 
@@ -129,7 +138,7 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
     {
         if (strlen($fileChecksum) !== 32 || !preg_match('/[a-z0-9]{32}/')) {
             require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
-            throw new ZendX_Service_Brightcove_Query_ParamException('Invalid MD5 hash: '.$fileChecksum);
+            throw new ZendX_Service_Brightcove_Query_ParamException('Invalid MD5 hash: ' . $fileChecksum);
         }
         $this->setParam('file_checksum', $this->_fileChecksum);
         return $this;
@@ -149,6 +158,7 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
      */
     public function setVideoId($videoId)
     {
+        require_once 'Zend/Validate/Digits.php';
         $validator = new Zend_Validate_Digits();
         if (!$validator->isValid($videoId)) {
             require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
@@ -172,7 +182,7 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
      */
     public function setVideoReferenceId($referenceId)
     {
-        $this->setParam('video_reference_id ', $referenceId);
+        $this->setParam('video_reference_id ', (string)$referenceId);
         return $this;
     }
     

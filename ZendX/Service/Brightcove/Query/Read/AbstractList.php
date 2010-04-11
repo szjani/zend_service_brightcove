@@ -6,7 +6,7 @@ require_once 'ZendX/Service/Brightcove/Query/Read/AbstractSet.php';
  *
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -24,7 +24,7 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractList
      */
     public function setPageSize($pageSize)
     {
-        $this->setParam('page_size', $pageSize);
+        $this->setParam('page_size', (int)$pageSize);
         return $this;
     }
 
@@ -34,7 +34,7 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractList
      */
     public function setPageNumber($num)
     {
-        $this->setParam('page_number', $num);
+        $this->setParam('page_number', (int)$num);
         return $this;
     }
 
@@ -44,7 +44,7 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractList
      */
     public function setItemCount($isItemCount)
     {
-        $this->setParam('get_item_count', $isItemCount);
+        $this->setParam('get_item_count', (boolean)$isItemCount);
         return $this;
     }
 
@@ -87,7 +87,7 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractList
      */
     protected function _setTotalCount($totalCount)
     {
-        $this->_totalCount = $totalCount;
+        $this->_totalCount = (int)$totalCount;
         return $this;
     }
 

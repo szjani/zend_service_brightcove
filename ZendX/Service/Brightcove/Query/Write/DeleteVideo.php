@@ -4,7 +4,7 @@ require_once 'ZendX/Service/Brightcove/Query/Write.php';
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Query
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -25,6 +25,7 @@ class ZendX_Service_Brightcove_Query_Write_DeleteVideo
      */
     public function setVideoId($videoId)
     {
+        require_once 'Zend/Validate/Digits.php';
         $validator = new Zend_Validate_Digits();
         if (!$validator->isValid($videoId)) {
             require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
@@ -35,7 +36,7 @@ class ZendX_Service_Brightcove_Query_Write_DeleteVideo
     }
     
     /**
-     * @return long
+     * @return numeric
      */
     public function getVideoId()
     {
@@ -48,7 +49,7 @@ class ZendX_Service_Brightcove_Query_Write_DeleteVideo
      */
     public function setReferenceId($referenceId)
     {
-        $this->setParam('reference_id', $referenceId);
+        $this->setParam('reference_id', (string)$referenceId);
         return $this;
     }
     
