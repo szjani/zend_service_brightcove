@@ -54,4 +54,9 @@ abstract class ZendX_Service_Brightcove_Set_AbstractTest extends PHPUnit_Framewo
         unset($this->_set['key']);
         self::assertFalse(isset($this->_set['key']));
     }
+    
+    public function testIterator()
+    {
+        
+    }
 }

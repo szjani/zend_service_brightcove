@@ -2,7 +2,7 @@
 /**
  * @category   ZendX
  * @package    ZendX_Service
- * @subpackage Brightcove
+ * @subpackage Brightcove_Set
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -20,6 +20,9 @@ abstract class ZendX_Service_Brightcove_Set_Abstract implements Iterator, Counta
      */
     abstract protected function _isStorable($value);
     
+    /**
+     * @param $fromArray
+     */
     public function __construct(array $fromArray = null)
     {
         if ($fromArray !== null) {
@@ -48,20 +51,34 @@ abstract class ZendX_Service_Brightcove_Set_Abstract implements Iterator, Counta
         }
     }
 
+    /**
+     * @param mixed $key
+     * @param mixed $value
+     * @return ZendX_Service_Brightcove_Set_Abstract $this
+     */
     public function set($key, $value)
     {
         $this->_items[$key] = $value;
         return $this;
     }
 
+    /**
+     * @param mixed $key
+     * @return mixed
+     */
     public function get($key)
     {
         if (!array_key_exists($key, $this->_items)) {
+            require_once 'ZendX/Service/Brightcove/Set/Exception.php';
             throw new ZendX_Service_Brightcove_Set_Exception('Not exists $key!');
         }
         return $this->_items[$key];
     }
 
+    /**
+     * @param mixed $key
+     * @return ZendX_Service_Brightcove_Set_Abstract $this
+     */
     public function remove($key)
     {
         if (array_key_exists($key, $this->_items)) {
@@ -74,12 +91,14 @@ abstract class ZendX_Service_Brightcove_Set_Abstract implements Iterator, Counta
      * Build from array (typically from response)
      *
      * @param array $from
+     * @return ZendX_Service_Brightcove_Set_Abstract $this
      */
     public function fromArray(array $from)
     {
         foreach ($from as $item) {
             $this->add($item);
         }
+        return $this;
     }
 
     /**
@@ -96,6 +115,9 @@ abstract class ZendX_Service_Brightcove_Set_Abstract implements Iterator, Counta
         return implode(',', $ret);
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return $this->_items;
@@ -126,6 +148,9 @@ abstract class ZendX_Service_Brightcove_Set_Abstract implements Iterator, Counta
         reset($this->_items);
     }
 
+    /**
+     * @return int
+     */
     public function count()
     {
         return count($this->_items);
@@ -133,6 +158,7 @@ abstract class ZendX_Service_Brightcove_Set_Abstract implements Iterator, Counta
 
     /**
      * @param mixed $offset
+     * @return boolean
      */
     public function offsetExists($offset)
     {
@@ -141,6 +167,7 @@ abstract class ZendX_Service_Brightcove_Set_Abstract implements Iterator, Counta
 
     /**
      * @param mixed $offset
+     * @return mixed
      */
     public function offsetGet($offset)
     {
