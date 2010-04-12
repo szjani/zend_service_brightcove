@@ -28,7 +28,8 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
     /**
      * @var ZendX_Service_Brightcove_Set_VideoId
      */
-    protected $_videoIds;
+//    protected $_videoIds;
+    protected $_videoId;
     
     /**
      * @var int
@@ -71,8 +72,9 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
             $this->_setType($cuePoint[self::TYPE]);
         }
         if (isset($cuePoint[self::VIDEO_ID])) {
-            $videoIds = new ZendX_Service_Brightcove_Set_VideoId($cuePoint[self::VIDEO_ID]);
-            $this->_setVideoIds($videoIds);
+//            $videoIds = new ZendX_Service_Brightcove_Set_VideoId($cuePoint[self::VIDEO_ID]);
+//            $this->_setVideoIds($videoIds);
+            $this->_setVideoId($cuePoint[self::VIDEO_ID]);
         }
     }
     
@@ -98,18 +100,27 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
      * @param ZendX_Service_Brightcove_Set_VideoId $videoId
      * @return ZendX_Service_Brightcove_MediaObject_CuePoint $this
      */
-    protected function _setVideoIds(ZendX_Service_Brightcove_Set_VideoId $videoIds)
+//    protected function _setVideoIds(ZendX_Service_Brightcove_Set_VideoId $videoIds)
+//    {
+//        $this->_videoIds = $videoIds;
+//        return $this;
+//    }
+    protected function _setVideoId($videoId)
     {
-        $this->_videoIds = $videoIds;
+        $this->_videoId = $videoId;
         return $this;
     }
     
     /**
      * @return ZendX_Service_Brightcove_Set_VideoId
      */
-    public function getVideoIds()
+//    public function getVideoIds()
+//    {
+//        return $this->_videoIds;
+//    }
+    public function getVideoId()
     {
-        return $this->_videoIds;
+        return $this->_videoId;
     }
     
     /**

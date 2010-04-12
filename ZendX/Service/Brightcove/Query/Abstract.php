@@ -148,7 +148,11 @@ abstract class ZendX_Service_Brightcove_Query_Abstract
     {
         $params = array();
         foreach ($this->_params as $key => $param) {
-            $params[$key] = (string)$param;
+            if (is_bool($param)) {
+                $params[$key] = $param ? 'true' : 'false';
+            } else {
+                $params[$key] = (string)$param;
+            }
         }
         return $params;
     }
