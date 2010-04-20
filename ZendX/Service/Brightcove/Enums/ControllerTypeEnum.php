@@ -13,6 +13,7 @@ class ZendX_Service_Brightcove_Enums_ControllerTypeEnum
 {
     const LIMELIGHT_LIVE = 'LIMELIGHT_LIVE';
     const AKAMAI_LIVE    = 'AKAMAI_LIVE';
+    const DEFAULT_TYPE   = 'DEFAULT';
     
     /**
      * @return array
@@ -21,7 +22,8 @@ class ZendX_Service_Brightcove_Enums_ControllerTypeEnum
     {
         return array(
             self::LIMELIGHT_LIVE,
-            self::AKAMAI_LIVE
+            self::AKAMAI_LIVE,
+            self::DEFAULT_TYPE
         );
     }
 

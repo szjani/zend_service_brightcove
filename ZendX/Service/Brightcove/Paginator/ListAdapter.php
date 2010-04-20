@@ -12,6 +12,8 @@ require_once 'ZendX/Service/Brightcove/Query/Read/AbstractList.php';
 class ZendX_Service_Brightcove_Paginator_ListAdapter
     implements Zend_Paginator_Adapter_Interface
 {
+    protected $_count = 0;
+  
     /**
      * @var ZendX_Service_Brightcove_Query_Read_AbstractList
      */
@@ -54,7 +56,9 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
             ->setItemCount(true)
             ->setPageSize($itemCountPerPage)
             ->setPageNumber($offset / $itemCountPerPage);
-        return $this->_query->getItems();
+        $items = $this->_query->getItems();
+        $this->_count = $this->_query->getTotalCount();
+        return $items;
     }
 
     /**
@@ -62,6 +66,7 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
      */
     public function count()
     {
-        return $this->_query->getItems()->count();
+        return $this->_count;
+//        return $this->_query->getItems()->count();
     }
 }
