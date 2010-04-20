@@ -40,8 +40,8 @@ class ZendX_Service_Brightcove_ManagerTest extends PHPUnit_Framework_TestCase
     {
         $conn = $this->getMock('ZendX_Service_Brightcove_Connection', array(), array(), '', false);
         $conn2 = $this->getMock('ZendX_Service_Brightcove_Connection', array(), array(), '', false);
-        ZendX_Service_Brightcove_Manager::getInstance()->setConnection($conn, 'conn1');
-        ZendX_Service_Brightcove_Manager::getInstance()->setConnection($conn2, 'conn2');
+        ZendX_Service_Brightcove_Manager::getInstance()->openConnection($conn, 'conn1');
+        ZendX_Service_Brightcove_Manager::getInstance()->openConnection($conn2, 'conn2');
         self::assertEquals(2, ZendX_Service_Brightcove_Manager::getInstance()->count());
     }
     
@@ -49,8 +49,8 @@ class ZendX_Service_Brightcove_ManagerTest extends PHPUnit_Framework_TestCase
     {
         $conn = $this->getMock('ZendX_Service_Brightcove_Connection', array(), array(), '', false);
         $conn2 = $this->getMock('ZendX_Service_Brightcove_Connection', array(), array(), '', false);
-        ZendX_Service_Brightcove_Manager::getInstance()->setConnection($conn, 'conn1');
-        ZendX_Service_Brightcove_Manager::getInstance()->setConnection($conn2, 'conn2');
+        ZendX_Service_Brightcove_Manager::getInstance()->openConnection($conn, 'conn1');
+        ZendX_Service_Brightcove_Manager::getInstance()->openConnection($conn2, 'conn2');
         $i = 0;
         foreach (ZendX_Service_Brightcove_Manager::getInstance() as $connection) {
             self::assertType('ZendX_Service_Brightcove_Connection', $connection);

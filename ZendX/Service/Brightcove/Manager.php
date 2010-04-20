@@ -20,7 +20,7 @@ class ZendX_Service_Brightcove_Manager implements IteratorAggregate, Countable
     /**
      * @var mixed
      */
-    protected $_currentConnectionIndex = 'default';
+    protected $_currentConnectionIndex;
     
     /**
      * @var ZendX_Service_Brightcove_Manager
@@ -45,6 +45,9 @@ class ZendX_Service_Brightcove_Manager implements IteratorAggregate, Countable
      */
     public function getCurrentConnection()
     {
+        if (!isset($this->_connections[$this->_currentConnectionIndex])) {
+            throw new ZendX_Service_Brightcove_ConnectionException('There is no current connection!');
+        }
         return $this->getConnection($this->_currentConnectionIndex);
     }
     
@@ -55,10 +58,10 @@ class ZendX_Service_Brightcove_Manager implements IteratorAggregate, Countable
      */
     public static function connection(ZendX_Service_Brightcove_Connection $conn = null, $name = null)
     {
-        if ($conn == null) {
+        if ($conn === null) {
             return ZendX_Service_Brightcove_Manager::getInstance()->getCurrentConnection();
         } else {
-            return ZendX_Service_Brightcove_Manager::getInstance()->setConnection($conn, $name);
+            return ZendX_Service_Brightcove_Manager::getInstance()->openConnection($conn, $name);
         }
     }
     
@@ -67,11 +70,35 @@ class ZendX_Service_Brightcove_Manager implements IteratorAggregate, Countable
      * @param mixed $name
      * @return ZendX_Service_Brightcove_Connection $conn
      */
-    public function setConnection(ZendX_Service_Brightcove_Connection $conn = null, $name = 'default')
+    public function openConnection(ZendX_Service_Brightcove_Connection $conn = null, $name = null, $setCurrent = true)
     {
-        $this->_connections[$name] = $conn;
-        $this->_currentConnectionIndex = $name;
+        $key = null;
+        if ($name !== null) {
+            $this->_connections[$name] = $conn;
+            $key = $name;
+        } else {
+            $this->_connections[] = $conn;
+            $key = key($this->_connections);
+        }
+        
+        if ($setCurrent) {
+            $this->_currentConnectionIndex = $key;
+        }
         return $conn;
+    }
+    
+    /**
+     * @param string $key
+     * @return ZendX_Service_Brightcove_Manager $this
+     */
+    public function setCurrentConnection($key)
+    {
+        $key = (string)$key;
+        if (!isset($this->_connections[$key])) {
+            throw new ZendX_Service_Brightcove_ConnectionException('Connection key "'.$key.'" does not exist.');
+        }
+        $this->_currentConnectionIndex = $key;
+        return $this;
     }
     
     /**

@@ -175,6 +175,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         }
         $this->_lastResponseBody = Zend_Json::decode($response->getBody());
         $this->_checkErrors();
+        $this->notify();
         return $this;
     }
 
