@@ -30,8 +30,9 @@ abstract class ZendX_Service_Brightcove_Set_AbstractTest extends PHPUnit_Framewo
         $from = $this->_getTestArray();
         $this->_set->fromArray($from);
         self::assertEquals(2, $this->_set->count());
-        for ($i = 0; $i < 2; $i++, next($from), $this->_set->next()) {
-            self::assertEquals(current($from), $this->_set->current());
+        $iterator = $this->_set->getIterator();
+        for ($i = 0; $i < 2; $i++, next($from), $iterator->next()) {
+            self::assertEquals(current($from), $iterator->current());
         }
     }
 

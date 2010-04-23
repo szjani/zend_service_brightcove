@@ -8,6 +8,13 @@ class ZendX_Service_Brightcove_ManagerTest extends PHPUnit_Framework_TestCase
         ZendX_Service_Brightcove_Manager::getInstance()->clearConnections();
     }
     
+    public function tearDown()
+    {
+        ZendX_Service_Brightcove_Manager::getInstance()->clearConnections();
+        $conn = new ZendX_Service_Brightcove_Connection('wrong');
+        ZendX_Service_Brightcove_Manager::connection($conn);
+    }
+    
     /**
      * @expectedException ZendX_Service_Brightcove_ConnectionException
      */

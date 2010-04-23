@@ -14,7 +14,7 @@ class ZendX_Service_Brightcove_Enums_PlaylistFieldsEnum
     const ID               = 'ID';
     const REFERENCEID      = 'REFERENCEID';
     const NAME             = 'NAME';
-    const SHORT_DESCRIPTION = 'SHORTDESCRIPTION';
+    const SHORTDESCRIPTION = 'SHORTDESCRIPTION';
     const VIDEOIDS         = 'VIDEOIDS';
     const VIDEOS           = 'VIDEOS';
     const THUMBNAILURL     = 'THUMBNAILURL';

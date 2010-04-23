@@ -67,6 +67,7 @@ class ZendX_Service_Brightcove_Paginator_ListAdapterTest extends PHPUnit_Framewo
 
     public function testReturnsCorrectCount()
     {
-        $this->assertEquals(40, $this->_adapter->count());
+        $this->_adapter->getItems(0,0);
+        $this->assertEquals(63, $this->_adapter->count());
     }
 }
