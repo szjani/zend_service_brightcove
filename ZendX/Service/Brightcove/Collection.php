@@ -1,5 +1,5 @@
 <?php
-abstract class ZendX_Service_Brightcove_Collection  implements IteratorAggregate, Countable, ArrayAccess
+class ZendX_Service_Brightcove_Collection  implements IteratorAggregate, Countable, ArrayAccess
 {
     /**
      * @var array
@@ -22,6 +22,7 @@ abstract class ZendX_Service_Brightcove_Collection  implements IteratorAggregate
         } else {
             $this->_items[] = $value;
         }
+        return $this;
     }
 
     /**
@@ -68,8 +69,8 @@ abstract class ZendX_Service_Brightcove_Collection  implements IteratorAggregate
      */
     public function fromArray(array $from)
     {
-        foreach ($from as $item) {
-            $this->add($item);
+        foreach ($from as $key => $item) {
+            $this->add($item, $key);
         }
         return $this;
     }

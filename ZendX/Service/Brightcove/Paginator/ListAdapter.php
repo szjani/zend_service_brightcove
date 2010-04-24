@@ -52,10 +52,11 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
      */
     public function getItems($offset, $itemCountPerPage)
     {
+        $pageNumber = $itemCountPerPage == 0 ? 0 : ($offset / $itemCountPerPage);
         $this->_query
             ->setItemCount(true)
             ->setPageSize($itemCountPerPage)
-            ->setPageNumber($offset / $itemCountPerPage);
+            ->setPageNumber($pageNumber);
         $items = $this->_query->getItems();
         $this->_count = $this->_query->getTotalCount();
         return $items;

@@ -27,58 +27,6 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
     const THUMBNAIL_URL     = 'thumbnailUrl';
 
     /**
-     * @var numeric
-     */
-    protected $_id;
-
-    /**
-     * @var string
-     */
-    protected $_referenceId;
-
-    /**
-     * @var numeric
-     */
-    protected $_accountId;
-
-    /**
-     * @var string
-     */
-    protected $_name;
-
-    /**
-     * @var string
-     */
-    protected $_shortDescription;
-
-    /**
-     * @var ZendX_Service_Brightcove_Set_VideoId
-     */
-    protected $_videoIds;
-
-    /**
-     * @var ZendX_Service_Brightcove_Set_Object_Video
-     */
-    protected $_videos;
-
-    /**
-     * @var string Element of ZendX_Service_Brightcove_Enums_PlaylistTypeEnum
-     * @see ZendX_Service_Brightcove_Enums_PlaylistTypeEnum
-     */
-    protected $_playlistType;
-
-    /**
-     * 
-     * @var ZendX_Service_Brightcove_Set_Tag
-     */
-    protected $_filterTags;
-
-    /**
-     * @var string
-     */
-    protected $_thumbnailUrl;
-
-    /**
      * @param array $playlist
      */
     public function fromArray(array $playlist)
@@ -132,7 +80,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
         }
-        $this->_id = $id;
+        $this[self::ID] = $id;
         return $this;
     }
 
@@ -141,7 +89,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function getId()
     {
-        return $this->_id;
+        return $this[self::ID];
     }
 
     /**
@@ -150,7 +98,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function setReferenceId($referenceId)
     {
-        $this->_referenceId = (string)$referenceId;
+        $this[self::REFERENCE_ID] = (string)$referenceId;
         return $this;
     }
 
@@ -159,7 +107,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function getReferenceId()
     {
-        return $this->_referenceId;
+        return $this[self::REFERENCE_ID];
     }
 
     /**
@@ -167,7 +115,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function getAccountId()
     {
-        return $this->_accountId;
+        return $this[self::ACCOUNT_ID];
     }
 
     /**
@@ -181,7 +129,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
         }
-        $this->_accountId = $accountId;
+        $this[self::ACCOUNT_ID] = $accountId;
         return $this;
     }
 
@@ -190,7 +138,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function getName()
     {
-        return $this->_name;
+        return $this[self::NAME];
     }
 
     /**
@@ -199,7 +147,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function setName($name)
     {
-        $this->_name = (string)$name;
+        $this[self::NAME] = (string)$name;
         return $this;
     }
 
@@ -209,7 +157,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function setShortDescription($desc)
     {
-        $this->_shortDescription = (string)$desc;
+        $this[self::SHORT_DESCRIPTION] = (string)$desc;
         return $this;
     }
 
@@ -218,7 +166,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function getShortDescription()
     {
-        return $this->_shortDescription;
+        return $this[self::SHORT_DESCRIPTION];
     }
 
     /**
@@ -227,7 +175,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function setVideos(ZendX_Service_Brightcove_Set_Object_Video $videos)
     {
-        $this->_videos = $videos;
+        $this[self::VIDEOS] = $videos;
         return $this;
     }
 
@@ -236,7 +184,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function getVideos()
     {
-        return $this->_videos;
+        return $this[self::VIDEOS];
     }
 
     /**
@@ -245,7 +193,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function getPlaylistType()
     {
-        return $this->_playlistType;
+        return $this[self::PLAYLIST_TYPE];
     }
 
     /**
@@ -261,7 +209,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception('Invalid playlist type: ' . $playlistType);
         }
-        $this->_playlistType = $playlistType;
+        $this[self::PLAYLIST_TYPE] = $playlistType;
         return $this;
     }
 
@@ -271,7 +219,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function setFilterTags(ZendX_Service_Brightcove_Set_Tag $tags)
     {
-        $this->_filterTags = $tags;
+        $this[self::FILTER_TAGS] = $tags;
         return $this;
     }
 
@@ -280,7 +228,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function getFilterTags()
     {
-        return $this->_filterTags;
+        return $this[self::FILTER_TAGS];
     }
 
     /**
@@ -288,7 +236,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function getThumbnailUrl()
     {
-        return $this->_thumbnailUrl;
+        return $this[self::THUMBNAIL_URL];
     }
 
     /**
@@ -297,7 +245,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     protected function _setThumbnailUrl($thumbnailUrl)
     {
-        $this->_thumbnailUrl = (string)$thumbnailUrl;
+        $this[self::THUMBNAIL_URL] = (string)$thumbnailUrl;
         return $this;
     }
 
@@ -306,7 +254,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function getVideoIds()
     {
-        return $this->_videoIds;
+        return $this[self::VIDEO_IDS];
     }
 
     /**
@@ -315,7 +263,7 @@ class ZendX_Service_Brightcove_MediaObject_Playlist
      */
     public function setVideoIds(ZendX_Service_Brightcove_Set_VideoId $videoIds)
     {
-        $this->_videoIds = $videoIds;
+        $this[self::VIDEO_IDS] = $videoIds;
         return $this;
     }
 }

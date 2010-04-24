@@ -19,32 +19,6 @@ class ZendX_Service_Brightcove_MediaObject_Image
     const DISPLAY_NAME = 'displayName';
     
     /**
-     * @var numeric
-     */
-    protected $_id;
-    
-    /**
-     * @var string
-     */
-    protected $_referenceId;
-    
-    /**
-     * @var string Element of ZendX_Service_Brightcove_Enums_ImageTypeEnum
-     * @see ZendX_Service_Brightcove_Enums_ImageTypeEnum
-     */
-    protected $_type;
-    
-    /**
-     * @var string
-     */
-    protected $_remoteUrl;
-    
-    /**
-     * @var string
-     */
-    protected $_displayName;
-    
-    /**
      * @param array $image
      */
     public function fromArray(array $image)
@@ -71,7 +45,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
      */
     public function getId()
     {
-        return $this->_id;
+        return $this[self::ID];
     }
     
     /**
@@ -85,7 +59,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
         }
-        $this->_id = $id;
+        $this[self::ID] = $id;
         return $this;
     }
     
@@ -94,7 +68,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
      */
     public function getReferenceId()
     {
-        return $this->_referenceId;
+        return $this[self::REFERENCE_ID];
     }
     
     /**
@@ -103,7 +77,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
      */
     public function setReferenceId($referenceId)
     {
-        $this->_referenceId = (string)$referenceId;
+        $this[self::REFERENCE_ID] = (string)$referenceId;
         return $this;
     }
     
@@ -113,7 +87,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
      */
     public function getType()
     {
-        return $this->_type;
+        return $this[self::TYPE];
     }
     
     /**
@@ -128,7 +102,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception('Invalid encode type: ' . $type);
         }
-        $this->_type = $type;
+        $this[self::TYPE] = $type;
         return $this;
     }
     
@@ -137,7 +111,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
      */
     public function getRemoteUrl()
     {
-        return $this->_remoteUrl;
+        return $this[self::REMOTE_URL];
     }
     
     /**
@@ -146,7 +120,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
      */
     public function setRemoteUrl($url)
     {
-        $this->_remoteUrl = (string)$url;
+        $this[self::REMOTE_URL] = (string)$url;
         return $this;
     }
     
@@ -155,7 +129,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
      */
     public function getDisplayName()
     {
-        return $this->_displayName;
+        return $this[self::DISPLAY_NAME];
     }
     
     /**
@@ -164,7 +138,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
      */
     public function setDisplayName($name)
     {
-        $this->_displayName = (string)$name;
+        $this[self::DISPLAY_NAME] = (string)$name;
         return $this;
     }
 }

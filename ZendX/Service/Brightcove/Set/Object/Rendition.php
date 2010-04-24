@@ -16,8 +16,18 @@ class ZendX_Service_Brightcove_Set_Object_Rendition extends ZendX_Service_Bright
         return new ZendX_Service_Brightcove_MediaObject_Rendition();
     }
 
-    protected function _isStorable($value)
+//    protected function _isStorable($value)
+//    {
+//        return $value instanceof ZendX_Service_Brightcove_MediaObject_Rendition;
+//    }
+
+    public function add(ZendX_Service_Brightcove_MediaObject_Rendition $value, $key = null)
     {
-        return $value instanceof ZendX_Service_Brightcove_MediaObject_Rendition;
+        parent::add($value, $key);
+    }
+    
+    public function set($key, ZendX_Service_Brightcove_MediaObject_Rendition $value)
+    {
+        parent::set($key, $value);
     }
 }

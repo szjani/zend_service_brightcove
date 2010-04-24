@@ -21,37 +21,6 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
     const METADATA   = 'metadata';
     
     /**
-     * @var string
-     */
-    protected $_name;
-    
-    /**
-     * @var ZendX_Service_Brightcove_Set_VideoId
-     */
-//    protected $_videoIds;
-    protected $_videoId;
-    
-    /**
-     * @var int
-     */
-    protected $_time;
-    
-    /**
-     * @var boolean
-     */
-    protected $_forceStop;
-    
-    /**
-     * @var int
-     */
-    protected $_type;
-    
-    /**
-     * @var string
-     */
-    protected $_metadata;
-    
-    /**
      * @param array $from
      */
     public function fromArray(array $cuePoint)
@@ -84,7 +53,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
      */
     protected function _setName($name)
     {
-        $this->_name = (string)$name;
+        $this[self::NAME] = (string)$name;
         return $this;
     }
     
@@ -93,7 +62,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
      */
     public function getName()
     {
-        return $this->_name;
+        return $this[self::NAME];
     }
     
     /**
@@ -107,7 +76,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
 //    }
     protected function _setVideoId($videoId)
     {
-        $this->_videoId = $videoId;
+        $this[self::VIDEO_ID] = $videoId;
         return $this;
     }
     
@@ -120,7 +89,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
 //    }
     public function getVideoId()
     {
-        return $this->_videoId;
+        return $this[self::VIDEO_ID];
     }
     
     /**
@@ -128,7 +97,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
      */
     public function getTime()
     {
-        return $this->_time;
+        return $this[self::TIME];
     }
     
     /**
@@ -142,7 +111,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
         }
-        $this->_time = $time;
+        $this[self::TIME] = $time;
         return $this;
     }
     
@@ -151,7 +120,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
      */
     public function isForceStop()
     {
-        return $this->_forceStop;
+        return $this[self::FORCE_STOP];
     }
     
     /**
@@ -160,7 +129,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
      */
     protected function _setForceStop($isForceStop)
     {
-        $this->_forceStop = (boolean)$isForceStop;
+        $this[self::FORCE_STOP] = (boolean)$isForceStop;
         return $this;
     }
     
@@ -169,7 +138,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
      */
     public function getType()
     {
-        return $this->_type;
+        return $this[self::TYPE];
     }
 
     /**
@@ -183,7 +152,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception('Invalid cuepoint type: '.$type);
         }
-        $this->_type = $type;
+        $this[self::TYPE] = $type;
         return $this;
     }
     
@@ -192,7 +161,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
      */
     public function getMetaData()
     {
-        return $this->_metadata;
+        return $this[self::METADATA];
     }
     
     /**
@@ -201,7 +170,7 @@ class ZendX_Service_Brightcove_MediaObject_CuePoint
      */
     protected function _setMetaData($metaData)
     {
-        $this->_metadata = (string)$metaData;
+        $this[self::METADATA] = (string)$metaData;
         return $this;
     }
 }

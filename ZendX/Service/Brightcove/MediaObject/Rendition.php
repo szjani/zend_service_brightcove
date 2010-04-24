@@ -24,58 +24,6 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
     const VIDEO_CODEC        = 'videoCodec';
     
     /**
-     * @var string
-     */
-    protected $_url;
-
-    /**
-     * @see ZendX_Service_Brightcove_Enums_ControllerTypeEnum
-     * @var string Element of ZendX_Service_Brightcove_Enums_ControllerTypeEnum
-     */
-    protected $_controllerType;
-
-    /**
-     * @var int
-     */
-    protected $_encodingRate;
-
-    /**
-     * @var int
-     */
-    protected $_frameHeight;
-
-    /**
-     * @var int
-     */
-    protected $_frameWidth;
-
-    /**
-     * @var numeric
-     */
-    protected $_size;
-
-    /**
-     * @var string
-     */
-    protected $_remoteUrl;
-
-    /**
-     * @var string
-     */
-    protected $_remoteStreamName;
-
-    /**
-     * @var numeric
-     */
-    protected $_videoDuration;
-
-    /**
-     * @see ZendX_Service_Brightcove_Enums_VideoCodecEnum
-     * @var string Element of ZendX_Service_Brightcove_Enums_VideoCodecEnum
-     */
-    protected $_videoCodec;
-
-    /**
      * @param array $rendition
      */
     public function fromArray(array $rendition)
@@ -118,7 +66,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function getVideoCodec()
     {
-        return $this->_videoCodec;
+        return $this[self::VIDEO_CODEC];
     }
 
     /**
@@ -134,7 +82,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception('Invalid rendition videocodec: '.$videoCodec);
         }
-        $this->_videoCodec = $videoCodec;
+        $this[self::VIDEO_CODEC] = $videoCodec;
         return $this;
     }
 
@@ -143,7 +91,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function getVideoDuration()
     {
-        return $this->_videoDuration;
+        return $this[self::VIDEO_DURATION];
     }
 
     /**
@@ -157,7 +105,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
         }
-        $this->_videoDuration = $videoDuration;
+        $this[self::VIDEO_DURATION] = $videoDuration;
         return $this;
     }
 
@@ -166,7 +114,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function getRemoteStreamName()
     {
-        return $this->_remoteStreamName;
+        return $this[self::REMOTE_STREAM_NAME];
     }
 
     /**
@@ -175,7 +123,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function setRemoteStreamName($streamName)
     {
-        $this->_remoteStreamName = (string)$streamName;
+        $this[self::REMOTE_STREAM_NAME] = (string)$streamName;
         return $this;
     }
 
@@ -184,7 +132,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function getRemoteUrl()
     {
-        return $this->_remoteUrl;
+        return $this[self::REMOTE_URL];
     }
 
     /**
@@ -193,7 +141,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function setRemoteUrl($url)
     {
-        $this->_remoteUrl = (string)$url;
+        $this[self::REMOTE_URL] = (string)$url;
         return $this;
     }
 
@@ -202,7 +150,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function getSize()
     {
-        return $this->_size;
+        return $this[self::SIZE];
     }
 
     /**
@@ -216,7 +164,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
         }
-        $this->_size = $size;
+        $this[self::SIZE] = $size;
         return $this;
     }
 
@@ -225,7 +173,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function getFrameWidth()
     {
-        return $this->_frameWidth;
+        return $this[self::FRAME_WIDTH];
     }
 
     /**
@@ -234,7 +182,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     protected function _setFrameWidth($frameWidth)
     {
-        $this->_frameWidth = (int)$frameWidth;
+        $this[self::FRAME_WIDTH] = (int)$frameWidth;
         return $this;
     }
 
@@ -243,7 +191,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function getFrameHeight()
     {
-        return $this->_frameHeight;
+        return $this[self::FRAME_HEIGHT];
     }
 
     /**
@@ -252,7 +200,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     protected function _setFrameHeight($frameHeight)
     {
-        $this->_frameHeight = (int)$frameHeight;
+        $this[self::FRAME_HEIGHT] = (int)$frameHeight;
         return $this;
     }
 
@@ -261,7 +209,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function getEncodingRate()
     {
-        return $this->_encodingRate;
+        return $this[self::ENCODING_RATE];
     }
 
     /**
@@ -270,7 +218,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     protected function _setEncodingRate($encodingRate)
     {
-        $this->_encodingRate = (int)$encodingRate;
+        $this[self::ENCODING_RATE] = (int)$encodingRate;
         return $this;
     }
 
@@ -280,7 +228,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function getControllerType()
     {
-        return $this->_controllerType;
+        return $this[self::CONTROLLER_TYPE];
     }
 
     /**
@@ -295,7 +243,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception('Invalid rendition controller type: '.$controllerType);
         }
-        $this->_controllerType = $controllerType;
+        $this[self::CONTROLLER_TYPE] = $controllerType;
         return $this;
     }
 
@@ -304,7 +252,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     public function getUrl()
     {
-        return $this->_url;
+        return $this[self::URL];
     }
 
     /**
@@ -313,7 +261,7 @@ class ZendX_Service_Brightcove_MediaObject_Rendition
      */
     protected function _setUrl($url)
     {
-        $this->_url = (string)$url;
+        $this[self::URL] = (string)$url;
         return $this;
     }
 }

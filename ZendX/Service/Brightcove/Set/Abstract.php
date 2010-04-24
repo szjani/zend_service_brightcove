@@ -8,6 +8,10 @@
  */
 abstract class ZendX_Service_Brightcove_Set_Abstract extends ZendX_Service_Brightcove_Collection
 {
+    protected function _isStorable($value) {
+        return true;
+    }
+    
     /**
      * @throws ZendX_Service_Brightcove_Set_Exception
      * @param mixed $value
