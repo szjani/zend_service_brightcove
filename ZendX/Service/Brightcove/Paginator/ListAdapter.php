@@ -68,6 +68,5 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
     public function count()
     {
         return $this->_count;
-//        return $this->_query->getItems()->count();
     }
 }

@@ -1,0 +1,91 @@
+@CHARSET "UTF-8";
+body {
+	font-family: Arial;
+	padding: 6px;
+	font-size: 14px;
+}
+
+div {
+	-moz-border-radius: 10px; /* Firefox */
+  -webkit-border-radius: 10px; /* Safari, Google Chrome */
+  border-radius: 10px; /* Internet Explorer 9, Opera 10.5+, dev channel releases of Google Chrome */
+}
+
+#request {
+	clear: both;
+	color: white;
+	background-color: black;
+	width: 900px;
+	padding: 10px;
+	border: 1px solid white;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+#menu {
+	border: 1px solid white;
+	float:left;
+	width: 200px;
+}
+
+h1 {
+	font-size: 26px;
+	margin: 10px 0px 16px 0px;
+}
+
+h2 {
+	font-size: 22px;
+	font-style: italic;
+	margin: 4px 0px 4px 0px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #eee;
+}
+
+.video_item {
+	background-color: white;
+	border: 1px solid #eee;
+	overflow: hidden;;
+	padding: 10px;
+	margin: 10px;
+}
+
+#content {
+	background-color: #fafafa;
+	float:left;
+	border: 1px solid #ccc;
+	width: 700px;
+	padding: 10px;
+  margin-bottom: 10px;
+}
+
+.paginationControl {
+	margin: 10px;
+	text-align: center;
+	padding: 10px;
+	background-color: white;
+	border: 1px solid #aaa;
+}
+
+.paginationControl a {
+	padding: 2px 6px;
+}
+
+.paginationControl a:hover {
+  background-color: #ccc;
+}
+
+.paginationControl span.disabled {
+  padding: 4px;
+}
+
+dt {
+	font-weight: bold;
+	display: block;
+	margin: 6px;
+}
+
+dd {
+	padding-left: 20px;
+	padding-bottom: 10px;
+}

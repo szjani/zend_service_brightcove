@@ -1,0 +1,14 @@
+<h1>FindAllVideos</h1>
+<?php $i = 1 ?>
+<?php foreach ($this->paginator as $video): ?>
+  <div class="video_item">
+      <h2><?php echo $i++ . '. ' . $video->getName() ?></h2>
+      <dl>
+      <?php foreach ($video as $property => $value): ?>
+        <dt><?php echo $property ?></dt>
+        <dd><?php echo $value ?></dd>
+      <?php endforeach ?>
+      </dl>
+  </div>
+<?php endforeach ?>
+<?php echo $this->paginator ?>

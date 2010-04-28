@@ -16,29 +16,9 @@ class ZendX_Service_Brightcove_Set_Object_Video extends ZendX_Service_Brightcove
         return new ZendX_Service_Brightcove_MediaObject_Video();
     }
 
-//    protected function _isStorable($value)
-//    {
-//        return $value instanceof ZendX_Service_Brightcove_MediaObject_Video;
-//    }
+    protected function _isStorable($value)
+    {
+        return $value instanceof ZendX_Service_Brightcove_MediaObject_Video;
+    }
 
-    /**
-     * 
-     * @param ZendX_Service_Brightcove_MediaObject_Video $value
-     * @param $key
-     * @return ZendX_Service_Brightcove_Set_Object_Video $this
-     */
-    public function add(ZendX_Service_Brightcove_MediaObject_Video $value, $key = null)
-    {
-        return parent::add($value, $key);
-    }
-    
-    /**
-     * @param $key
-     * @param ZendX_Service_Brightcove_MediaObject_Video $value
-     * @return ZendX_Service_Brightcove_Set_Object_Video $this
-     */
-    public function set($key, ZendX_Service_Brightcove_MediaObject_Video $value)
-    {
-        return parent::set($key, $value);
-    }
 }

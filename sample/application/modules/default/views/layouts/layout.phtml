@@ -1,0 +1,24 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <?php
+      $this->headLink()->appendStylesheet('/reset.css');
+      $this->headLink()->appendStylesheet('/style.css');
+    ?>
+    <?php
+      echo $this->headLink();
+      echo $this->headScript()
+    ?>
+    <title>Zend-Service-Brightcove sample application</title>
+  </head>
+<body>
+  <div id="menu">
+    <?php echo $this->placeholder('leftColumn') ?>
+  </div>
+  <div id="content">
+    <?php echo $this->layout()->content ?>
+  </div>
+  <div id="request"><?php echo $this->placeholder('request') ?></div>
+</body>
+</html> 

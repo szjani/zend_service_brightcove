@@ -59,9 +59,9 @@ class ZendX_Service_Brightcove_ConnectionTest extends PHPUnit_Framework_TestCase
         $this->assertSame($query, $this->_conn->getQuery());
 
         $query = $this->getMock(
-                'ZendX_Service_Brightcove_Query_Abstract',
-                array('getBrightcoveMethod', 'getTokenType', 'getHttpMethod'),
-                array($this->_conn)
+            'ZendX_Service_Brightcove_Query_Abstract',
+            array('getBrightcoveMethod', 'getTokenType', 'getHttpMethod'),
+            array($this->_conn)
         );
         $query
             ->expects($this->any())

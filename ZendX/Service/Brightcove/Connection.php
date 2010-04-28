@@ -70,7 +70,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      * Set REST client
      *
      * @param Zend_Rest_Client
-     * @return Zend_Service_Amazon
+     * @return ZendX_Service_Brightcove_Connection
      */
     public function setRestClient(Zend_Rest_Client $client)
     {
