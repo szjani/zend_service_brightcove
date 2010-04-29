@@ -2,7 +2,7 @@
 body {
 	font-family: Arial;
 	padding: 6px;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 div {
@@ -11,16 +11,16 @@ div {
   border-radius: 10px; /* Internet Explorer 9, Opera 10.5+, dev channel releases of Google Chrome */
 }
 
-#request {
+#request, #response {
 	clear: both;
 	color: white;
 	background-color: black;
-	width: 900px;
 	padding: 10px;
 	border: 1px solid white;
 	font-family: monospace;
 	font-size: 12px;
 	line-height: 16px;
+	overflow: scroll;
 }
 
 #menu {
@@ -32,47 +32,82 @@ div {
 h1 {
 	font-size: 26px;
 	margin: 10px 0px 16px 0px;
+	text-shadow: 2px 2px 2px #ccc;
 }
 
 h2 {
-	font-size: 22px;
+	font-size: 18px;
 	font-style: italic;
-	margin: 4px 0px 4px 0px;
+	margin: 4px;
 	padding-bottom: 4px;
-	border-bottom: 1px solid #eee;
 }
 
-.video_item {
+.item {
 	background-color: white;
 	border: 1px solid #eee;
-	overflow: hidden;;
-	padding: 10px;
-	margin: 10px;
+	overflow: hidden;
+	padding: 6px;
+	margin: 6px;
+	-moz-box-shadow: 0px 2px 4px #ddd;
+  -webkit-box-shadow: 0px 2px 4px #ddd;
+  box-shadow: 0px 2px 4px #ddd;
+  /* For IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#dddddd')";
+  /* For IE 5.5 - 7 */
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#dddddd');
+	
+}
+
+.item h2:hover {
+	cursor: pointer;
+}
+
+.item:hover {
+	background-color: #f4f8fb;
 }
 
 #content {
 	background-color: #fafafa;
 	float:left;
 	border: 1px solid #ccc;
-	width: 700px;
+	width: 600px;
 	padding: 10px;
   margin-bottom: 10px;
+}
+
+#response_tree_container {
+	border: 1px solid #ccc;
+	float: left;
+	margin-left: 10px;
+	padding: 10px;
+}
+
+#response_tree {
+	width: 300px;
+	height: 500px;
+	overflow: auto;
+	
+}
+
+#response_tree span.key {
+	font-weight: bold;
 }
 
 .paginationControl {
 	margin: 10px;
 	text-align: center;
 	padding: 10px;
-	background-color: white;
-	border: 1px solid #aaa;
+	/*background-color: #f6f5b3;*/
+	/*border: 1px solid red;*/
 }
 
 .paginationControl a {
 	padding: 2px 6px;
+	text-decoration: none;
 }
 
 .paginationControl a:hover {
-  background-color: #ccc;
+  background-color: #ddecf5;
 }
 
 .paginationControl span.disabled {
@@ -88,4 +123,8 @@ dt {
 dd {
 	padding-left: 20px;
 	padding-bottom: 10px;
+}
+
+.item_body {
+	display: none;
 }

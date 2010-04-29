@@ -7,6 +7,16 @@ class ZendX_Service_Brightcove_Collection  implements IteratorAggregate, Countab
     protected $_items = array();
     
     /**
+     * @param $fromArray
+     */
+    public function __construct(array $fromArray = null)
+    {
+        if ($fromArray !== null) {
+            $this->fromArray($fromArray);
+        }
+    }
+    
+    /**
      * @throws ZendX_Service_Brightcove_CollectionException
      * @param mixed $value
      * @param string $key

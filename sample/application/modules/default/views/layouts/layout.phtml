@@ -3,8 +3,12 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <?php
+      $this->headScript()->prependFile('/site.js');
+      $this->headScript()->prependFile('/jquery.treeview.min.js');
+      $this->headScript()->prependFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');
       $this->headLink()->appendStylesheet('/reset.css');
       $this->headLink()->appendStylesheet('/style.css');
+      $this->headLink()->appendStylesheet('/jquery.treeview.css');
     ?>
     <?php
       echo $this->headLink();
@@ -19,6 +23,13 @@
   <div id="content">
     <?php echo $this->layout()->content ?>
   </div>
+  <div id="response_tree_container">
+    <h2>Response Tree</h2>
+    <div id="response_tree">
+      <?php echo $this->placeholder('response_tree') ?>
+    </div>
+  </div>
   <div id="request"><?php echo $this->placeholder('request') ?></div>
+  <div id="response"><?php echo $this->placeholder('response') ?></div>
 </body>
 </html> 
