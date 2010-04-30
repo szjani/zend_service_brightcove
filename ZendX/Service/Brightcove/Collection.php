@@ -1,18 +1,18 @@
 <?php
-class ZendX_Service_Brightcove_Collection  implements Iterator, Countable, ArrayAccess, Serializable
+class ZendX_Service_Brightcove_Collection implements IteratorAggregate, Countable, ArrayAccess
 {
     /**
      * @var array
      */
     protected $_items = array();
     
-    public function serialize() {
-        return serialize($this->_items);
-    }
-    
-    public function unserialize($data) {
-        $this->_items = unserialize($data);
-    }
+//    public function serialize() {
+//        return serialize($this->_items);
+//    }
+//    
+//    public function unserialize($data) {
+//        $this->_items = unserialize($data);
+//    }
     
     /**
      * @param $fromArray

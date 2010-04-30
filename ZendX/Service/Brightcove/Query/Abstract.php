@@ -23,14 +23,14 @@ abstract class ZendX_Service_Brightcove_Query_Abstract implements Serializable
     protected $_responseBody = array();
 
     /**
-     * @var array of ZendX_Service_Brightcove_Param_Abstract
+     * @var array
      */
     protected $_params = array();
 
-    public function __construct()
-    {
-        $this->setConnection(ZendX_Service_Brightcove_Manager::getInstance()->getCurrentConnection());
-    }
+//    public function __construct()
+//    {
+//        $this->setConnection(ZendX_Service_Brightcove_Manager::getInstance()->getCurrentConnection());
+//    }
 
     /**
      * @see http://docs.brightcove.com/en/media/
@@ -120,7 +120,7 @@ abstract class ZendX_Service_Brightcove_Query_Abstract implements Serializable
      */
     public function execute()
     {
-        $this->_responseBody = $this->_connection->execute($this)->getLastResponseBody();
+        $this->_responseBody = $this->getConnection()->execute($this)->getLastResponseBody();
     }
 
     /**
@@ -138,6 +138,9 @@ abstract class ZendX_Service_Brightcove_Query_Abstract implements Serializable
      */
     public final function getConnection()
     {
+        if ($this->_connection === null) {
+            $this->setConnection(ZendX_Service_Brightcove_Manager::getInstance()->getCurrentConnection());
+        }
         return $this->_connection;
     }
 
@@ -159,11 +162,17 @@ abstract class ZendX_Service_Brightcove_Query_Abstract implements Serializable
     
     public function serialize()
     {
-        serialize($this->_params);
+        $data = serialize(array($this->_params/*, $this->_responseBody*/));
+        file_put_contents(APPLICATION_PATH . '/cache/ser2.txt', $data);
+        return $data;
+//        return serialize($this->_params);
     }
     
     public function unserialize($data)
     {
         $this->_params = unserialize($data);
+//        $data = unserialize($data);
+//        $this->_params = $data[0];
+//        $this->_responseBody  = $data[1];
     }
 }

@@ -10,12 +10,26 @@ require_once 'ZendX/Service/Brightcove/MediaObject/Abstract.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class ZendX_Service_Brightcove_Set_Object_Abstract
-    extends ZendX_Service_Brightcove_Set_Abstract
+    extends ZendX_Service_Brightcove_Set_Abstract implements ZendX_Service_Brightcove_Set_TotalCountable
 {
+  
+    protected $_totalCount = 0;
+  
     /**
      * @return ZendX_Service_Brightcove_MediaObject_Abstract
      */
     protected abstract function _createItem();
+    
+    public function getTotalCount()
+    {
+        return $this->_totalCount !== 0 ? $this->_totalCount : $this->count();
+    }
+    
+    public function setTotalCount($totalCount)
+    {
+        $this->_totalCount = $totalCount;
+        return $this;
+    }
 
     public function toArray()
     {

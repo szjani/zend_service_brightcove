@@ -10,7 +10,7 @@ require_once 'ZendX/Service/Brightcove/Query/Read/AbstractList.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_Service_Brightcove_Paginator_ListAdapter
-    implements Zend_Paginator_Adapter_Interface
+    implements Zend_Paginator_Adapter_Interface, Serializable
 {
     protected $_count = 0;
   
@@ -18,7 +18,9 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
      * @var ZendX_Service_Brightcove_Query_Read_AbstractList
      */
     protected $_query = null;
-
+    
+    protected $_params;
+    
     /**
      * @param ZendX_Service_Brightcove_Query_Read_AbstractList $query
      */
@@ -34,6 +36,8 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
     public function setQuery(ZendX_Service_Brightcove_Query_Read_AbstractList $query)
     {
         $this->_query = $query;
+        $this->_params = $query->getParams();
+//        $this->_params = $this->_query->getQueryParams();
         return $this;
     }
 
@@ -52,6 +56,7 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
      */
     public function getItems($offset, $itemCountPerPage)
     {
+//        var_dump($this->_query->getQueryParams());
         $pageNumber = $itemCountPerPage == 0 ? 0 : ($offset / $itemCountPerPage);
         $this->_query
             ->setItemCount(true)
@@ -62,8 +67,12 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
 //        var_dump($items);
 //        echo serialize($items);
 //        exit;
-//        return $items;
-        return new Zend_Paginator_SerializableLimitIterator($this->_query->getItems(), $offset, $itemCountPerPage);
+//        var_dump($this->_query->getQueryParams());
+//        exit;
+//        var_dump($this->_params);
+//        exit;
+        return $items;
+//        return new Zend_Paginator_SerializableLimitIterator($this->_query->getItems()->getIterator(), $offset, $itemCountPerPage);
     }
 
     /**
@@ -72,5 +81,16 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
     public function count()
     {
         return $this->_count;
+    }
+    
+    public function serialize() {
+//        file_put_contents(APPLICATION_PATH . '/cache/ser2.txt', serialize($this->_params));
+        return serialize($this->_params);
+    }
+    
+    public function unserialize($data) {
+//        $this->_query = unserialize($data);
+//        $this->_count = $this->_query->getTotalCount();
+        $this->_count = 10;
     }
 }
