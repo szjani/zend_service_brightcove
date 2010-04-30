@@ -5,7 +5,7 @@
     <?php
       $this->headScript()->prependFile('/site.js');
       $this->headScript()->prependFile('/jquery.treeview.min.js');
-      $this->headScript()->prependFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');
+      $this->headScript()->prependFile('/jquery.min.js');
       $this->headLink()->appendStylesheet('/reset.css');
       $this->headLink()->appendStylesheet('/style.css');
       $this->headLink()->appendStylesheet('/jquery.treeview.css');
@@ -18,7 +18,8 @@
   </head>
 <body>
   <div id="menu">
-    <?php echo $this->placeholder('leftColumn') ?>
+    <?php echo $this->navigation()->menu()->render() ?>
+    <?php //echo $this->placeholder('leftColumn') ?>
   </div>
   <div id="content">
     <?php echo $this->layout()->content ?>

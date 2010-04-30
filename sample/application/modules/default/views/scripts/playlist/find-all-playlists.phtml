@@ -1,0 +1,16 @@
+<h1>FindAllPlaylists</h1>
+<?php $i = 1 ?>
+<?php foreach ($this->paginator as $playlist): ?>
+  <div class="item">
+    <h2><?php echo $i++ . '. ' . $playlist->getName() ?></h2>
+    <div class="item_body">
+      <dl>
+      <?php foreach ($playlist as $property => $value): ?>
+        <dt><?php echo $property ?></dt>
+        <dd><?php echo $value ?></dd>
+      <?php endforeach ?>
+      </dl>
+    </div>
+  </div>
+<?php endforeach ?>
+<?php echo $this->paginator ?>

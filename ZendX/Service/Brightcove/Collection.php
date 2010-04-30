@@ -1,10 +1,18 @@
 <?php
-class ZendX_Service_Brightcove_Collection  implements IteratorAggregate, Countable, ArrayAccess
+class ZendX_Service_Brightcove_Collection  implements Iterator, Countable, ArrayAccess, Serializable
 {
     /**
      * @var array
      */
     protected $_items = array();
+    
+    public function serialize() {
+        return serialize($this->_items);
+    }
+    
+    public function unserialize($data) {
+        $this->_items = unserialize($data);
+    }
     
     /**
      * @param $fromArray
@@ -157,4 +165,45 @@ class ZendX_Service_Brightcove_Collection  implements IteratorAggregate, Countab
     {
         $this->remove($offset);
     }
+    
+    /**
+     * 
+     */
+    public function current()
+    {
+        return current($this->_items);
+    }
+
+    /**
+     * 
+     */
+    public function next()
+    {
+        next($this->_items);
+    }
+
+/**
+     * 
+     */
+    public function key()
+    {
+        return key($this->_items);
+    }
+
+/**
+     * 
+     */
+    public function valid()
+    {
+        return key($this->_items) != null;
+    }
+
+/**
+     * 
+     */
+    public function rewind()
+    {
+        reset($this->_items);
+    }
+
 }

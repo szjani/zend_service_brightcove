@@ -11,6 +11,14 @@ div {
   border-radius: 10px; /* Internet Explorer 9, Opera 10.5+, dev channel releases of Google Chrome */
 }
 
+li {
+	list-style-position: inside;
+}
+
+ul ul {
+	margin-left: 10px;
+}
+
 #request, #response {
 	clear: both;
 	color: white;
@@ -24,9 +32,20 @@ div {
 }
 
 #menu {
-	border: 1px solid white;
+	font-size: 16px;
+  line-height: 26px;
+  text-shadow: 1px 1px 2px white;
+	border: 1px solid #ccc;
+	background-color: #ccc;
+	padding: 10px;
+	margin-right: 10px;
 	float:left;
 	width: 200px;
+}
+
+a {
+	color: #333399;
+	text-decoration: none;
 }
 
 h1 {
@@ -103,7 +122,6 @@ h2 {
 
 .paginationControl a {
 	padding: 2px 6px;
-	text-decoration: none;
 }
 
 .paginationControl a:hover {
@@ -114,13 +132,13 @@ h2 {
   padding: 4px;
 }
 
-dt {
+.item dt {
 	font-weight: bold;
 	display: block;
 	margin: 6px;
 }
 
-dd {
+.item dd {
 	padding-left: 20px;
 	padding-bottom: 10px;
 }

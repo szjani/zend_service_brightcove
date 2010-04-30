@@ -59,7 +59,11 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
             ->setPageNumber($pageNumber);
         $items = $this->_query->getItems();
         $this->_count = $this->_query->getTotalCount();
-        return $items;
+//        var_dump($items);
+//        echo serialize($items);
+//        exit;
+//        return $items;
+        return new Zend_Paginator_SerializableLimitIterator($this->_query->getItems(), $offset, $itemCountPerPage);
     }
 
     /**

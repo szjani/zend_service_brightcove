@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <nav>
+    <Videos>
+      <label>Videos</label>
+      <controller>video</controller>
+      <action>find-all-videos</action>
+      <pages>
+        <findAllVideos>
+          <label>FindAllVideos</label>
+          <controller>video</controller>
+          <action>find-all-videos</action>
+        </findAllVideos>
+        <findVideosByIds>
+          <label>FindVideosByIds</label>
+          <controller>video</controller>
+          <action>find-videos-by-ids</action>
+        </findVideosByIds>
+        <findVideosByTags>
+          <label>FindVideosByTags</label>
+          <controller>video</controller>
+          <action>find-videos-by-tags</action>
+        </findVideosByTags>
+      </pages>
+    </Videos>
+    <Playlist>
+      <label>Playlists</label>
+      <controller>playlist</controller>
+      <action>find-all-playlists</action>
+      <pages>
+        <findAllPlaylists>
+          <label>FindAllPlaylists</label>
+          <controller>playlist</controller>
+          <action>find-all-playlists</action>
+        </findAllPlaylists>
+      </pages>
+    </Playlist>
+  </nav>
+</config>
