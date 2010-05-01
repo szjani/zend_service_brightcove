@@ -16,7 +16,6 @@ class ZendX_Service_Brightcove_Query_Read_FindVideosByUserId
      */
     public function __construct($userId)
     {
-        parent::__construct();
         $this->setUserId($userId);
     }
     

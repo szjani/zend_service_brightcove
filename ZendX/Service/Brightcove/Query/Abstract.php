@@ -10,7 +10,7 @@ require_once 'ZendX/Service/Brightcove/Manager.php';
  * @author     szjani@szjani.hu
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class ZendX_Service_Brightcove_Query_Abstract implements Serializable
+abstract class ZendX_Service_Brightcove_Query_Abstract
 {
     /**
      * @var ZendX_Service_Brightcove_Connection
@@ -158,21 +158,5 @@ abstract class ZendX_Service_Brightcove_Query_Abstract implements Serializable
             }
         }
         return $params;
-    }
-    
-    public function serialize()
-    {
-        $data = serialize(array($this->_params/*, $this->_responseBody*/));
-        file_put_contents(APPLICATION_PATH . '/cache/ser2.txt', $data);
-        return $data;
-//        return serialize($this->_params);
-    }
-    
-    public function unserialize($data)
-    {
-        $this->_params = unserialize($data);
-//        $data = unserialize($data);
-//        $this->_params = $data[0];
-//        $this->_responseBody  = $data[1];
     }
 }

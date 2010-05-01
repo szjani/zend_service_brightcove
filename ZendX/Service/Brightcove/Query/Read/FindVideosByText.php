@@ -16,7 +16,6 @@ class ZendX_Service_Brightcove_Query_Read_FindVideosByText
      */
     public function __construct($text)
     {
-        parent::__construct();
         $this->setText($text);
     }
     

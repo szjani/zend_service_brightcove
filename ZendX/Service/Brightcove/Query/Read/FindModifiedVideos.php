@@ -17,7 +17,6 @@ class ZendX_Service_Brightcove_Query_Read_FindModifiedVideos
      */
     public function __construct($fromDate)
     {
-        parent::__construct();
         $this->setFromDate($fromDate);
     }
     

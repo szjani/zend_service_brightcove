@@ -17,7 +17,6 @@ class ZendX_Service_Brightcove_Query_Read_FindVideosByReferenceIds
      */
     public function __construct(ZendX_Service_Brightcove_Set_ReferenceId $referenceId)
     {
-        parent::__construct();
         $this->setReferenceIds($referenceId);
     }
     

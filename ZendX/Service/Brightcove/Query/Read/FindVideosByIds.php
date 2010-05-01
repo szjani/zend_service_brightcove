@@ -17,7 +17,6 @@ class ZendX_Service_Brightcove_Query_Read_FindVideosByIds
      */
     public function __construct(ZendX_Service_Brightcove_Set_VideoId $videoIds)
     {
-        parent::__construct();
         $this->setVideoIds($videoIds);
     }
     

@@ -19,14 +19,35 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
      */
     protected $_query = null;
     
-    protected $_params;
+    protected $_params = null;
+    
+    /**
+     * @var Zend_Cache_Core
+     */
+    protected $_totalItemCountCache = null;
     
     /**
      * @param ZendX_Service_Brightcove_Query_Read_AbstractList $query
      */
-    public function __construct(ZendX_Service_Brightcove_Query_Read_AbstractList $query)
+    public function __construct(ZendX_Service_Brightcove_Query_Read_AbstractList $query, Zend_Cache_Core $totalItemCountCache = null)
     {
         $this->setQuery($query);
+        if ($totalItemCountCache !== null) {
+            $this->setTotalItemCountCache($totalItemCountCache);
+        } elseif (Zend_Registry::isRegistered('Zend_Cache_Paginator')) {
+            $this->setTotalItemCountCache(Zend_Registry::get('Zend_Cache_Paginator'));
+        }
+    }
+    
+    public function setTotalItemCountCache(Zend_Cache_Core $cache)
+    {
+        $this->_totalItemCountCache = $cache;
+        return $this;
+    }
+    
+    public function getCacheIdentifier()
+    {
+        return md5(serialize($this->_params)) . '_itemCount';
     }
 
     /**
@@ -37,7 +58,6 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
     {
         $this->_query = $query;
         $this->_params = $query->getParams();
-//        $this->_params = $this->_query->getQueryParams();
         return $this;
     }
 
@@ -56,7 +76,6 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
      */
     public function getItems($offset, $itemCountPerPage)
     {
-//        var_dump($this->_query->getQueryParams());
         $pageNumber = $itemCountPerPage == 0 ? 0 : ($offset / $itemCountPerPage);
         $this->_query
             ->setItemCount(true)
@@ -64,15 +83,10 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
             ->setPageNumber($pageNumber);
         $items = $this->_query->getItems();
         $this->_count = $this->_query->getTotalCount();
-//        var_dump($items);
-//        echo serialize($items);
-//        exit;
-//        var_dump($this->_query->getQueryParams());
-//        exit;
-//        var_dump($this->_params);
-//        exit;
+        if ($this->_totalItemCountCache instanceof Zend_Cache_Core) {
+            $this->_totalItemCountCache->save($this->_count, $this->getCacheIdentifier());
+        }
         return $items;
-//        return new Zend_Paginator_SerializableLimitIterator($this->_query->getItems()->getIterator(), $offset, $itemCountPerPage);
     }
 
     /**
@@ -80,17 +94,19 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
      */
     public function count()
     {
+        if (!$this->_count && $this->_totalItemCountCache !== null) {
+            $count = $this->_totalItemCountCache->load($this->getCacheIdentifier());
+            if ($count !== false) {
+                $this->_count = $count;
+            }
+        }
         return $this->_count;
     }
     
     public function serialize() {
-//        file_put_contents(APPLICATION_PATH . '/cache/ser2.txt', serialize($this->_params));
         return serialize($this->_params);
     }
     
     public function unserialize($data) {
-//        $this->_query = unserialize($data);
-//        $this->_count = $this->_query->getTotalCount();
-        $this->_count = 10;
     }
 }

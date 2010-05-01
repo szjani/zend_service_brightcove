@@ -24,7 +24,6 @@ class ZendX_Service_Brightcove_Query_Read_FindVideosByCampaignId
      */
     public function __construct($campaignId)
     {
-        parent::__construct();
         $this->setCampaignId($campaignId);
     }
 

@@ -17,6 +17,12 @@ require_once 'Zend/Loader/Autoloader.php';
 
 $autoloader = Zend_Loader_Autoloader::getInstance();
 
+$classFileIncCache = APPLICATION_PATH . '/cache/pluginLoaderCache.php';
+if (file_exists($classFileIncCache)) {
+  include_once $classFileIncCache;
+}
+Zend_Loader_PluginLoader::setIncludeFileCache($classFileIncCache);
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 

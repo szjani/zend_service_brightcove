@@ -19,7 +19,6 @@ class ZendX_Service_Brightcove_Query_Read_FindVideosByTags
      */
     public function __construct(ZendX_Service_Brightcove_Set_Tag $andTags, ZendX_Service_Brightcove_Set_Tag $orTags)
     {
-        parent::__construct();
         $this
           ->setAndTags($andTags)
           ->setOrTags($orTags);
