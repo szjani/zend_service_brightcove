@@ -55,7 +55,6 @@ class ZendX_Service_Brightcove_Query_Write_CreateVideo
      */
     public function __construct(ZendX_Service_Brightcove_MediaObject_Video $video)
     {
-        parent::__construct();
         $this->setVideo($video);
     }
 

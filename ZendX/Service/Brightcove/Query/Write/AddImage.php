@@ -56,7 +56,6 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
      */
     public function __construct(ZendX_Service_Brightcove_MediaObject_Image $image)
     {
-        parent::__construct();
         $this->setImage($image);
     }
 

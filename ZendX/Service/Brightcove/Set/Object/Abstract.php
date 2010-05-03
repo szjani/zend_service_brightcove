@@ -30,7 +30,7 @@ abstract class ZendX_Service_Brightcove_Set_Object_Abstract
         }
         return $ret;
     }
-
+    
     public function fromArray(array $from)
     {
         foreach ($from as $item) {

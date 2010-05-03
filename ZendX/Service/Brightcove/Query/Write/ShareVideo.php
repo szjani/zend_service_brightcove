@@ -24,7 +24,6 @@ class ZendX_Service_Brightcove_Query_Write_ShareVideo
      */
     public function __construct($videoId, ZendX_Service_Brightcove_Set_AccountId $set)
     {
-        parent::__construct();
         $this
           ->setVideoId($videoId)
           ->setAccountIds($set);

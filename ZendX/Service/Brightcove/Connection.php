@@ -167,11 +167,20 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         $options = array('token' => $query->getTokenType() == self::TOKEN_TYPE_READ ? $this->_readToken : $this->_writeToken)
                 + array('command' => $query->getBrightcoveMethod())
                 + $query->getQueryParams();
+		$paramCollection = new ZendX_Service_Brightcove_ParamCollection($options);
         $response = null;
         if ($query->getHttpMethod() == Zend_Http_Client::GET) {
-            $response = $client->restGet('/services/library', $options);
+        	$params = array();
+        	foreach ($paramCollection as $key => $option) {
+        		if ($option instanceof ZendX_Service_Brightcove_Urlify) {
+        			$params[$key] = $option->urlify();
+        		} else {
+        			$params[$key] = (string)$option;
+        		}
+        	}
+            $response = $client->restGet('/services/library', $params);
         } else {
-            $response = $client->restPost('/services/post', $options);
+            $response = $client->restPost('/services/post', $paramCollection->toJson());
         }
         $this->_lastResponseBody = Zend_Json::decode($response->getBody());
         $this->_checkErrors();

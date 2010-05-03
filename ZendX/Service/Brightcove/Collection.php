@@ -1,18 +1,11 @@
 <?php
-class ZendX_Service_Brightcove_Collection implements IteratorAggregate, Countable, ArrayAccess
+class ZendX_Service_Brightcove_Collection
+	implements IteratorAggregate, Countable, ArrayAccess, ZendX_Service_Brightcove_ToJson, ZendX_Service_Brightcove_JsonSource
 {
     /**
      * @var array
      */
     protected $_items = array();
-    
-//    public function serialize() {
-//        return serialize($this->_items);
-//    }
-//    
-//    public function unserialize($data) {
-//        $this->_items = unserialize($data);
-//    }
     
     /**
      * @param $fromArray
@@ -22,6 +15,25 @@ class ZendX_Service_Brightcove_Collection implements IteratorAggregate, Countabl
         if ($fromArray !== null) {
             $this->fromArray($fromArray);
         }
+    }
+    
+    public function toJsonSource()
+    {
+    	$res = new stdClass();
+    	foreach ($this->_items as $key => $value) {
+    		if ($value instanceof ZendX_Service_Brightcove_JsonSource) {
+    			$res->$key = $value->toJsonSource();
+    		} else {
+	    		$res->$key = $value;
+    		}
+    	}
+    	return $res;
+    }
+    
+    public function toJson()
+    {
+		$result = $this->toJsonSource();
+    	return json_encode($result);
     }
     
     /**
@@ -98,7 +110,15 @@ class ZendX_Service_Brightcove_Collection implements IteratorAggregate, Countabl
      */
     public function toArray()
     {
-        return $this->_items;
+    	$ret = array();
+    	foreach ($this->_items as $key => $item) {
+    		if ($item instanceof ZendX_Service_Brightcove_Collection) {
+    			$ret[$key] = $item->toArray();
+    		} else {
+    			$ret[$key] = $item;
+    		}
+    	}
+        return $ret;
     }
 
     /**
@@ -165,45 +185,4 @@ class ZendX_Service_Brightcove_Collection implements IteratorAggregate, Countabl
     {
         $this->remove($offset);
     }
-    
-    /**
-     * 
-     */
-    public function current()
-    {
-        return current($this->_items);
-    }
-
-    /**
-     * 
-     */
-    public function next()
-    {
-        next($this->_items);
-    }
-
-/**
-     * 
-     */
-    public function key()
-    {
-        return key($this->_items);
-    }
-
-/**
-     * 
-     */
-    public function valid()
-    {
-        return key($this->_items) != null;
-    }
-
-/**
-     * 
-     */
-    public function rewind()
-    {
-        reset($this->_items);
-    }
-
 }

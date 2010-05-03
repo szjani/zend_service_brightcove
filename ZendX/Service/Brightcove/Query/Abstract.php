@@ -154,7 +154,7 @@ abstract class ZendX_Service_Brightcove_Query_Abstract
             if (is_bool($param)) {
                 $params[$key] = $param ? 'true' : 'false';
             } else {
-                $params[$key] = (string)$param;
+            	$params[$key] = $param;
             }
         }
         return $params;

@@ -27,6 +27,9 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
     protected $_totalItemCountCache = null;
     
     /**
+     * If you use Zend_Paginator with cache, set a cache object into this adapter too!
+     * Workaround: http://framework.zend.com/issues/browse/ZF-6989
+     * 
      * @param ZendX_Service_Brightcove_Query_Read_AbstractList $query
      */
     public function __construct(ZendX_Service_Brightcove_Query_Read_AbstractList $query, Zend_Cache_Core $totalItemCountCache = null)
@@ -107,6 +110,5 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
         return serialize($this->_params);
     }
     
-    public function unserialize($data) {
-    }
+    public function unserialize($data) {}
 }
