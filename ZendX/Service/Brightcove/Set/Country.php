@@ -16,6 +16,7 @@ class ZendX_Service_Brightcove_Set_Country extends ZendX_Service_Brightcove_Set_
      */
     protected function _isStorable($value)
     {
-        return strlen($value) == 2 && Zend_Locale::isLocale($value);
+    	$countries = Zend_Locale::getTranslationList('Territory', 'hu', 2);
+        return strlen($value) == 2 && array_key_exists(strtoupper($value), $countries);
     }
 }
