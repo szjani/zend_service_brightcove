@@ -98,9 +98,6 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractList
     {
         parent::execute();
         $this->_setTotalCount($this->_responseBody['total_count']);
-        if ($this->_items instanceof ZendX_Service_Brightcove_Set_TotalCountable) {
-            $this->_items->setTotalCount($this->_totalCount);
-        }
         return $this;
     }
 }
