@@ -1,5 +1,6 @@
 <?php
 interface ZendX_Service_Brightcove_JsonSource
 {
-	public function toJsonSource();
+
+    public function toJsonSource();
 }

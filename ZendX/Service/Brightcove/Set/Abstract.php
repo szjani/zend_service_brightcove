@@ -7,30 +7,32 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class ZendX_Service_Brightcove_Set_Abstract
-	extends ZendX_Service_Brightcove_Collection implements ZendX_Service_Brightcove_Urlify
+    extends ZendX_Service_Brightcove_Collection implements ZendX_Service_Brightcove_Urlify
 {
-	public function urlify()
+
+    public function urlify()
     {
-    	return implode(',', $this->_items);
+        return implode(',', $this->_items);
     }
-	
-	public function toJsonSource()
-	{
-		$res = array();
-		foreach ($this->_items as $key => $value) {
-    		if ($value instanceof ZendX_Service_Brightcove_JsonSource) {
-    			$res[] = $value->toJsonSource();
-    		} else {
-	    		$res[] = $value;
-    		}
-    	}
-    	return $res;
-	}
-	
-    protected function _isStorable($value) {
+
+    public function toJsonSource()
+    {
+        $res = array();
+        foreach ($this->_items as $key => $value) {
+            if ($value instanceof ZendX_Service_Brightcove_JsonSource) {
+                $res[] = $value->toJsonSource();
+            } else {
+                $res[] = $value;
+            }
+        }
+        return $res;
+    }
+
+    protected function _isStorable($value)
+    {
         return true;
     }
-    
+
     /**
      * @throws ZendX_Service_Brightcove_Set_Exception
      * @param mixed $value
@@ -40,7 +42,7 @@ abstract class ZendX_Service_Brightcove_Set_Abstract
     {
         require_once 'ZendX/Service/Brightcove/Set/Exception.php';
         if (!$this->_isStorable($value)) {
-            throw new ZendX_Service_Brightcove_Set_Exception('Invalid member: '.$value);
+            throw new ZendX_Service_Brightcove_Set_Exception('Invalid member: ' . $value);
         }
         parent::add($value, $key);
     }

@@ -18,18 +18,18 @@ abstract class ZendX_Service_Brightcove_Set_Object_Abstract
      */
     protected abstract function _createItem();
     
-    public function toArray()
-    {
-        $ret = array();
-        foreach ($this as $member) {
-            if (!($member instanceof ZendX_Service_Brightcove_MediaObject_Abstract)) {
-                require_once 'ZendX/Service/Brightcove/Set/Exception.php';
-                throw new ZendX_Service_Brightcove_Set_Exception('Invalid member!');
-            }
-            $ret[] = $member->toArray();
-        }
-        return $ret;
-    }
+//    public function toArray()
+//    {
+//        $ret = array();
+//        foreach ($this as $member) {
+//            if (!($member instanceof ZendX_Service_Brightcove_MediaObject_Abstract)) {
+//                require_once 'ZendX/Service/Brightcove/Set/Exception.php';
+//                throw new ZendX_Service_Brightcove_Set_Exception('Invalid member!');
+//            }
+//            $ret[] = $member->toArray();
+//        }
+//        return $ret;
+//    }
     
     public function fromArray(array $from)
     {

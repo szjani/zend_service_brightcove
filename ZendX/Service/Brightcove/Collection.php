@@ -1,12 +1,14 @@
 <?php
 class ZendX_Service_Brightcove_Collection
-	implements IteratorAggregate, Countable, ArrayAccess, ZendX_Service_Brightcove_ToJson, ZendX_Service_Brightcove_JsonSource
+    implements IteratorAggregate, Countable, ArrayAccess,
+                ZendX_Service_Brightcove_ToJson, ZendX_Service_Brightcove_JsonSource
 {
+
     /**
      * @var array
      */
     protected $_items = array();
-    
+
     /**
      * @param $fromArray
      */
@@ -16,26 +18,26 @@ class ZendX_Service_Brightcove_Collection
             $this->fromArray($fromArray);
         }
     }
-    
+
     public function toJsonSource()
     {
-    	$res = new stdClass();
-    	foreach ($this->_items as $key => $value) {
-    		if ($value instanceof ZendX_Service_Brightcove_JsonSource) {
-    			$res->$key = $value->toJsonSource();
-    		} else {
-	    		$res->$key = $value;
-    		}
-    	}
-    	return $res;
+        $res = new stdClass();
+        foreach ($this->_items as $key => $value) {
+            if ($value instanceof ZendX_Service_Brightcove_JsonSource) {
+                $res->$key = $value->toJsonSource();
+            } else {
+                $res->$key = $value;
+            }
+        }
+        return $res;
     }
-    
+
     public function toJson()
     {
-		$result = $this->toJsonSource();
-    	return json_encode($result);
+        $result = $this->toJsonSource();
+        return json_encode($result);
     }
-    
+
     /**
      * @throws ZendX_Service_Brightcove_CollectionException
      * @param mixed $value
@@ -104,20 +106,20 @@ class ZendX_Service_Brightcove_Collection
         }
         return $this;
     }
-    
+
     /**
      * @return array
      */
     public function toArray()
     {
-    	$ret = array();
-    	foreach ($this->_items as $key => $item) {
-    		if ($item instanceof ZendX_Service_Brightcove_Collection) {
-    			$ret[$key] = $item->toArray();
-    		} else {
-    			$ret[$key] = $item;
-    		}
-    	}
+        $ret = array();
+        foreach ($this->_items as $key => $item) {
+            if ($item instanceof ZendX_Service_Brightcove_Collection) {
+                $ret[$key] = $item->toArray();
+            } else {
+                $ret[$key] = $item;
+            }
+        }
         return $ret;
     }
 

@@ -1,7 +1,6 @@
 <?php
 require_once 'Zend/Rest/Client.php';
 require_once 'Zend/Json.php';
-
 /**
  * @category   ZendX
  * @package    ZendX_Service
@@ -11,6 +10,7 @@ require_once 'Zend/Json.php';
  */
 class ZendX_Service_Brightcove_Connection implements SplSubject
 {
+
     const TOKEN_TYPE_READ = 'read';
 
     const TOKEN_TYPE_WRITE = 'write';
@@ -47,9 +47,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     public function __construct($readToken, $writeToken = null)
     {
         $this->_observerStorage = new SplObjectStorage();
-        $this
-            ->setReadToken($readToken)
-            ->setWriteToken($writeToken);
+        $this->setReadToken($readToken)->setWriteToken($writeToken);
     }
 
     /**
@@ -59,8 +57,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      */
     public function getRestClient()
     {
-        if ($this->_rest === null)
-        {
+        if ($this->_rest === null) {
             $this->_rest = new Zend_Rest_Client();
         }
         return $this->_rest;
@@ -119,7 +116,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     public function setQuery(ZendX_Service_Brightcove_Query_Abstract $query)
     {
         if ($query->getTokenType() !== self::TOKEN_TYPE_READ && $query->getTokenType() !== self::TOKEN_TYPE_WRITE) {
-            throw new ZendX_Service_Brightcove_Exception('Invalid token type: '.$query->getTokenType());
+            throw new ZendX_Service_Brightcove_Exception('Invalid token type: ' . $query->getTokenType());
         }
         $this->_query = $query;
         return $this;
@@ -148,7 +145,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     {
         if (is_array($this->_lastResponseBody) && array_key_exists('error', $this->_lastResponseBody) && array_key_exists('code', $this->_lastResponseBody)) {
             $this->notify();
-            throw new ZendX_Service_Brightcove_Exception('Connection error: '.$this->_lastResponseBody['error'], $this->_lastResponseBody['code']);
+            throw new ZendX_Service_Brightcove_Exception('Connection error: ' . $this->_lastResponseBody['error'], $this->_lastResponseBody['code']);
         }
     }
 
@@ -164,23 +161,23 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         $client = $this->getRestClient();
         $client->setUri($this->_uri);
         Zend_Service_Abstract::getHttpClient()->resetParameters();
-        $options = array('token' => $query->getTokenType() == self::TOKEN_TYPE_READ ? $this->_readToken : $this->_writeToken)
-                + array('command' => $query->getBrightcoveMethod())
-                + $query->getQueryParams();
-		$paramCollection = new ZendX_Service_Brightcove_ParamCollection($options);
+        $options =
+            array('token' => $query->getTokenType() == self::TOKEN_TYPE_READ ? $this->_readToken : $this->_writeToken)
+            + array('command' => $query->getBrightcoveMethod()) + $query->getQueryParams();
+        $paramCollection = new ZendX_Service_Brightcove_Collection($options);
         $response = null;
         if ($query->getHttpMethod() == Zend_Http_Client::GET) {
-        	$params = array();
-        	foreach ($paramCollection as $key => $option) {
-        		if ($option instanceof ZendX_Service_Brightcove_Urlify) {
-        			$params[$key] = $option->urlify();
-        		} else {
-        			$params[$key] = (string)$option;
-        		}
-        	}
+            $params = array();
+            foreach ($paramCollection as $key => $option) {
+                if ($option instanceof ZendX_Service_Brightcove_Urlify) {
+                    $params[$key] = $option->urlify();
+                } else {
+                    $params[$key] = (string)$option;
+                }
+            }
             $response = $client->restGet('/services/library', $params);
         } else {
-            $response = $client->restPost('/services/post', $paramCollection->toJson());
+            $response = $client->restPost('/services/post', Zend_Json::encode($paramCollection));
         }
         $this->_lastResponseBody = Zend_Json::decode($response->getBody());
         $this->_checkErrors();
