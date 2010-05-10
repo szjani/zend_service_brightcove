@@ -174,7 +174,7 @@ class ZendX_Service_Brightcove_MediaObject_Video
             require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
             throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
         }
-        $this[self::ID] = $id;
+        $this[self::ID] = (float)$id;
         return $this;
     }
 

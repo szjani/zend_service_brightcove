@@ -13,4 +13,30 @@ class PlaylistController extends Zend_Controller_Action
             ->setItemCountPerPage($this->_getParam('items', 10));
         $this->view->paginator = $paginator;
     }
+    
+    public function createPlaylistAction()
+    {
+        $form = new Default_Form_Playlist();
+        if ($this->_request->isPost() && $form->isValid($this->_request->getPost())) {
+            $values = $form->getValues();
+//            if ($values['videoIds'] !== null) {
+//                $data = explode(',', $values['videoIds']);
+//                $values['videoIds'] = array();
+//                foreach ($data as $videoId) {
+//                    $values['videoIds'][] = (float)$videoId;
+//                }
+//            }
+            if ($values['filterTags'] !== null) {
+                $values['filterTags'] = explode(',', $values['filterTags']);
+            }
+            $playlist = new ZendX_Service_Brightcove_MediaObject_Playlist($values);
+            
+//            var_dump($playlist);
+//            exit;
+            
+            $query = new ZendX_Service_Brightcove_Query_Write_CreatePlaylist($playlist);
+            $query->getPlaylistId();
+        }
+        $this->view->form = $form;
+    }
 }

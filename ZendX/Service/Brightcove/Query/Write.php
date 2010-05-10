@@ -28,12 +28,12 @@ abstract class ZendX_Service_Brightcove_Query_Write extends ZendX_Service_Bright
      * 
      * @param string $fileName
      */
-    protected function _setFileUpload($fileName)
+    protected function _setFileUpload($fileName, $formName)
     {
         if (!is_file($fileName) || !is_readable($fileName)) {
             require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
             throw new ZendX_Service_Brightcove_Query_ParamException('Invalid or not readable file: ' . $fileName);
         }
-        Zend_Rest_Client::getHttpClient()->setFileUpload($fileName);
+        $this->getConnection()->getHttpClient()->setFileUpload($fileName, $formName);
     }
 }

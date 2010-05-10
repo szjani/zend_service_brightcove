@@ -15,8 +15,10 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
 
     const TOKEN_TYPE_WRITE = 'write';
 
-    protected $_uri = 'http://api.brightcove.com/';
-
+    const READ_URI = 'http://api.brightcove.com/services/library';
+    
+    const WRITE_URI = 'http://api.brightcove.com/services/post';
+    
     protected $_readToken = null;
 
     protected $_writeToken = null;
@@ -33,12 +35,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      */
     protected $_lastResponseBody = array();
 
-    /**
-     * Reference to REST client object
-     *
-     * @var Zend_Rest_Client
-     */
-    protected $_rest = null;
+    protected $_httpClient = null;
 
     /**
      * @param string $readToken
@@ -51,30 +48,28 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     }
 
     /**
-     * Returns a reference to the REST client
-     *
-     * @return Zend_Rest_Client
+     * @return Zend_Http_Client
      */
-    public function getRestClient()
+    public function getHttpClient()
     {
-        if ($this->_rest === null) {
-            $this->_rest = new Zend_Rest_Client();
+        if ($this->_httpClient === null) {
+            $this->_httpClient = new Zend_Http_Client();
         }
-        return $this->_rest;
+        return $this->_httpClient;
     }
 
     /**
-     * Set REST client
+     * Set HTTP client
      *
-     * @param Zend_Rest_Client
+     * @param Zend_Http_Client
      * @return ZendX_Service_Brightcove_Connection
      */
-    public function setRestClient(Zend_Rest_Client $client)
+    public function setHttpClient(Zend_Http_Client $client)
     {
-        $this->_rest = $client;
+        $this->_httpClient = $client;
         return $this;
     }
-
+    
     /**
      * @param string $token
      */
@@ -145,7 +140,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     {
         if (is_array($this->_lastResponseBody) && array_key_exists('error', $this->_lastResponseBody) && array_key_exists('code', $this->_lastResponseBody)) {
             $this->notify();
-            throw new ZendX_Service_Brightcove_Exception('Connection error: ' . $this->_lastResponseBody['error'], $this->_lastResponseBody['code']);
+            throw new ZendX_Service_Brightcove_Exception('Connection error: ' . $this->_lastResponseBody['error'] . ', code: ' . $this->_lastResponseBody['code'], $this->_lastResponseBody['code']);
         }
     }
 
@@ -158,15 +153,14 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         if ($query !== null) {
             $this->setQuery($query);
         }
-        $client = $this->getRestClient();
-        $client->setUri($this->_uri);
-        Zend_Service_Abstract::getHttpClient()->resetParameters();
+        $client = $this->getHttpClient();
         $options =
             array('token' => $query->getTokenType() == self::TOKEN_TYPE_READ ? $this->_readToken : $this->_writeToken)
             + array('command' => $query->getBrightcoveMethod()) + $query->getQueryParams();
         $paramCollection = new ZendX_Service_Brightcove_Collection($options);
         $response = null;
         if ($query->getHttpMethod() == Zend_Http_Client::GET) {
+            $client->setUri(self::READ_URI);
             $params = array();
             foreach ($paramCollection as $key => $option) {
                 if ($option instanceof ZendX_Service_Brightcove_Urlify) {
@@ -175,10 +169,21 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
                     $params[$key] = (string)$option;
                 }
             }
-            $response = $client->restGet('/services/library', $params);
+              $response = $client->setParameterGet($params)->request('GET');
         } else {
-            $response = $client->restPost('/services/post', Zend_Json::encode($paramCollection));
+            $client->setUri(self::WRITE_URI);
+            $command = $paramCollection['command'];
+            $token   = $paramCollection['token'];
+            unset($paramCollection['command']);
+            unset($paramCollection['token']);
+            $paramCollection['token'] = $token;
+            $params = new ZendX_Service_Brightcove_Collection();
+            $params['method'] = $command;
+            $params['params'] = $paramCollection;
+            $client->setParameterPost(array('json' => Zend_Json::encode($params)));
+            $response = $client->request('POST');
         }
+        $client->resetParameters();
         $this->_lastResponseBody = Zend_Json::decode($response->getBody());
         $this->_checkErrors();
         $this->notify();

@@ -16,7 +16,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         if (!isset($brightcove['readToken'])) {
             throw new Zend_Exception('Missing read token in config!');
         }
-        $connection = new ZendX_Service_Brightcove_Connection($brightcove['readToken']);
+        $writeToken = null;
+        if (isset($brightcove['writeToken'])) {
+            $writeToken = $brightcove['writeToken'];
+        }
+        $connection = new ZendX_Service_Brightcove_Connection($brightcove['readToken'], $writeToken);
         ZendX_Service_Brightcove_Manager::connection($connection);
         $connection->attach(new App_View_Helper_BrightcoveLastRequest());
     }

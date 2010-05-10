@@ -61,7 +61,7 @@ class ZendX_Service_Brightcove_Paginator_ListAdapter
     {
         $this->_query = $query;
         $this->_params = $query->getParams();
-        $this->_params = $query->getConnection()->getReadToken();
+        $this->_params[] = $query->getConnection()->getReadToken();
         return $this;
     }
 

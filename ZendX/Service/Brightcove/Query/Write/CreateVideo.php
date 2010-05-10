@@ -124,7 +124,10 @@ class ZendX_Service_Brightcove_Query_Write_CreateVideo
      */
     public function setFile($file)
     {
-        $this->_setFileUpload($file);
+        $this->_setFileUpload($file, 'file');
+        $this
+            ->setMaxSize(filesize($file))
+            ->setFileChecksum(md5_file($file));
         return $this;
     }
 
@@ -134,7 +137,7 @@ class ZendX_Service_Brightcove_Query_Write_CreateVideo
      */
     public function setFileChecksum($fileChecksum)
     {
-        if (strlen($fileChecksum) !== 32 || !preg_match('/[a-z0-9]{32}/')) {
+        if (strlen($fileChecksum) !== 32 || !preg_match('/[a-z0-9]{32}/', $fileChecksum)) {
             require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
             throw new ZendX_Service_Brightcove_Query_ParamException('Invalid MD5 hash: '.$fileChecksum);
         }

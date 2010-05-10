@@ -8,7 +8,7 @@ class App_View_Helper_BrightcoveLastRequest extends Zend_View_Helper_Abstract im
         echo nl2br($this->brightcoveLastRequest());
         $this->view->placeholder('request')->captureEnd();
         
-        $response = Zend_Service_Abstract::getHttpClient()->getLastResponse()->getBody();
+        $response = ZendX_Service_Brightcove_Manager::getInstance()->getCurrentConnection()->getHttpClient()->getLastResponse()->getBody();
         $this->view->placeholder('response')->captureStart();
         echo nl2br($response);
         $this->view->placeholder('response')->captureEnd();
@@ -25,6 +25,6 @@ class App_View_Helper_BrightcoveLastRequest extends Zend_View_Helper_Abstract im
     
     public function brightcoveLastRequest()
     {
-        return Zend_Service_Abstract::getHttpClient()->getLastRequest();
+        return ZendX_Service_Brightcove_Manager::getInstance()->getCurrentConnection()->getHttpClient()->getLastRequest();
     }
 }

@@ -36,4 +36,17 @@ class VideoController extends Zend_Controller_Action
         }
         $this->view->form = $form;
     }
+    
+    public function createVideoAction()
+    {
+        $form = new Default_Form_Video();
+        if ($this->_request->isPost() && $form->isValid($this->_request->getPost()) && $form->video->receive()) {
+            $video = new ZendX_Service_Brightcove_MediaObject_Video($form->getValues());
+            $query = new ZendX_Service_Brightcove_Query_Write_CreateVideo($video);
+            $query
+                ->setFile($form->video->getFileName());
+            $query->getVideoId();
+        }
+        $this->view->form = $form;
+    }
 }

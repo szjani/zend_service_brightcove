@@ -26,6 +26,11 @@
           <controller>video</controller>
           <action>find-videos-by-tags</action>
         </findVideosByTags>
+        <createVideo>
+          <label>CreateVideo</label>
+          <controller>video</controller>
+          <action>create-video</action>
+        </createVideo>
       </pages>
     </Videos>
     <Playlist>
@@ -38,6 +43,11 @@
           <controller>playlist</controller>
           <action>find-all-playlists</action>
         </findAllPlaylists>
+        <createPlaylist>
+          <label>CreatePlaylist</label>
+          <controller>playlist</controller>
+          <action>create-playlist</action>
+        </createPlaylist>
       </pages>
     </Playlist>
   </nav>
