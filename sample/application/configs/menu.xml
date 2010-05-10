@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
   <nav>
+    <Cache>
+      <label>Clear cache</label>
+      <controller>cache</controller>
+      <action>clear-cache</action>
+    </Cache>
     <Videos>
       <label>Videos</label>
       <controller>video</controller>

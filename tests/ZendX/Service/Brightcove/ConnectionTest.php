@@ -44,8 +44,7 @@ class ZendX_Service_Brightcove_ConnectionTest extends PHPUnit_Framework_TestCase
     {
         $query = $this->getMock(
                 'ZendX_Service_Brightcove_Query_Abstract',
-                array('getBrightcoveMethod', 'getTokenType', 'getHttpMethod'),
-                array($this->_conn)
+                array('getBrightcoveMethod', 'getTokenType', 'getHttpMethod')
         );
         $query
             ->expects($this->any())
@@ -111,8 +110,7 @@ class ZendX_Service_Brightcove_ConnectionTest extends PHPUnit_Framework_TestCase
     {
         $query = $this->getMock(
                 'ZendX_Service_Brightcove_Query_Abstract',
-                array('getBrightcoveMethod', 'getTokenType', 'getHttpMethod'),
-                array($this->_conn)
+                array('getBrightcoveMethod', 'getTokenType', 'getHttpMethod')
         );
         $query
             ->expects($this->any())
