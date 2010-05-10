@@ -12,9 +12,9 @@ class ZendX_Service_Brightcove_Query_Read_AbstractSetTest extends PHPUnit_Framew
     {
         ZendX_Service_Brightcove_Manager::getInstance()->clearConnections();
         $clientAdapter = new Zend_Http_Client_Adapter_Test();
-        Zend_Service_Abstract::getHttpClient()->setAdapter($clientAdapter);
         
         $conn = new ZendX_Service_Brightcove_Connection('-------------');
+        $conn->getHttpClient()->setAdapter($clientAdapter);
         ZendX_Service_Brightcove_Manager::connection($conn);
         
         $clientAdapter->setResponse(file_get_contents(

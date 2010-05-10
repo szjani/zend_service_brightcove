@@ -76,7 +76,7 @@ class ZendX_Service_Brightcove_Collection
     {
         if (!array_key_exists($key, $this->_items)) {
             require_once 'ZendX/Service/Brightcove/CollectionException.php';
-            throw new ZendX_Service_Brightcove_CollectionException('Not exists $key!');
+            throw new ZendX_Service_Brightcove_CollectionException("Not exists key: $key!");
         }
         return $this->_items[$key];
     }

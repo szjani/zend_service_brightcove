@@ -24,15 +24,12 @@ class ZendX_Service_Brightcove_Paginator_ListAdapterTest extends PHPUnit_Framewo
     public function setUp()
     {
         $this->_clientAdapter = new Zend_Http_Client_Adapter_Test();
-        Zend_Service_Abstract::getHttpClient()->setAdapter($this->_clientAdapter);
-//        $conn = new ZendX_Service_Brightcove_Connection('-------------');
-////        $conn = new ZendX_Service_Brightcove_Connection('0Z2dtxTdJAxtbZ-d0U7Bhio2V1Rhr5Iafl5FFtDPY8E.');
-//        ZendX_Service_Brightcove_Manager::connection($conn);
 
         $this->_clientAdapter->setResponse(file_get_contents(
                 dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'videoListFull'.'.response'
         ));
         $query = new ZendX_Service_Brightcove_Query_Read_FindAllVideos();
+        $query->getConnection()->getHttpClient()->setAdapter($this->_clientAdapter);
         $this->_fullList = $query->getItems();
         $this->_adapter = new ZendX_Service_Brightcove_Paginator_ListAdapter($query);
     }

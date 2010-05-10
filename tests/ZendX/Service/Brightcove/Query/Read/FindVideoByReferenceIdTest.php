@@ -16,7 +16,7 @@ class ZendX_Service_Brightcove_Query_Read_FindVideoByReferenceIdTest extends PHP
         ZendX_Service_Brightcove_Manager::connection($brightcove);
         
         $adapter = new Zend_Http_Client_Adapter_Test();
-        Zend_Service_Abstract::getHttpClient()->setAdapter($adapter);
+        $brightcove->getHttpClient()->setAdapter($adapter);
         $adapter->setResponse(file_get_contents(
                 dirname(__FILE__).DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'testFindByReferenceId.response'
         ));

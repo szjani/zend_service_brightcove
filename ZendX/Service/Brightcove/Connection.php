@@ -35,6 +35,9 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      */
     protected $_lastResponseBody = array();
 
+    /**
+     * @var Zend_Http_Client
+     */
     protected $_httpClient = null;
 
     /**
@@ -169,7 +172,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
                     $params[$key] = (string)$option;
                 }
             }
-              $response = $client->setParameterGet($params)->request('GET');
+            $response = $client->setParameterGet($params)->request('GET');
         } else {
             $client->setUri(self::WRITE_URI);
             $command = $paramCollection['command'];
@@ -180,8 +183,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
             $params = new ZendX_Service_Brightcove_Collection();
             $params['method'] = $command;
             $params['params'] = $paramCollection;
-            $client->setParameterPost(array('json' => Zend_Json::encode($params)));
-            $response = $client->request('POST');
+            $response = $client->setParameterPost(array('json' => Zend_Json::encode($params)))->request('POST');
         }
         $client->resetParameters();
         $this->_lastResponseBody = Zend_Json::decode($response->getBody());

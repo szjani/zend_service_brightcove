@@ -46,6 +46,7 @@ class VideoController extends Zend_Controller_Action
             $query
                 ->setFile($form->video->getFileName());
             $query->getVideoId();
+            unlink($form->video->getFileName());
         }
         $this->view->form = $form;
     }

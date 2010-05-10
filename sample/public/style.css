@@ -1,4 +1,5 @@
 @CHARSET "UTF-8";
+
 body {
 	font-family: Arial;
 	padding: 6px;
@@ -7,8 +8,9 @@ body {
 
 div {
 	-moz-border-radius: 10px; /* Firefox */
-  -webkit-border-radius: 10px; /* Safari, Google Chrome */
-  border-radius: 10px; /* Internet Explorer 9, Opera 10.5+, dev channel releases of Google Chrome */
+	-webkit-border-radius: 10px; /* Safari, Google Chrome */
+	border-radius: 10px;
+	/* Internet Explorer 9, Opera 10.5+, dev channel releases of Google Chrome */
 }
 
 li {
@@ -19,7 +21,7 @@ ul ul {
 	margin-left: 10px;
 }
 
-#request, #response {
+#request,#response {
 	clear: both;
 	color: white;
 	background-color: black;
@@ -33,13 +35,13 @@ ul ul {
 
 #menu {
 	font-size: 16px;
-  line-height: 26px;
-  text-shadow: 1px 1px 2px white;
+	line-height: 26px;
+	text-shadow: 1px 1px 2px white;
 	border: 1px solid #ccc;
 	background-color: #ccc;
 	padding: 10px;
 	margin-right: 10px;
-	float:left;
+	float: left;
 	width: 200px;
 }
 
@@ -68,13 +70,15 @@ h2 {
 	padding: 6px;
 	margin: 6px;
 	-moz-box-shadow: 0px 2px 4px #ddd;
-  -webkit-box-shadow: 0px 2px 4px #ddd;
-  box-shadow: 0px 2px 4px #ddd;
-  /* For IE 8 */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#dddddd')";
-  /* For IE 5.5 - 7 */
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#dddddd');
-	
+	-webkit-box-shadow: 0px 2px 4px #ddd;
+	box-shadow: 0px 2px 4px #ddd;
+	/* For IE 8 */
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#dddddd')"
+		;
+	/* For IE 5.5 - 7 */
+	filter: progid : DXImageTransform.Microsoft.Shadow ( Strength = 3,
+		Direction = 180, Color = '#dddddd' );
 }
 
 .item h2:hover {
@@ -87,11 +91,11 @@ h2 {
 
 #content {
 	background-color: #fafafa;
-	float:left;
+	float: left;
 	border: 1px solid #ccc;
 	width: 600px;
 	padding: 10px;
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 #response_tree_container {
@@ -105,7 +109,6 @@ h2 {
 	width: 300px;
 	height: 500px;
 	overflow: auto;
-	
 }
 
 #response_tree span.key {
@@ -116,8 +119,7 @@ h2 {
 	margin: 10px;
 	text-align: center;
 	padding: 10px;
-	/*background-color: #f6f5b3;*/
-	/*border: 1px solid red;*/
+	/*background-color: #f6f5b3;*/ /*border: 1px solid red;*/
 }
 
 .paginationControl a {
@@ -125,11 +127,11 @@ h2 {
 }
 
 .paginationControl a:hover {
-  background-color: #ddecf5;
+	background-color: #ddecf5;
 }
 
 .paginationControl span.disabled {
-  padding: 4px;
+	padding: 4px;
 }
 
 .item dt {
@@ -145,4 +147,9 @@ h2 {
 
 .item_body {
 	display: none;
+}
+
+textarea {
+	width: 500px;
+	height: 200px;
 }

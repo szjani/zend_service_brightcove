@@ -78,6 +78,7 @@ class ZendX_Service_Brightcove_Manager implements IteratorAggregate, Countable
             $key = $name;
         } else {
             $this->_connections[] = $conn;
+            end($this->_connections);
             $key = key($this->_connections);
         }
         

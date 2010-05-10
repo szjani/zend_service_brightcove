@@ -25,6 +25,7 @@ class App_View_Helper_BrightcoveLastRequest extends Zend_View_Helper_Abstract im
     
     public function brightcoveLastRequest()
     {
-        return ZendX_Service_Brightcove_Manager::getInstance()->getCurrentConnection()->getHttpClient()->getLastRequest();
+        return substr(ZendX_Service_Brightcove_Manager::getInstance()
+            ->getCurrentConnection()->getHttpClient()->getLastRequest(), 0, 1000);
     }
 }

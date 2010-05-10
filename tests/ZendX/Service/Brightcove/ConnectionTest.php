@@ -13,16 +13,16 @@ class ZendX_Service_Brightcove_ConnectionTest extends PHPUnit_Framework_TestCase
         $this->_conn = new ZendX_Service_Brightcove_Connection('--------');
     }
 
-    public function testGetRestClient()
+    public function testGetHttpClient()
     {
-        self::assertType('Zend_Rest_Client', $this->_conn->getRestClient());
+        self::assertType('Zend_Http_Client', $this->_conn->getHttpClient());
     }
 
-    public function testSetRestClient()
+    public function testSetHttptClient()
     {
-        $client = $this->getMock('Zend_Rest_Client');
-        $this->_conn->setRestClient($client);
-        self::assertSame($client, $this->_conn->getRestClient());
+        $client = $this->getMock('Zend_Http_Client');
+        $this->_conn->setHttpClient($client);
+        self::assertSame($client, $this->_conn->getHttpClient());
     }
 
     public function testSetReadToken()
@@ -83,17 +83,6 @@ class ZendX_Service_Brightcove_ConnectionTest extends PHPUnit_Framework_TestCase
         $this->_conn->notify();
     }
 
-//    public function testBuildQuery()
-//    {
-//        echo PHP_EOL;
-//        $client = new Zend_Rest_Client();
-//        $client->setUri('http://api.brightcove.com/');
-//        Zend_Service_Abstract::getHttpClient()->resetParameters();
-//        $response = $client->restGet('/services/library', array('token' => 'asdfass.'));
-//        echo $response->getHeadersAsString();
-//        echo $response->getBody();
-//    }
-
     public function httpMethodProvider()
     {
         return array(
@@ -126,7 +115,7 @@ class ZendX_Service_Brightcove_ConnectionTest extends PHPUnit_Framework_TestCase
             ->will($this->returnValue(ZendX_Service_Brightcove_Connection::TOKEN_TYPE_READ));
 
         $adapter = new Zend_Http_Client_Adapter_Test();
-        Zend_Service_Abstract::getHttpClient()->setAdapter($adapter);
+        $this->_conn->getHttpClient()->setAdapter($adapter);
         $adapter->setResponse(file_get_contents(
                 dirname(__FILE__).DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.__FUNCTION__.'.response'
         ));

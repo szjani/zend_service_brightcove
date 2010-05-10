@@ -51,7 +51,12 @@ abstract class ZendX_Service_Brightcove_Query_Read_AbstractSet extends ZendX_Ser
     {
         parent::execute();
         $list = $this->_getEmptyItemList();
-        $list->fromArray($this->_responseBody['items']);
+        $fromArray = array();
+        if (isset($this->_responseBody['items']) && is_array($this->_responseBody['items'])
+                && count($this->_responseBody['items']) > 0 && $this->_responseBody['items'][0] !== null) {
+            $fromArray = $this->_responseBody['items'];
+        }
+        $list->fromArray($fromArray);
         $this->_setItems($list);
         return $this;
     }
