@@ -141,9 +141,9 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      */
     protected function _checkErrors()
     {
-        if (is_array($this->_lastResponseBody) && array_key_exists('error', $this->_lastResponseBody) && array_key_exists('code', $this->_lastResponseBody)) {
+        if (is_array($this->_lastResponseBody) && array_key_exists('error', $this->_lastResponseBody) && !empty($this->_lastResponseBody['error'])) {
             $this->notify();
-            throw new ZendX_Service_Brightcove_Exception('Connection error: ' . $this->_lastResponseBody['error'] . ', code: ' . $this->_lastResponseBody['code'], $this->_lastResponseBody['code']);
+            throw new ZendX_Service_Brightcove_Exception("{$this->_lastResponseBody['error']['name']}: {$this->_lastResponseBody['error']['message']}", $this->_lastResponseBody['error']['code']);
         }
     }
 
