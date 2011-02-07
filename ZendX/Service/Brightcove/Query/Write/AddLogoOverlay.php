@@ -174,17 +174,17 @@ class ZendX_Service_Brightcove_Query_Write_AddLogoOverlay
      * @param string $referenceId
      * @return ZendX_Service_Brightcove_Query_Write_AddLogoOverlay $this
      */
-    public function setReferenceId($referenceId)
+    public function setVideoReferenceId($referenceId)
     {
-        $this->setParam('reference_id', (string)$referenceId);
+        $this->setParam('video_reference_id', (string)$referenceId);
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getReferenceId()
+    public function getVideoReferenceId()
     {
-        return $this->getParam('reference_id');
+        return $this->getParam('video_reference_id');
     }
 }
