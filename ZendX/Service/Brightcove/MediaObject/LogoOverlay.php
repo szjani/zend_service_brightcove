@@ -19,6 +19,41 @@ class ZendX_Service_Brightcove_MediaObject_LogoOverlay
     const LINK_URL  = 'linkURL';
     const ALIGNMENT = 'alignment';
 
+    /**
+     * @param array $logoOverlay
+     */
+    public function fromArray(array $logoOverlay)
+    {
+        if (isset($logoOverlay[self::ID])) {
+            $this->_setId($logoOverlay[self::ID]);
+        }
+        if (isset($logoOverlay[self::IMAGE])) {
+            $image = new ZendX_Service_Brightcove_MediaObject_Image();
+            $image->fromArray($logoOverlay[self::IMAGE]);
+            $this->setImage($image);
+        }
+        if (isset($logoOverlay[self::TOOLTIP])) {
+            $this->setTooltip($logoOverlay[self::TOOLTIP]);
+        }
+        if (isset($logoOverlay[self::LINK_URL])) {
+            $this->setLinkUrl($logoOverlay[self::LINK_URL]);
+        }
+        if (isset($logoOverlay[self::ALIGNMENT])) {
+            $this->setAlignment($logoOverlay[self::ALIGNMENT]);
+        }
+    }
+
+    protected function _setId($id)
+    {
+        $validator = new Zend_Validate_Digits();
+        if (!$validator->isValid($id)) {
+            require_once 'ZendX/Service/Brightcove/MediaObject/Exception.php';
+            throw new ZendX_Service_Brightcove_MediaObject_Exception(implode(PHP_EOL, $validator->getMessages()));
+        }
+        $this[self::ID] = (float)$id;
+        return $this;
+    }
+
     public function getId()
     {
         return $this[self::ID];
@@ -83,6 +118,16 @@ class ZendX_Service_Brightcove_MediaObject_LogoOverlay
             throw new ZendX_Service_Brightcove_Query_ParamException('Invalid logo overlay alignment: ' . $alignment);
         }
         $this[self::ALIGNMENT] = $alignment;
+        return $this;
+    }
+
+    /**
+     * @param string $tooltip
+     * @return ZendX_Service_Brightcove_MediaObject_LogoOverlay
+     */
+    public function setTooltip($tooltip)
+    {
+        $this[self::TOOLTIP] = (string)$tooltip;
         return $this;
     }
 }
