@@ -65,7 +65,7 @@ class ZendX_Service_Brightcove_Query_Write_AddLogoOverlay
      */
     public function setLogoOverlay(ZendX_Service_Brightcove_MediaObject_LogoOverlay $logoOverlay)
     {
-        $this->_logoOverlay = $logoOverlay;
+        $this->setParam('logooverlay', $logoOverlay);
         return $this;
     }
 
