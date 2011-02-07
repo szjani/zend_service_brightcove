@@ -25,7 +25,7 @@ class ZendX_Service_Brightcove_MediaObject_LogoOverlay
     public function fromArray(array $logoOverlay)
     {
         if (isset($logoOverlay[self::ID])) {
-            $this->_setId($logoOverlay[self::ID]);
+            $this->setId($logoOverlay[self::ID]);
         }
         if (isset($logoOverlay[self::IMAGE])) {
             $image = new ZendX_Service_Brightcove_MediaObject_Image();
@@ -47,7 +47,7 @@ class ZendX_Service_Brightcove_MediaObject_LogoOverlay
      * @param numeric $id
      * @return ZendX_Service_Brightcove_MediaObject_LogoOverlay
      */
-    protected function _setId($id)
+    public function setId($id)
     {
         $validator = new Zend_Validate_Digits();
         if (!$validator->isValid($id)) {
