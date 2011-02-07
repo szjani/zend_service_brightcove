@@ -26,6 +26,14 @@ class ZendX_Service_Brightcove_Query_Write_AddLogoOverlay
     }
 
     /**
+     * @return string
+     */
+    public function getBrightcoveMethod()
+    {
+        return 'add_logo_overlay';
+    }
+
+    /**
      * @return ZendX_Service_Brightcove_Query_Write_AddLogoOverlay
      */
     public function execute()
