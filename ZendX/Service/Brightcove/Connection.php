@@ -143,7 +143,9 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     {
         if (is_array($this->_lastResponseBody) && array_key_exists('error', $this->_lastResponseBody) && !empty($this->_lastResponseBody['error'])) {
             //$this->notify();
-            throw new ZendX_Service_Brightcove_Exception("{$this->_lastResponseBody['error']['name']}: {$this->_lastResponseBody['error']['message']}", $this->_lastResponseBody['error']['code']);
+            throw new ZendX_Service_Brightcove_ResponseException(
+                "{$this->_lastResponseBody['error']['name']}: {$this->_lastResponseBody['error']['message']}", $this->_lastResponseBody['error']['code']
+            );
         }
     }
 
