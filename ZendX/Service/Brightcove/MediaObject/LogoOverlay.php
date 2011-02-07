@@ -43,6 +43,10 @@ class ZendX_Service_Brightcove_MediaObject_LogoOverlay
         }
     }
 
+    /**
+     * @param numeric $id
+     * @return ZendX_Service_Brightcove_MediaObject_LogoOverlay
+     */
     protected function _setId($id)
     {
         $validator = new Zend_Validate_Digits();
@@ -54,6 +58,9 @@ class ZendX_Service_Brightcove_MediaObject_LogoOverlay
         return $this;
     }
 
+    /**
+     * @return numeric
+     */
     public function getId()
     {
         return $this[self::ID];
