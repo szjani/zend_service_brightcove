@@ -24,7 +24,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
     public function fromArray(array $image)
     {
         if (isset($image[self::ID])) {
-            $this->_setId($image[self::ID]);
+            $this->setId($image[self::ID]);
         }
         if (isset($image[self::REFERENCE_ID])) {
             $this->setReferenceId($image[self::REFERENCE_ID]);
@@ -52,7 +52,7 @@ class ZendX_Service_Brightcove_MediaObject_Image
      * @param numeric $id
      * @return ZendX_Service_Brightcove_MediaObject_Image $this
      */
-    protected function _setId($id)
+    public function setId($id)
     {
         $validator = new Zend_Validate_Digits();
         if (!$validator->isValid($id)) {
