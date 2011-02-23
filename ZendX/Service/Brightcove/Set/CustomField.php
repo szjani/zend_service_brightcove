@@ -10,6 +10,15 @@ require_once 'ZendX/Service/Brightcove/Set/Abstract.php';
  */
 class ZendX_Service_Brightcove_Set_CustomField extends ZendX_Service_Brightcove_Set_Abstract
 {
+    public function toJsonSource()
+    {
+        $res = array();
+        foreach ($this->_items as $key => $value) {
+            $res[$key] = $value;
+        }
+        return $res;
+    }
+
     protected function _isStorable($value)
     {
         return true;
