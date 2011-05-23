@@ -28,7 +28,7 @@ class ZendX_Service_Brightcove_Query_Write_UpdateVideo
             throw new ZendX_Service_Brightcove_Query_Write_Exception('No video found!');
         }
         $this->_video = new ZendX_Service_Brightcove_MediaObject_Video();
-        $this->_video->fromArray($this->_responseBody);
+        $this->_video->fromArray($this->_responseBody['result']);
         return $this;
     }
 

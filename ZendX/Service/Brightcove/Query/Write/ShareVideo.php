@@ -51,7 +51,7 @@ class ZendX_Service_Brightcove_Query_Write_ShareVideo
             throw new ZendX_Service_Brightcove_Query_Write_Exception('No video found!');
         }
         $this->_videoIds = new ZendX_Service_Brightcove_Set_VideoId();
-        $this->_videoIds->fromArray($this->_responseBody);
+        $this->_videoIds->fromArray($this->_responseBody['result']);
         return $this;
     }
     
@@ -93,7 +93,7 @@ class ZendX_Service_Brightcove_Query_Write_ShareVideo
      */
     public function setAccountIds(ZendX_Service_Brightcove_Set_AccountId $set)
     {
-        $this->setParam('share_account_ids', $set);
+        $this->setParam('sharee_account_ids', $set);
         return $this;
     }
     
@@ -102,7 +102,7 @@ class ZendX_Service_Brightcove_Query_Write_ShareVideo
      */
     public function getAccountIds()
     {
-        return $this->getParam('share_account_ids');
+        return $this->getParam('sharee_account_ids');
     }
     
     /**
