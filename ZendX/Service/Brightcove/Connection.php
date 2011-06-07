@@ -14,6 +14,8 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     const TOKEN_TYPE_READ = 'read';
 
     const TOKEN_TYPE_WRITE = 'write';
+    
+    const MAX_QUERY_EXECUTION_COUNTER = 20;
 
     const READ_URI = 'http://api.brightcove.com/services/library';
     
@@ -24,6 +26,13 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     protected $_writeToken = null;
 
     protected $_query = null;
+    
+    /**
+     * Use for concurrent read/write error handling
+     * 
+     * @var int
+     */
+    protected $_maxExecutionCounter = self::MAX_QUERY_EXECUTION_COUNTER;
 
     /**
      * @var SplObjectStorage
@@ -39,6 +48,16 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      * @var Zend_Http_Client
      */
     protected $_httpClient = null;
+    
+    /**
+     * @var boolean
+     */
+    protected $_handleConcurrentReadWriteErrors = true;
+    
+    /**
+     * @var array
+     */
+    protected $_queryExecutionCounters = array();
 
     /**
      * @param string $readToken
@@ -48,6 +67,36 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     {
         $this->_observerStorage = new SplObjectStorage();
         $this->setReadToken($readToken)->setWriteToken($writeToken);
+    }
+    
+    /**
+     * @param type $counter
+     * @return ZendX_Service_Brightcove_Connection 
+     */
+    public function setMaxExecutionCounter($counter) {
+        $this->_maxExecutionCounter = (int)$counter;
+        return $this;
+    }
+    
+    /**
+     * @return int
+     */
+    public function getMaxExecutionCounter() {
+        return $this->_maxExecutionCounter;
+    }
+    
+    /**
+     * Set/Get handle of concurrent read/write errors
+     * 
+     * @see http://support.brightcove.com/en/docs/building-robust-applications-shared-environment
+     * @param boolean $handle Use null if you want to just get the property
+     * @return boolean
+     */
+    public function handleConcurrentReadWriteErrors($handle = null) {
+        if (is_bool($handle)) {
+            $this->_handleConcurrentReadWriteErrors = $handle;
+        }
+        return $this->_handleConcurrentReadWriteErrors;
     }
 
     /**
@@ -135,11 +184,56 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     {
         return $this->_lastResponseBody;
     }
+    
+    /**
+     * Count query executions
+     * 
+     * @param ZendX_Service_Brightcove_Query_Abstract $query
+     * @return ZendX_Service_Brightcove_Connection 
+     */
+    protected function _increaseQueryExecutionCounter(ZendX_Service_Brightcove_Query_Abstract $query) {
+        $hash = spl_object_hash($query);
+        if (!array_key_exists($hash, $this->_queryExecutionCounters)) {
+            $this->_queryExecutionCounters[$hash] = 0;
+        }
+        ++$this->_queryExecutionCounters[$hash];
+        return $this;
+    }
+    
+    /**
+     * @param ZendX_Service_Brightcove_Query_Abstract $query
+     * @return int
+     */
+    protected function _getQueryExecutionCounter(ZendX_Service_Brightcove_Query_Abstract $query) {
+        $hash = spl_object_hash($query);
+        return array_key_exists($hash, $this->_queryExecutionCounters) ? $this->_queryExecutionCounters[$hash] : 0;
+    }
+    
+    /**
+     * @param ZendX_Service_Brightcove_Query_Abstract $query
+     * @return ZendX_Service_Brightcove_Connection 
+     */
+    protected function _resetQueryExecutionCounter(ZendX_Service_Brightcove_Query_Abstract $query) {
+        $hash = spl_object_hash($query);
+        if (array_key_exists($hash, $this->_queryExecutionCounters)) {
+            $this->_queryExecutionCounters[$hash] = 0;
+        }
+        return $this;
+    }
+    
+    /**
+     * @param ZendX_Service_Brightcove_Query_Abstract $query
+     * @return boolean
+     */
+    public function isExecutionRepeatAllowed(ZendX_Service_Brightcove_Query_Abstract $query) {
+        return $this->handleConcurrentReadWriteErrors()
+            && $this->_getQueryExecutionCounter($query) <= $this->getMaxExecutionCounter();
+    }
 
     /**
      * @throws Zend_Service_Brightcove_Exception
      */
-    protected function _checkErrors()
+    protected function _checkResponseErrors()
     {
         $responseBody = $this->_lastResponseBody;
         if (is_array($responseBody) && array_key_exists('error', $responseBody) && $responseBody['error'] !== null) {
@@ -158,43 +252,58 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      */
     public function execute(ZendX_Service_Brightcove_Query_Abstract $query = null)
     {
-        if ($query !== null) {
-            $this->setQuery($query);
-        }
-        $client = $this->getHttpClient();
-        $options =
-            array('token' => $query->getTokenType() == self::TOKEN_TYPE_READ ? $this->_readToken : $this->_writeToken)
-            + array('command' => $query->getBrightcoveMethod()) + $query->getQueryParams();
-        $paramCollection = new ZendX_Service_Brightcove_Collection($options);
-        $response = null;
-        if ($query->getHttpMethod() == Zend_Http_Client::GET) {
-            $client->setUri(self::READ_URI);
-            $params = array();
-            foreach ($paramCollection as $key => $option) {
-                if ($option instanceof ZendX_Service_Brightcove_Urlify) {
-                    $params[$key] = $option->urlify();
+        while (true) {
+            try {
+                if ($query !== null) {
+                    $this->setQuery($query);
+                }
+                $client = $this->getHttpClient();
+                $options =
+                    array('token' => $query->getTokenType() == self::TOKEN_TYPE_READ ? $this->_readToken : $this->_writeToken)
+                    + array('command' => $query->getBrightcoveMethod()) + $query->getQueryParams();
+                $paramCollection = new ZendX_Service_Brightcove_Collection($options);
+                $response = null;
+                if ($query->getHttpMethod() == Zend_Http_Client::GET) {
+                    $client->setUri(self::READ_URI);
+                    $params = array();
+                    foreach ($paramCollection as $key => $option) {
+                        if ($option instanceof ZendX_Service_Brightcove_Urlify) {
+                            $params[$key] = $option->urlify();
+                        } else {
+                            $params[$key] = (string)$option;
+                        }
+                    }
+                    $response = $client->setParameterGet($params)->request('GET');
                 } else {
-                    $params[$key] = (string)$option;
+                    $client->setUri(self::WRITE_URI);
+                    $command = $paramCollection['command'];
+                    $token   = $paramCollection['token'];
+                    unset($paramCollection['command']);
+                    unset($paramCollection['token']);
+                    $paramCollection['token'] = $token;
+                    $params = new ZendX_Service_Brightcove_Collection();
+                    $params['method'] = $command;
+                    $params['params'] = $paramCollection;
+                    $response = $client->setParameterPost(array('json' => Zend_Json::encode($params)))->request('POST');
+                }
+                $this->_increaseQueryExecutionCounter($query);
+                $client->resetParameters();
+                $this->_lastResponseBody = Zend_Json::decode($response->getBody());
+                $this->notify();
+                $this->_checkResponseErrors();
+                $this->_resetQueryExecutionCounter($query);
+                return $this;
+            } catch (ZendX_Service_Brightcove_ResponseException_ILowLevelUserError $e) {
+                $concurrentError =
+                    $e instanceof ZendX_Service_Brightcove_ResponseException_ConcurrentReadsExceededError
+                 || $e instanceof ZendX_Service_Brightcove_ResponseException_ConcurrentWritesExceededError;
+
+                // execute the request again if there is a concurrent read/write error
+                if (!$concurrentError || !$this->isExecutionRepeatAllowed($query)) {
+                    throw $e;
                 }
             }
-            $response = $client->setParameterGet($params)->request('GET');
-        } else {
-            $client->setUri(self::WRITE_URI);
-            $command = $paramCollection['command'];
-            $token   = $paramCollection['token'];
-            unset($paramCollection['command']);
-            unset($paramCollection['token']);
-            $paramCollection['token'] = $token;
-            $params = new ZendX_Service_Brightcove_Collection();
-            $params['method'] = $command;
-            $params['params'] = $paramCollection;
-            $response = $client->setParameterPost(array('json' => Zend_Json::encode($params)))->request('POST');
         }
-        $client->resetParameters();
-        $this->_lastResponseBody = Zend_Json::decode($response->getBody());
-        $this->notify();
-        $this->_checkErrors();
-        return $this;
     }
 
     /**
