@@ -145,9 +145,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         if (is_array($responseBody) && array_key_exists('error', $responseBody) && $responseBody['error'] !== null) {
             $error = $responseBody['error'];
             if (is_array($error) && array_key_exists('message', $error) && array_key_exists('code', $error)) {
-                throw new ZendX_Service_Brightcove_ResponseException(
-                    "{$error['name']}: {$error['message']}", $error['code']
-                );
+                ZendX_Service_Brightcove_ResponseException::throwException($error['message'], $error['code']);
             } else {
                 throw new ZendX_Service_Brightcove_ResponseException((string)$responseBody['error']);
             }

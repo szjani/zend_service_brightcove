@@ -122,4 +122,26 @@ class ZendX_Service_Brightcove_ConnectionTest extends PHPUnit_Framework_TestCase
         $this->_conn->execute($query);
     }
     
+    public function testConcurrentWritesExceededError() {
+        ZendX_Service_Brightcove_Manager::connection($this->_conn);
+        
+        $adapter = new Zend_Http_Client_Adapter_Test();
+        $this->_conn->getHttpClient()->setAdapter($adapter);
+        
+        $adapter->setResponse(file_get_contents(
+                dirname(__FILE__).DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'testConcurrentWritesExceededError.response'
+        ));
+
+        $query = new ZendX_Service_Brightcove_Query_Write_UpdateVideo(
+            new ZendX_Service_Brightcove_MediaObject_Video()
+        );
+        try {
+            $query->execute();
+            self::fail('Did not throw an exception!');
+        } catch (Exception $e) {
+            self::assertType('ZendX_Service_Brightcove_ResponseException_ConcurrentWritesExceededError', $e);
+            self::assertType('ZendX_Service_Brightcove_ResponseException_ILowLevelUserError', $e);
+        }
+    }
+    
 }
