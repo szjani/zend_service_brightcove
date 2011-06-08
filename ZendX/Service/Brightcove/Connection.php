@@ -15,7 +15,9 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
 
     const TOKEN_TYPE_WRITE = 'write';
     
-    const MAX_QUERY_EXECUTION_COUNTER = 20;
+    const MAX_QUERY_EXECUTION_COUNTER   = 20;
+    
+    const MAX_QUERY_EXECUTION_UNLIMITED = 0;
 
     const READ_URI = 'http://api.brightcove.com/services/library';
     
@@ -29,6 +31,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     
     /**
      * Use for concurrent read/write error handling
+     * self::MAX_QUERY_EXECUTION_UNLIMITED means unlimited
      * 
      * @var int
      */
@@ -226,8 +229,10 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      * @return boolean
      */
     public function isExecutionRepeatAllowed(ZendX_Service_Brightcove_Query_Abstract $query) {
+        $counterIsSmallerThanMaximum = $this->_getQueryExecutionCounter($query) <= $this->getMaxExecutionCounter();
+        $unlimitedExecution          = $this->getMaxExecutionCounter() == self::MAX_QUERY_EXECUTION_UNLIMITED;
         return $this->handleConcurrentReadWriteErrors()
-            && $this->_getQueryExecutionCounter($query) <= $this->getMaxExecutionCounter();
+            && ($counterIsSmallerThanMaximum || $unlimitedExecution);
     }
 
     /**
