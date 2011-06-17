@@ -27,6 +27,7 @@ abstract class ZendX_Service_Brightcove_Query_Write extends ZendX_Service_Bright
      * POST a file
      * 
      * @param string $fileName
+     * @param string $formName
      */
     protected function _setFileUpload($fileName, $formName)
     {
