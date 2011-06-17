@@ -61,6 +61,11 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      * @var array
      */
     protected $_queryExecutionCounters = array();
+    
+    /**
+     * @var boolean
+     */
+    protected $_retryAfterConnectionError = true;
 
     /**
      * @param string $readToken
@@ -100,6 +105,17 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
             $this->_handleConcurrentReadWriteErrors = $handle;
         }
         return $this->_handleConcurrentReadWriteErrors;
+    }
+    
+    /**
+     * @param boolean $retry
+     * @return boolean
+     */
+    public function retryAfterConnectionError($retry = null) {
+        if (is_bool($retry)) {
+            $this->_retryAfterConnectionError = $retry;
+        }
+        return $this->_retryAfterConnectionError;
     }
 
     /**
@@ -305,6 +321,16 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
 
                 // execute the request again if there is a concurrent read/write error
                 if (!$concurrentError || !$this->isExecutionRepeatAllowed($query)) {
+                    throw $e;
+                }
+            } catch (Zend_Http_Client_Adapter_Exception $e) {
+                // retry execute() if there is a connection error
+                if (!$this->retryAfterConnectionError()) {
+                    throw $e;
+                }
+            } catch (ZendX_Service_Brightcove_ResponseException_ISystemError $e) {
+                // retry execute() if there is a connection error
+                if (!$this->retryAfterConnectionError()) {
                     throw $e;
                 }
             }
