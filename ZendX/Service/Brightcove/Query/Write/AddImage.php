@@ -135,7 +135,7 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
      */
     public function setFileChecksum($fileChecksum)
     {
-        if (strlen($fileChecksum) !== 32 || !preg_match('/[a-z0-9]{32}/')) {
+        if (strlen($fileChecksum) !== 32 || !preg_match('/[a-z0-9]{32}/', $fileChecksum)) {
             require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
             throw new ZendX_Service_Brightcove_Query_ParamException('Invalid MD5 hash: ' . $fileChecksum);
         }
