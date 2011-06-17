@@ -125,7 +125,7 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
      */
     public function setFile($file)
     {
-        $this->_setFileUpload($file);
+        $this->_setFileUpload($file, 'file');
         return $this;
     }
 
