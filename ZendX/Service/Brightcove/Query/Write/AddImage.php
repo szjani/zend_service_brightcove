@@ -181,7 +181,7 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
      */
     public function setVideoReferenceId($referenceId)
     {
-        $this->setParam('video_reference_id ', (string)$referenceId);
+        $this->setParam('video_reference_id', (string)$referenceId);
         return $this;
     }
     
@@ -190,7 +190,7 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
      */
     public function getVideoReferenceId()
     {
-        return $this->getParam('video_reference_id ');
+        return $this->getParam('video_reference_id');
     }
     
     /**
