@@ -139,7 +139,7 @@ class ZendX_Service_Brightcove_Query_Write_AddImage
             require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
             throw new ZendX_Service_Brightcove_Query_ParamException('Invalid MD5 hash: ' . $fileChecksum);
         }
-        $this->setParam('file_checksum', $this->_fileChecksum);
+        $this->setParam('file_checksum', $fileChecksum);
         return $this;
     }
 
