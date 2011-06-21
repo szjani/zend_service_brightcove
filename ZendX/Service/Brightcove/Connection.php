@@ -313,10 +313,10 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
                     $response = $client->setParameterPost(array('json' => Zend_Json::encode($params)))->request('POST');
                 }
                 $this->_increaseQueryExecutionCounter($query);
-                $client->resetParameters();
                 $this->_lastResponseBody = Zend_Json::decode($response->getBody());
                 $this->notify();
                 $this->_checkResponseErrors();
+                $client->resetParameters();
                 $this->_resetQueryExecutionCounter($query);
                 return $this;
             } catch (ZendX_Service_Brightcove_ResponseException_ILowLevelUserError $e) {
