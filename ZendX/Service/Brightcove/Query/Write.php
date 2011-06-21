@@ -13,9 +13,9 @@ require_once 'Zend/Rest/Client.php';
  */
 abstract class ZendX_Service_Brightcove_Query_Write extends ZendX_Service_Brightcove_Query_Abstract
 {
-    private $_filePathname = null;
+    private $_uploadFilePathname = null;
     
-    private $_fileName = null;
+    private $_uploadFileName = null;
     
     private $_hasFileUpload = false;
     
@@ -30,17 +30,17 @@ abstract class ZendX_Service_Brightcove_Query_Write extends ZendX_Service_Bright
     /**
      * @return string pathname of file
      */
-    public function getFilePathname()
+    public function getUploadFilePathname()
     {
-        return $this->_filePathname;
+        return $this->_uploadFilePathname;
     }
 
     /**
      * @return string filename of file
      */
-    public function getFileName()
+    public function getUploadFileName()
     {
-        return $this->_fileName;
+        return $this->_uploadFileName;
     }
     
     public function getTokenType()
@@ -65,8 +65,8 @@ abstract class ZendX_Service_Brightcove_Query_Write extends ZendX_Service_Bright
             require_once 'ZendX/Service/Brightcove/Query/ParamException.php';
             throw new ZendX_Service_Brightcove_Query_ParamException('Invalid or not readable file: ' . $filePathname);
         }
-        $this->_filePathname  = $filePathname;
-        $this->_fileName      = $fileName;
+        $this->_uploadFilePathname  = $filePathname;
+        $this->_uploadFileName      = $fileName;
         $this->_hasFileUpload = true;
         return $this;
     }

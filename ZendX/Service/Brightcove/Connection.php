@@ -307,7 +307,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
                     $params['params'] = $paramCollection;
                     if ($query instanceof ZendX_Service_Brightcove_Query_Write) {
                         if ($query->hasFileUpload()) {
-                            $client->setFileUpload($query->getFilePathname(), $query->getFileName());
+                            $client->setFileUpload($query->getUploadFilePathname(), $query->getUploadFileName());
                         }
                     }
                     $response = $client->setParameterPost(array('json' => Zend_Json::encode($params)))->request('POST');
