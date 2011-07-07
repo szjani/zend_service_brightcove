@@ -328,7 +328,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
                 if (!$concurrentError || !$this->isExecutionRepeatAllowed($query)) {
                     throw $e;
                 }
-            } catch (Zend_Http_Client_Adapter_Exception $e) {
+            } catch (Zend_Http_Client_Exception $e) {
                 // retry execute() if there is a connection error
                 if (!$this->retryAfterConnectionError()) {
                     throw $e;
