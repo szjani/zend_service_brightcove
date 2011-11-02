@@ -48,7 +48,7 @@ class ZendX_Service_Brightcove_Collection
         require_once 'ZendX/Service/Brightcove/CollectionException.php';
         if ($key !== null) {
             if (isset($this->_items[$key])) {
-                throw new ZendX_Service_Brightcove_CollectionException('Exists $key! Use set() method!');
+                throw new ZendX_Service_Brightcove_CollectionException("Exists {$key}! Use set() method!");
             }
             $this->_items[$key] = $value;
         } else {
