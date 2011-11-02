@@ -13,17 +13,11 @@ class ZendX_Service_Brightcove_Set_SearchField
     extends ZendX_Service_Brightcove_Set_Composite
 {
 
-    protected function _isStorable($value)
-    {
-        return true;
-    }
-
     /**
-     *
      * @throws ZendX_Service_Brightcove_CollectionException
      * @param string $key
      */
-    protected function validateKey($key)
+    protected function _validateKey($key)
     {
         require_once 'ZendX/Service/Brightcove/Set/Exception.php';
         if (!is_null($key)
@@ -39,7 +33,7 @@ class ZendX_Service_Brightcove_Set_SearchField
      */
     public function add($value, $key = null)
     {
-        $this->validateKey($key);
+        $this->_validateKey($key);
         parent::add($value, $key);
     }
 
@@ -53,7 +47,7 @@ class ZendX_Service_Brightcove_Set_SearchField
         if (!is_array($value)) {
             $value = array($value);
         }
-        $this->validateKey($key);
+        $this->_validateKey($key);
         return parent::set($key, $value);
     }
 
