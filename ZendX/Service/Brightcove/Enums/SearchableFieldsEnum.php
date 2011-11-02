@@ -3,25 +3,14 @@
 require_once 'ZendX/Service/Brightcove/Enums/Interface.php';
 
 /**
- * SearchableFieldsEnum.php
- *
- * PHP versions 5.2+
- *
- * @category Backend
- * @package  Backend
- * @author   Balázs Benyó <balazs.benyo@factory.co.hu>
- * @license  http://factory.co.hu/license/ Sanoma
- * @link     SearchableFieldsEnum.
- */
-
-/**
  * SearchableFieldsEnum
  *
- * @category Backend
- * @package  Backend
- * @author   Balázs Benyó <balazs.benyo@factory.co.hu>
- * @license  http://factory.co.hu/license/ Sanoma
- * @link     SearchableFieldsEnum.
+ * @category   ZendX
+ * @package    ZendX_Service
+ * @subpackage Brightcove
+ * @author     Balázs Benyó <balazs.benyo@factory.co.hu>
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link       SearchableFieldsEnum.
  */
 class ZendX_Service_Brightcove_Enums_SearchableFieldsEnum
     implements ZendX_Service_Brightcove_Enums_Interface
