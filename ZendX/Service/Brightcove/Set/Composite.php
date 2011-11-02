@@ -1,24 +1,13 @@
 <?php
 
+require_once 'ZendX/Service/Brightcove/Set/Abstract.php';
+
 /**
- * List.php
- *
- * PHP versions 5.2+
- *
- * @category Backend
- * @package  Backend
- * @author   Balázs Benyó <balazs.benyo@factory.co.hu>
- * @license  http://factory.co.hu/license/ Sanoma
- * @link     List.
- */
-/**
- * List
- *
- * @category Backend
- * @package  Backend
- * @author   Balázs Benyó <balazs.benyo@factory.co.hu>
- * @license  http://factory.co.hu/license/ Sanoma
- * @link     List.
+ * @category   ZendX
+ * @package    ZendX_Service
+ * @subpackage Brightcove_Set
+ * @author     balazs.benyo@factory.co.hu
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class ZendX_Service_Brightcove_Set_Composite
     extends ZendX_Service_Brightcove_Set_Abstract

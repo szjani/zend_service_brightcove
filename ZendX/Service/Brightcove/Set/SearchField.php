@@ -3,13 +3,11 @@
 require_once 'ZendX/Service/Brightcove/Set/Composite.php';
 
 /**
- * SearchField
- *
- * @category Backend
- * @package  Backend
- * @author   Balázs Benyó <balazs.benyo@factory.co.hu>
- * @license  http://factory.co.hu/license/ Sanoma
- * @link     SearchField.
+ * @category   ZendX
+ * @package    ZendX_Service
+ * @subpackage Brightcove_Set
+ * @author     balazs.benyo@factory.co.hu
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_Service_Brightcove_Set_SearchField
     extends ZendX_Service_Brightcove_Set_Composite
