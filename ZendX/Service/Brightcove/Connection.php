@@ -14,25 +14,25 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     const TOKEN_TYPE_READ = 'read';
 
     const TOKEN_TYPE_WRITE = 'write';
-    
+
     const MAX_QUERY_EXECUTION_COUNTER   = 20;
-    
+
     const MAX_QUERY_EXECUTION_UNLIMITED = 0;
 
     const READ_URI = 'http://api.brightcove.com/services/library';
-    
+
     const WRITE_URI = 'http://api.brightcove.com/services/post';
-    
+
     protected $_readToken = null;
 
     protected $_writeToken = null;
 
     protected $_query = null;
-    
+
     /**
      * Use for concurrent read/write error handling
      * self::MAX_QUERY_EXECUTION_UNLIMITED means unlimited
-     * 
+     *
      * @var int
      */
     protected $_maxExecutionCounter = self::MAX_QUERY_EXECUTION_COUNTER;
@@ -51,17 +51,17 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
      * @var Zend_Http_Client
      */
     protected $_httpClient = null;
-    
+
     /**
      * @var boolean
      */
     protected $_handleConcurrentReadWriteErrors = true;
-    
+
     /**
      * @var array
      */
     protected $_queryExecutionCounters = array();
-    
+
     /**
      * @var boolean
      */
@@ -76,26 +76,26 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         $this->_observerStorage = new SplObjectStorage();
         $this->setReadToken($readToken)->setWriteToken($writeToken);
     }
-    
+
     /**
      * @param type $counter
-     * @return ZendX_Service_Brightcove_Connection 
+     * @return ZendX_Service_Brightcove_Connection
      */
     public function setMaxExecutionCounter($counter) {
         $this->_maxExecutionCounter = (int)$counter;
         return $this;
     }
-    
+
     /**
      * @return int
      */
     public function getMaxExecutionCounter() {
         return $this->_maxExecutionCounter;
     }
-    
+
     /**
      * Set/Get handle of concurrent read/write errors
-     * 
+     *
      * @see http://support.brightcove.com/en/docs/building-robust-applications-shared-environment
      * @param boolean $handle Use null if you want to just get the property
      * @return boolean
@@ -106,7 +106,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         }
         return $this->_handleConcurrentReadWriteErrors;
     }
-    
+
     /**
      * @param boolean $retry
      * @return boolean
@@ -125,6 +125,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     {
         if ($this->_httpClient === null) {
             $this->_httpClient = new Zend_Http_Client();
+            $this->_httpClient->setUnmaskStatus(true);
         }
         return $this->_httpClient;
     }
@@ -140,7 +141,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         $this->_httpClient = $client;
         return $this;
     }
-    
+
     /**
      * @param string $token
      */
@@ -203,12 +204,12 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
     {
         return $this->_lastResponseBody;
     }
-    
+
     /**
      * Count query executions
-     * 
+     *
      * @param ZendX_Service_Brightcove_Query_Abstract $query
-     * @return ZendX_Service_Brightcove_Connection 
+     * @return ZendX_Service_Brightcove_Connection
      */
     protected function _increaseQueryExecutionCounter(ZendX_Service_Brightcove_Query_Abstract $query) {
         $hash = spl_object_hash($query);
@@ -218,7 +219,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         ++$this->_queryExecutionCounters[$hash];
         return $this;
     }
-    
+
     /**
      * @param ZendX_Service_Brightcove_Query_Abstract $query
      * @return int
@@ -227,10 +228,10 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         $hash = spl_object_hash($query);
         return array_key_exists($hash, $this->_queryExecutionCounters) ? $this->_queryExecutionCounters[$hash] : 0;
     }
-    
+
     /**
      * @param ZendX_Service_Brightcove_Query_Abstract $query
-     * @return ZendX_Service_Brightcove_Connection 
+     * @return ZendX_Service_Brightcove_Connection
      */
     protected function _resetQueryExecutionCounter(ZendX_Service_Brightcove_Query_Abstract $query) {
         $hash = spl_object_hash($query);
@@ -239,7 +240,7 @@ class ZendX_Service_Brightcove_Connection implements SplSubject
         }
         return $this;
     }
-    
+
     /**
      * @param ZendX_Service_Brightcove_Query_Abstract $query
      * @return boolean
