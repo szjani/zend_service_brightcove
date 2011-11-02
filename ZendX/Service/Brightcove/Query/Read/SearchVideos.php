@@ -30,7 +30,6 @@ class ZendX_Service_Brightcove_Query_Read_SearchVideos
     public function setAllFields(ZendX_Service_Brightcove_Set_AllField $value)
     {
         $this->setParam('all', $value);
-
         return $this;
     }
 
@@ -41,7 +40,6 @@ class ZendX_Service_Brightcove_Query_Read_SearchVideos
     public function setAnyFields(ZendX_Service_Brightcove_Set_AnyField $value)
     {
         $this->setParam('any', $value);
-
         return $this;
     }
 
@@ -52,7 +50,6 @@ class ZendX_Service_Brightcove_Query_Read_SearchVideos
     public function setNoneFields(ZendX_Service_Brightcove_Set_NoneField $value)
     {
         $this->setParam('none', $value);
-
         return $this;
     }
 
@@ -63,7 +60,6 @@ class ZendX_Service_Brightcove_Query_Read_SearchVideos
     public function setExact($value)
     {
         $this->setParam('exact', (boolean) $value);
-
         return $this;
     }
 }

@@ -12,7 +12,11 @@ require_once 'ZendX/Service/Brightcove/Set/Abstract.php';
 abstract class ZendX_Service_Brightcove_Set_Composite
     extends ZendX_Service_Brightcove_Set_Abstract
 {
-
+    /**
+     * @throws ZendX_Service_Brightcove_Set_Exception
+     * @param mixed $value
+     * @param string $key
+     */
     public function add($value, $key = null)
     {
         $oldValue = isset($this->_items[$key])
