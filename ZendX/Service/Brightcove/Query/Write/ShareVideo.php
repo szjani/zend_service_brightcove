@@ -123,4 +123,21 @@ class ZendX_Service_Brightcove_Query_Write_ShareVideo
         return $this->getParam('auto_accept');
     }
     
+    /**
+     * @param boolean $forceReshare
+     * @return ZendX_Service_Brightcove_Query_Write_ShareVideo 
+     */
+    public function setForceReshare($forceReshare = true)
+    {
+        $this->setParam('force_reshare', (boolean)$forceReshare);
+        return $this;
+    }
+    
+    /**
+     * @return boolean
+     */
+    public function isForceReshare()
+    {
+        return $this->getParam('force_reshare');
+    }
 }
